@@ -25,4 +25,4 @@
       "noUnusedParameters": true,
       "noFallthroughCasesInSwitch": true
     }
-  }
+}
