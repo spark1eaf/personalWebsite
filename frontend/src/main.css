@@ -35,7 +35,7 @@ body {
     font-size: 4em;
 }
 
-.text-body{
+.landing-body{
     text-align: center;
     margin-left: 5%;
     margin-right: 5%;
@@ -82,6 +82,7 @@ body {
     border-style: none;
     font-size: 100%;
 }
+
 .win-close-btn:hover{
     color: black;
 }
@@ -89,6 +90,7 @@ body {
 .registration-form{
     margin-top: 5%;
 }
+
 .registration-form input{
     display: block;
     margin-left: 15%;
@@ -101,6 +103,7 @@ body {
 .registration-form, .logon-form{
     margin-top: 5%;
 }
+
 .registration-form input, .logon-form input, .recovery-form input{
     display: block;
     margin-left: 15%;

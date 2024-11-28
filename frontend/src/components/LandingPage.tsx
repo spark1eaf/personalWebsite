@@ -25,7 +25,7 @@ const LandingPage = ()=>{
         <div className="landing-page">
             <LoginBtns displayLoginWindow={displayLoginWindow} displayRegistrationWindow={displayRegistrationWindow}/>
             <h1 className="title">Welcome</h1>
-            <p className="text-body">{Constants.DUMMY_TEXT}</p>
+            <p className="landing-body">{Constants.DUMMY_TEXT}</p>
             <PopupWindow windowToDisplay={windowToDisplay} displayRecoveryWindow={displayRecoveryWindow} closeWindow={closeWindow}/>
             <Footer/>
         </div>
