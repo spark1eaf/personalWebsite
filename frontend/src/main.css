@@ -1,0 +1,149 @@
+html,body {height:100%; }
+
+a {text-decoration: none;}
+
+body { 
+    margin-left: 0;
+    font-family: "Roboto Mono";
+    background-color: #1f2b12;
+    color: #ffffff;
+}
+
+.login-btns{
+    display: flex;
+    margin-top: 2em;
+    margin-right: 2em;
+    justify-content: right;
+    border-style: none;
+}
+
+.login-btns button{
+    font-size: 1.5em;
+    width: 5em;
+    height: 2.5em;
+    color: #ffffff;
+    background-color: black;
+}
+
+.login-btns button:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
+.title{
+    text-align: center;
+    font-size: 4em;
+}
+
+.text-body{
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 3.5em;
+}
+
+.footer{
+    margin-top: 15%;
+    padding-bottom: 10%;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.invis-window{
+    position: absolute;
+    z-index: 1;
+    top: 0%;
+    bottom: 0;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+}
+
+.popup-window{
+    position: absolute;
+    z-index: 2;
+    top: 25%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: #31393cf6;
+    text-align: center;
+    width: 50%;
+    height: 65%;
+    font-size: 2em;
+    border-radius: 1.5%;
+}
+
+.win-close-btn{
+    position: absolute;
+    right: 4%;
+    top: 3%;
+    color: white;
+    background-color: transparent;
+    border-style: none;
+    font-size: 100%;
+}
+.win-close-btn:hover{
+    color: black;
+}
+
+.registration-form{
+    margin-top: 5%;
+}
+.registration-form input{
+    display: block;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 2em;
+    width: 70%;
+    height: 3em;
+}
+
+.registration-form, .logon-form{
+    margin-top: 5%;
+}
+.registration-form input, .logon-form input, .recovery-form input{
+    display: block;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 3em;
+    width: 70%;
+    height: 3em;
+    padding-left: 1%;
+}
+
+.registration-submit-btn, .login-submit-btn, .recovery-submit-btn{
+    position: absolute;
+    right: 0;
+    margin-right: 10%;
+    bottom: 0;
+    margin-bottom: 5%;
+    width: 10%;
+    height: 3em;
+    font-size: .6em;
+    background-color: white;
+}
+
+.registration-submit-btn:hover, .login-submit-btn:hover, .recovery-submit-btn:hover{
+    color: gray;
+}
+
+.forgot-pass-btn{
+    display: block;
+    background-color: transparent;
+    border-style: none;
+    color: white;
+    font-size: .6em;
+    margin-left: 15%;
+    margin-top: .7em;
+}
+
+.forgot-pass-btn:hover{
+    color: black;
+}
+
+.recovery-text{
+    text-align: left;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-size: 1em;
+}
