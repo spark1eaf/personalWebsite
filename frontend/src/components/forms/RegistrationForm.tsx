@@ -5,6 +5,7 @@ const RegistrationForm = () =>{
     const [email, setEmail] = useState("");
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleNameChange = (event:ChangeEvent<HTMLInputElement>) =>{
         setName(event.target.value);
@@ -22,18 +23,22 @@ const RegistrationForm = () =>{
         setPassword(event.target.value);
     };
 
+    const handleConfirmPasswordChange = (event:ChangeEvent<HTMLInputElement>) =>{
+        setConfirmPassword(event.target.value);
+    };
+
     const sendRegistrationData = (event:FormEvent) =>{
         event.preventDefault();
     };
 
     return(
         <form className="registration-form" onSubmit={sendRegistrationData}>
-            <input type="text" onChange={handleNameChange} placeholder="Your Name" name="Name" value={name} required/>
-            <input type="text" onChange={handleEmailChange} placeholder="Your Email" name="Email" value={email} required/>
-            <input type="email" onChange={handleUsernameChange} placeholder="Your Username" name="Username" value={userName} required/>
-            <input type="password" onChange={handlePasswordChange} placeholder="Enter a Password" name="assword" value={password} required/>
-            <input type="password" onChange={handlePasswordChange} placeholder="Confirm Password" name="Password Confirmation" value={password} required/>
-            <button type="submit" className="registration-submit-btn">Sign up</button>
+            <input type="text" onChange={handleNameChange} placeholder="Name" name="name" value={name} required/>
+            <input type="email" onChange={handleEmailChange} placeholder="Email" name="email" value={email} required/>
+            <input type="text" onChange={handleUsernameChange} placeholder="Username" name="username" value={userName} required/>
+            <input type="password" onChange={handlePasswordChange} placeholder="Enter a Password" name="password" value={password} required/>
+            <input type="password" onChange={handleConfirmPasswordChange} placeholder="Confirm Password" name="passwordConfirmation" value={confirmPassword} required/>
+            <button type="submit" className="registration-submit-btn">Sign Up</button>
         </form> 
     );
 };

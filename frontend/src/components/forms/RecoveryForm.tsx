@@ -14,7 +14,7 @@ const RecoveryForm = () =>{
 
     return(
         <form className="recovery-form" onSubmit={sendRecoveryEmail}>
-            <input type="email" onChange={handleEmailChange} placeholder="email" name="email" value={email} required/>
+            <input type="email" onChange={handleEmailChange} placeholder="Email" name="email" value={email} required/>
             <button type="submit" className="recovery-submit-btn">Submit</button>
         </form>
     );
