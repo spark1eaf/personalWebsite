@@ -1,7 +1,11 @@
+import RegistrationForm from "./RegistrationForm";
+
 const RegistrationWindow = () =>{
     return(
-        <p>Sign up</p>
-        
+        <div className="popup-window">
+            <h1>Register</h1>
+            <RegistrationForm/>
+        </div>
     )
 }
 

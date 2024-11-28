@@ -4,7 +4,6 @@ a {text-decoration: none;}
 
 body { 
     margin-left: 0;
-    /* maybe use a different font? */
     font-family: "Roboto Mono";
     background-color: #1f2b12;
     color: #ffffff;
@@ -48,4 +47,54 @@ body {
     padding-bottom: 10%;
     font-size: 1.5em;
     text-align: center;
+}
+
+.popup-window{
+    position: absolute;
+    z-index: 1;
+    top: 25%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: #31393cf6;
+    text-align: center;
+    width: 50%;
+    height: 65%;
+    font-size: 2em;
+    border-radius: .6%;
+}
+.registration-form{
+    margin-top: 5%;
+}
+.registration-form input{
+    display: block;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 2em;
+    width: 70%;
+    height: 3em;
+}
+
+.registration-form, .logon-form{
+    margin-top: 5%;
+}
+.registration-form input, .logon-form input{
+    display: block;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 3em;
+    width: 70%;
+    height: 3em;
+    padding-left: 1%;
+}
+
+.registration-form button, .logon-form button{
+    position: absolute;
+    right: 0;
+    margin-right: 10%;
+    bottom: 0;
+    margin-bottom: 5%;
+    width: 10%;
+    height: 3em;
+    font-size: .6em;
+    background-color: white;
 }
