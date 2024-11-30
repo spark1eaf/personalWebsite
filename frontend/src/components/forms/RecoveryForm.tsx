@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import userManagement from "../../service/userManagement";
 
 const RecoveryForm = () =>{
     const [email, setEmail] = useState("");
@@ -7,13 +8,14 @@ const RecoveryForm = () =>{
         setEmail(event.target.value);
     };
 
-    const sendRecoveryEmail = (event:FormEvent) =>{
+    const requestRecovery = (event:FormEvent) =>{
         event.preventDefault();
+        userManagement.requestRecoveryEmail(email);
         console.log("Recovery email sent.");
     };
 
     return(
-        <form className="recovery-form" onSubmit={sendRecoveryEmail}>
+        <form className="recovery-form" onSubmit={requestRecovery}>
             <input type="email" onChange={handleEmailChange} placeholder="Email" name="email" value={email} required/>
             <button type="submit" className="recovery-submit-btn">Submit</button>
         </form>
