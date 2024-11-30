@@ -6,8 +6,16 @@ body {
     margin-left: 0;
     font-family: "Roboto Mono";
     background-color: #1f2b12;
-    color: #ffffff;
+    color: ivory;
 }
+
+input:hover{
+    background-color: rgb(235, 229, 229);
+}
+
+::placeholder{color: black;}
+
+:focus::placeholder {color: transparent;}
 
 .login-btns{
     display: flex;

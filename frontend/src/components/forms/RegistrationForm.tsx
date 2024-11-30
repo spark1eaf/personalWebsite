@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import userManagement from "../../service/userManagement";
 
 const RegistrationForm = () =>{
     const [name, setName] = useState("");
@@ -23,12 +24,19 @@ const RegistrationForm = () =>{
         setPassword(event.target.value);
     };
 
-    const handleConfirmPasswordChange = (event:ChangeEvent<HTMLInputElement>) =>{
+    const handleConfirmPassword = (event:ChangeEvent<HTMLInputElement>) =>{
         setConfirmPassword(event.target.value);
     };
 
     const sendRegistrationData = (event:FormEvent) =>{
         event.preventDefault();
+        //new user
+        const user:UserObj = {
+            username: userName,
+            email: email,
+            password: password
+        };
+        userManagement.register(user);
     };
 
     return(
@@ -37,7 +45,7 @@ const RegistrationForm = () =>{
             <input type="email" onChange={handleEmailChange} placeholder="Email" name="email" value={email} required/>
             <input type="text" onChange={handleUsernameChange} placeholder="Username" name="username" value={userName} required/>
             <input type="password" onChange={handlePasswordChange} placeholder="Enter a Password" name="password" value={password} required/>
-            <input type="password" onChange={handleConfirmPasswordChange} placeholder="Confirm Password" name="passwordConfirmation" value={confirmPassword} required/>
+            <input type="password" onChange={handleConfirmPassword} placeholder="Confirm Password" name="passwordConfirmation" value={confirmPassword} required/>
             <button type="submit" className="registration-submit-btn">Sign Up</button>
         </form> 
     );
