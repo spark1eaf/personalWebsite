@@ -1,0 +1,1 @@
+axios.put(`${url}?email=${encodeURIComponent(email)}

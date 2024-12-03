@@ -58,8 +58,8 @@ public class UserManagementController {
     }
 
     //get user details
-    @GetMapping("/getdetails")
+    @GetMapping("/getUserDetails")
     public void getUserDetails(@Valid @RequestBody String username){
-        return userManagementService.getUserDetails(username);
+//        return userManagementService.getUserDetails(username);
     }
 }

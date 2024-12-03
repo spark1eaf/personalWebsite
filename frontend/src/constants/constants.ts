@@ -16,4 +16,5 @@ export const LOGIN = `http://localhost:8080/login`;
 export const SIGNOUT = `http://localhost:8080/signout`;
 export const REGISTER = `http://localhost:8080/register`;
 export const CHANGEPASS = `http://localhost:8080/changepass`;
-export const RECOVER = `"http://localhost:8080/recovery`;
+export const RECOVER = `http://localhost:8080/recovery`;
+export const GET_USER_DETAILS = `http://localhost:8080/getUserDetails`;
