@@ -6,13 +6,13 @@ const handleError = (error:unknown): ResponseObj<any> =>{
         console.error(`Error: ${error.message}`, error);
         return {
             status: error.response?.status,
-            error: error.response?.data?.message || "An error has occurred, please try again."
+            error: error.response?.data?.message || Constants.ERROR_TRY_AGAIN_MSG
         };
     }
     else {
-        const errorMessage = error instanceof Error ? error.message: "Unexpected Error";
-        console.error(`Unexpected error: ${errorMessage}`);
-        return {error: "An unexpected error occurred. Please try again later." };
+        const errorMessage = error instanceof Error ? error.message: Constants.UNEXPECTED_ERROR;
+        console.error(`${Constants.UNEXPECTED_ERROR}: ${errorMessage}`);
+        return {error: Constants.UNEXPECTED_ERROR_MSG };
     }
 }
 
@@ -53,12 +53,12 @@ const register = async(newUser:UserRegObj): Promise<ResponseObj<any>> =>{
 
 //sends a request to change a users password
 const changePassword = async(email:string) =>{
-    const url = Constants.CHANGEPASS;
+    const url = Constants.CHANGEPASS + Constants.EMAIL_PARAM + encodeURIComponent(email);
     try {
-        const response = await axios.put(`${url}?email=${encodeURIComponent(email)}`);
+        const response = await axios.put(url);
         //todo move logic into calling method after its created
         if(response.status === 200)
-            alert("Password has been successfully updated")
+            alert(Constants.PASSWORD_UPDATED)
     } catch (error) {
         return handleError(error);
     }
@@ -66,15 +66,15 @@ const changePassword = async(email:string) =>{
 
 //Sends a request triggering an emauil with recovery link to be sent to the user
 const requestRecoveryEmail = async (email:string) =>{
-    const url = Constants.RECOVER;
+    const url = Constants.RECOVERY;
     //not sure type of request needed atm.
 };
 
 //sends a request to retrieve userdetails
 const getUserDetails = async(username:string): Promise<ResponseObj<any>> =>{
-    const url = Constants.GET_USER_DETAILS;
+    const url = Constants.GET_USER_DETAILS + Constants.USERNAME_PARAM + encodeURIComponent(username);
     try {
-        const response = await axios.get(`${url}?username=${encodeURIComponent(username)}`);
+        const response = await axios.get(url);
         return {status:response.status, data:response.data};
     } 
     catch (error) {

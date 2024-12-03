@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import userManagement from "../../service/userManagement";
 import { useNavigate } from 'react-router-dom';
-import { HOME_PAGE } from "../../constants/constants";
 import axios from "axios";
+import * as Constants from "../../constants/constants"
 
 const LoginForm = () =>{
     const [username, setUserName] = useState("");
@@ -24,19 +24,19 @@ const LoginForm = () =>{
         };
         event.preventDefault();
         try {
-            const response = await userManagement.login(user)
+            const response = await userManagement.login(user);
             if(response.status === 200){
                 localStorage.setItem("authentication", response.data.token);
                 localStorage.setItem("username", username);
-                navigator(HOME_PAGE);
+                navigator(Constants.HOME_PAGE);
             }
             else if(response.status === 404)
-                alert("Incorrect username or password, please try again.");
+                alert(Constants.INCORRECT_CREDENTIALS);
         } catch (error){
             if(axios.isAxiosError(error))
-                alert(error.response?.data.message)
+                alert(error.response?.data.message);
             else
-                alert("An unexpected error occurred. Please try again later.");     
+                alert(Constants.UNEXPECTED_ERROR_MSG);     
         }
     };
     return(

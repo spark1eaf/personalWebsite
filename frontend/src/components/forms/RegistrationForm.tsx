@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import userManagement from "../../service/userManagement";
 import axios from "axios";
+import * as Constants from "../../constants/constants"
 
 const RegistrationForm = () =>{
     const [name, setName] = useState("");
@@ -32,7 +33,7 @@ const RegistrationForm = () =>{
 
     const handleZipcodeChange = (event:ChangeEvent<HTMLInputElement>) =>{
         setZipCode(event.target.value);
-    }
+    };
 
     const sendRegistrationData = async(event:FormEvent) =>{
         event.preventDefault();
@@ -48,15 +49,15 @@ const RegistrationForm = () =>{
         try {
             const response = await userManagement.register(user);
             if(response.status === 200){
-                console.log(response.data)
-                alert("Registration successful");
+                console.log(response.data);
+                alert(Constants.REGISTRATION_SUCCESSFUL);
                 window.location.reload;
             }
         } catch (error){
             if(axios.isAxiosError(error))
-                alert(error.response?.data.message)
+                alert(error.response?.data.message);
             else
-                alert("An unexpected error occurred. Please try again later.");     
+                alert(Constants.UNEXPECTED_ERROR_MSG);     
         }
     };
 

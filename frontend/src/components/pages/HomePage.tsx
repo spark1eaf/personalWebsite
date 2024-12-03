@@ -5,7 +5,6 @@ import * as Constants from "../../constants/constants"
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-
 const HomePage = () =>{
     const navigator = useNavigate();
 
@@ -17,9 +16,9 @@ const HomePage = () =>{
             }
         } catch (error) {
             if(axios.isAxiosError(error))
-                alert(error.response?.data.message)
+                alert(error.response?.data.message);
             else
-                alert("An unexpected error occurred. Please try again later.");     
+                alert(Constants.UNEXPECTED_ERROR_MSG);     
         }
     }
     
@@ -29,14 +28,14 @@ const HomePage = () =>{
             const response = await userManagement.signout(localStorage.getItem("authentication")|| "");
             if(response.status === 200){
                 localStorage.removeItem("authentication");
-                alert("You've been signed out successfully");
+                alert(Constants.SIGNOUT_SUCCESSFUL);
                 navigator(Constants.LANDING_PAGE);
             }
         } catch (error) {
             if(axios.isAxiosError(error))
                 alert(error.response?.data.message)
             else
-                alert("An unexpected error occurred. Please try again later.");     
+                alert(Constants.UNEXPECTED_ERROR_MSG);     
         }
     }
     //send out request to retrieve user details
@@ -49,6 +48,6 @@ const HomePage = () =>{
             <Footer/>
         </div>
     )
-}
+};
 
 export default HomePage;
