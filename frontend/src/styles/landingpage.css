@@ -1,14 +1,3 @@
-html,body {height:100%; }
-
-a {text-decoration: none;}
-
-body { 
-    margin-left: 0;
-    font-family: "Roboto Mono";
-    background-color: #1f2b12;
-    color: ivory;
-}
-
 input:hover{
     background-color: rgb(235, 229, 229);
 }
@@ -23,36 +12,11 @@ input:hover{
     border-style: none;
 }
 
-.login-btns button{
-    font-size: 1.5em;
-    width: 5em;
-    height: 2.5em;
-    color: #ffffff;
-    background-color: black;
-}
-
-.login-btns button:hover {
-    background-color: #ffffff;
-    color: black;
-}
-
-.title{
-    text-align: center;
-    font-size: 4em;
-}
-
 .landing-body{
     text-align: center;
     margin-left: 5%;
     margin-right: 5%;
     font-size: 3.5em;
-}
-
-.footer{
-    margin-top: 15%;
-    padding-bottom: 10%;
-    font-size: 1.5em;
-    text-align: center;
 }
 
 .invis-window{
