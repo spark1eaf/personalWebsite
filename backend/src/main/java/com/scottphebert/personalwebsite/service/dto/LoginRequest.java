@@ -1,4 +1,4 @@
-package com.scottphebert.personalwebsite.service.usermanagement.dto;
+package com.scottphebert.personalwebsite.service.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 

@@ -8,3 +8,9 @@ interface UserObj{
     password:string,
     email:string
 }
+
+interface ResponseObj<T> {
+    status?: number,
+    data?: T,
+    error?: string,
+}

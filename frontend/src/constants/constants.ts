@@ -10,3 +10,10 @@ export const HOME_PAGE = `/home`;
 export const FOOTER_P1 = `All Rights Reserved`;
 export const FOOTER_P2 = `@Scott Hebert 2024`;
 
+
+//endpoints
+export const LOGIN = `http://localhost:8080/login`;
+export const SIGNOUT = `http://localhost:8080/signout`;
+export const REGISTER = `http://localhost:8080/register`;
+export const CHANGEPASS = `http://localhost:8080/changepass`;
+export const RECOVER = `"http://localhost:8080/recovery`;

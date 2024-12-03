@@ -3,6 +3,8 @@ import LoginBtns from "../buttons/LoginBtns";
 import Footer from "../Footer";
 import PopupWindow from "../windows/PopupWindow";
 import {DUMMY_TEXT} from "../../constants/constants";
+import "../../styles/landingpage.css"
+
 const LandingPage = ()=>{
 
     const [windowToDisplay, setWindowToDisplay] = useState("");
