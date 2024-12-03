@@ -1,5 +1,6 @@
 package com.scottphebert.personalwebsite.config;
 
+import com.scottphebert.personalwebsite.common.Constants;
 import com.scottphebert.personalwebsite.service.security.JWTBlacklistService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -30,7 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if(token != null && jwtBlacklistService.isBlackListed(token)){
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            response.getWriter().write("Session token has been invalidated");
+            response.getWriter().write(Constants.TOKEN_INVALIDATED);
         }
         else if (token != null && jwtTokenProvider.validateToken(token)) {
             String username = jwtTokenProvider.getUsernameFromToken(token);
@@ -43,8 +44,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     // Extract JWT token from the "Authorization" header
     private String getToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+        String bearerToken = request.getHeader(Constants.AUTHORIZATION);
+        if (bearerToken != null && bearerToken.startsWith(Constants.BEARER)) {
             return bearerToken.substring(7);
         }
         return null;

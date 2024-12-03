@@ -1,5 +1,6 @@
 package com.scottphebert.personalwebsite.config;
 
+import com.scottphebert.personalwebsite.common.Constants;
 import com.scottphebert.personalwebsite.service.usermanagement.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,8 +26,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/login", "/register", "/signout").permitAll()
-                .requestMatchers("/changepass").authenticated()
+                .requestMatchers(Constants.LOGIN_URL, Constants.REGISTRATION_URL, Constants.SIGN_OUT_URL).permitAll()
+                .requestMatchers(Constants.CHANGE_PASSWORD_URL).authenticated()
                 .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
