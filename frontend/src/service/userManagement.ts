@@ -4,9 +4,10 @@ import * as Constants from "../constants/constants"
 const handleError = (error:unknown): ResponseObj<any> =>{
     if (axios.isAxiosError(error)) {
         console.error(`Error: ${error.message}`, error);
+        const statusCode = error.code === "ERR_NETWORK" ? 503 : error.response?.status
         return {
-            status: error.response?.status,
-            error: error.response?.data?.message || Constants.ERROR_TRY_AGAIN_MSG
+            status: statusCode,
+            error: error.response?.data || Constants.ERROR_TRY_AGAIN_MSG
         };
     }
     else {
@@ -31,9 +32,9 @@ const login = async(loginObj:LoginData): Promise<ResponseObj<any>> =>{
 const signout = async(token:string): Promise<ResponseObj<any>> =>{
     const url = Constants.SIGNOUT;
     try {
-        const response = await axios.post(url,
-            { headers: {'Authorization': `Bearer ${token}`}}
-        );
+        const response = await axios.post(url,{}, {
+            headers: {'Authorization': `Bearer ${token}`}
+    });
         return{status:response.status, data:response.data}
     } catch (error) {
         return handleError(error);
@@ -71,10 +72,16 @@ const requestRecoveryEmail = async (email:string) =>{
 };
 
 //sends a request to retrieve userdetails
-const getUserDetails = async(username:string): Promise<ResponseObj<any>> =>{
+const getUserDetails = async(username:string, token:string): Promise<ResponseObj<any>> =>{
     const url = Constants.GET_USER_DETAILS + Constants.USERNAME_PARAM + encodeURIComponent(username);
     try {
-        const response = await axios.get(url);
+        const response = await axios.get(url, {
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'    
+            }
+        })
         return {status:response.status, data:response.data};
     } 
     catch (error) {

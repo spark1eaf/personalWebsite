@@ -6,13 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 const HomePage = () =>{
+    
     const navigator = useNavigate();
-
     const populateUserDetails = async () =>{
         try {
-            const response = await userManagement.getUserDetails(localStorage.getItem("username") ||"");
+            const response = await userManagement.getUserDetails(localStorage.getItem("username") ||"", localStorage.getItem("authentication") || "");
             if(response.status === 200){
-
+                localStorage.setItem("firstName", response.data.firstName)
+                localStorage.setItem("zipcode", response.data.zipcode)
             }
         } catch (error) {
             if(axios.isAxiosError(error))
@@ -26,11 +27,12 @@ const HomePage = () =>{
     const handleSignOut = async () =>{
         try {
             const response = await userManagement.signout(localStorage.getItem("authentication")|| "");
-            if(response.status === 200){
+            if(response.status === 200 || response.status === 503){
                 localStorage.removeItem("authentication");
-                alert(Constants.SIGNOUT_SUCCESSFUL);
                 navigator(Constants.LANDING_PAGE);
+                alert(Constants.SIGNOUT_SUCCESSFUL);
             }
+
         } catch (error) {
             if(axios.isAxiosError(error))
                 alert(error.response?.data.message)
@@ -44,7 +46,7 @@ const HomePage = () =>{
     return(
         <div className="home-page">
             <button onClick={handleSignOut} className="logout-btn"> Sign out</button>
-            <h1 className="title">Welcome</h1>
+            <h1 className="title">{`Welcome ${localStorage.getItem("firstName")}!`}</h1>
             <Footer/>
         </div>
     )

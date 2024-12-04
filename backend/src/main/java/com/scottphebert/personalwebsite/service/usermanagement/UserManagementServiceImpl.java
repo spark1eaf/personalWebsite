@@ -53,15 +53,18 @@ public class UserManagementServiceImpl implements UserManagementService {
             return new ResponseEntity<>(Constants.USERNAME_TAKEN, HttpStatus.BAD_REQUEST);
         }
         User user = new User();
-        UserDetails userDetails = new UserDetails();
         user.setEmail(request.getEmail());
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        userDetails.setName(request.getName());
+
+        UserDetails userDetails = new UserDetails();
+        userDetails.setFirstName(request.getFirstName());
+        userDetails.setLastName(request.getLastName());
         userDetails.setZipcode(request.getZipcode());
-        user.setUserDetails(userDetails);
         userDetails.setUser(user);
+
         userRepo.save(user);
+        userDetailsRepo.save((userDetails));
 
         return new ResponseEntity<>(Constants.REGISTRATION_SUCCESS, HttpStatus.OK);
     }
@@ -96,9 +99,9 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     //finds user details based on email
-    public ResponseEntity<UserDetails> getUserDetails(String email){
-        User user = userRepo.findByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException(new EntityNotFoundException(Constants.USER_NOT_FOUND_EMAIL + email)));
+    public ResponseEntity<UserDetails> getUserDetails(String username){
+        User user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException(new EntityNotFoundException(Constants.USER_NOT_FOUND_USERNAME + username)));
         UserDetails userDetails = userDetailsRepo.findById(user.getId())
                 .orElseThrow(() -> new EntityNotFoundException(Constants.USER_DETAILS_NOT_FOUND + user.getId()));
             return ResponseEntity.ok(userDetails);

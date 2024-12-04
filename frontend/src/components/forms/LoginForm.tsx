@@ -30,8 +30,11 @@ const LoginForm = () =>{
                 localStorage.setItem("username", username);
                 navigator(Constants.HOME_PAGE);
             }
-            else if(response.status === 404)
-                alert(Constants.INCORRECT_CREDENTIALS);
+            else if(response.status === 403){
+                alert(Constants.INCORRECT_CREDENTIALS)
+            }
+            else
+                alert(response.error || Constants.UNEXPECTED_ERROR_MSG);
         } catch (error){
             if(axios.isAxiosError(error))
                 alert(error.response?.data.message);

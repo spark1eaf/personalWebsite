@@ -8,7 +8,7 @@ const RegistrationWindow = ({closeWindow}: {closeWindow:MouseEventHandler<HTMLBu
             <>
                 <WindowCloseBtn closeWindow={closeWindow}/>
                 <h1 className="registration-title">Register</h1>
-                <RegistrationForm />
+                <RegistrationForm/>
             </>
     );
 };

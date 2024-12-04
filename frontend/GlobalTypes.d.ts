@@ -8,7 +8,8 @@ interface UserRegObj{
     password:string,
     email:string,
     zipcode: string,
-    name: string
+    firstName: string,
+    lastName: string
 };
 
 interface ResponseObj<T> {
