@@ -10,10 +10,26 @@ export const HOME_PAGE = `/home`;
 export const FOOTER_P1 = `All Rights Reserved`;
 export const FOOTER_P2 = `@Scott Hebert 2024`;
 
-
 //endpoints
 export const LOGIN = `http://localhost:8080/login`;
 export const SIGNOUT = `http://localhost:8080/signout`;
 export const REGISTER = `http://localhost:8080/register`;
 export const CHANGEPASS = `http://localhost:8080/changepass`;
-export const RECOVER = `"http://localhost:8080/recovery`;
+export const RECOVERY = `http://localhost:8080/recovery`;
+export const GET_USER_DETAILS = `http://localhost:8080/getuserdetails`;
+
+//params
+export const USERNAME_PARAM = `?username=`;
+export const EMAIL_PARAM = `?email=`;
+
+//errors and exceptions
+export const UNEXPECTED_ERROR = `Unexpected Error`;
+export const UNEXPECTED_ERROR_MSG = `An unexpected error occurred. Please try again later.`;
+export const ERROR_TRY_AGAIN_MSG = `An error has occurred, please try again.`;
+
+//user management
+export const SIGNOUT_SUCCESSFUL = `You've been signed out successfully.`;
+export const REGISTRATION_SUCCESSFUL = `Registration successful`;
+export const PASSWORD_UPDATED = `Password has been successfully updated`;
+export const INCORRECT_CREDENTIALS = `Incorrect username or password, please try again.`;
+export const RECOVERY_EMAIL_SENT = `Recovery email sent.`;

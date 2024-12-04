@@ -7,8 +7,11 @@ public class RegistrationRequest {
     @NotEmpty(message = "email is a required field")
     private String email;
 
-    @NotEmpty(message = "name is a required field")
-    private String name;
+    @NotEmpty(message = "firstName is a required field")
+    private String firstName;
+
+    @NotEmpty(message = "lastName is a required field")
+    private String lastName;
 
     @NotEmpty(message = "zip code is a required field")
     private String zipcode;
@@ -22,41 +25,47 @@ public class RegistrationRequest {
     public @NotEmpty(message = "email is a required field") String getEmail() {
         return email;
     }
-
-    public void setEmail(@NotEmpty(message = "email is a required field") String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public @NotEmpty(message = "name is a required field") String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(@NotEmpty(message = "name is a required field") String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public @NotEmpty(message = "zip code is a required field") String getZipcode() {
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getZipcode() {
         return zipcode;
     }
 
-    public void setZipcode(@NotEmpty(message = "zip code is a required field") String zipcode) {
+    public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
 
-    public @NotEmpty(message = "username is a required field.") String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(@NotEmpty(message = "username is a required field.") String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public @NotEmpty(message = "password is a required field.") String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(@NotEmpty(message = "password is a required field.") String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
-
 }

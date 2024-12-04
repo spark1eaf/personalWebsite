@@ -1,5 +1,6 @@
 package com.scottphebert.personalwebsite.service.usermanagement;
 
+import com.scottphebert.personalwebsite.common.Constants;
 import com.scottphebert.personalwebsite.config.JwtResponse;
 import com.scottphebert.personalwebsite.config.JwtTokenProvider;
 import com.scottphebert.personalwebsite.model.User;
@@ -20,8 +21,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UserManagementServiceImpl implements UserManagementService {
@@ -49,39 +48,37 @@ public class UserManagementServiceImpl implements UserManagementService {
 
         //check is username or email are already associated with a registered user
         if(userRepo.findByEmail(request.getEmail()).isPresent())
-            return new ResponseEntity<>("User already exists for this email.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(Constants.USER_ALREADY_EXISTS, HttpStatus.BAD_REQUEST);
         else if(userRepo.findByUsername(request.getUsername()).isPresent()){
-            return new ResponseEntity<>("Username already exists.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(Constants.USERNAME_TAKEN, HttpStatus.BAD_REQUEST);
         }
         User user = new User();
-        UserDetails userDetails = new UserDetails();
         user.setEmail(request.getEmail());
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        userDetails.setName(request.getName());
+
+        UserDetails userDetails = new UserDetails();
+        userDetails.setFirstName(request.getFirstName());
+        userDetails.setLastName(request.getLastName());
         userDetails.setZipcode(request.getZipcode());
-        user.setUserDetails(userDetails);
         userDetails.setUser(user);
 
         userRepo.save(user);
+        userDetailsRepo.save((userDetails));
 
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
-
+        return new ResponseEntity<>(Constants.REGISTRATION_SUCCESS, HttpStatus.OK);
     }
 
     //sets a new password in the case of a recovery scenario
     public boolean updatePassword(UserUpdateRequest request){
-
-        Optional<User> user = userRepo.findByEmail(request.getEmail());
-        if (user.isPresent()){
-            //update password
-            user.get().setPassword(passwordEncoder.encode(request.getPassword()));
-            System.out.println("Password has been updated.");
-            userRepo.save(user.get());
-            return true;
-        }
-        else
-            throw new EntityNotFoundException("No user present with email: " + request.getEmail());
+    //todo need to add checks here to ensure user can only change their own password
+       User user = userRepo.findByEmail(request.getEmail())
+               .orElseThrow(() -> new EntityNotFoundException(Constants.USER_NOT_FOUND_EMAIL + request.getEmail()));
+       //update password
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        System.out.println(Constants.PASSWORD_UPDATED);
+        userRepo.save(user);
+        return true;
     }
 
     //Checks if user exists, returning an authentication token for said user
@@ -95,26 +92,18 @@ public class UserManagementServiceImpl implements UserManagementService {
         return new ResponseEntity<>(new JwtResponse(token), HttpStatus.OK);
     }
 
-    //blacklists authtoken a signout scenario
-    public ResponseEntity<String>signout(String authToken){
+    //blacklists authtoken in a  sign-out scenario
+    public ResponseEntity<String>signOut(String authToken){
         jwtBlacklistService.addToList(authToken.substring(7));
-        return new ResponseEntity<>("Token has been invalidated", HttpStatus.OK);
+        return new ResponseEntity<>(Constants.TOKEN_INVALIDATED, HttpStatus.OK);
     }
 
     //finds user details based on email
-    public void getUserDetails(String email){
-        Optional<User> user = userRepo.findByEmail(email);
-        if(user.isPresent()){
-            long id = user.get().getId();
-            Optional<UserDetails> userDetails = userDetailsRepo.findById(id);
-            if(userDetails.isPresent()){
-                //generate a response to send to the frontend
-            }
-            else
-                throw new EntityNotFoundException("User details not found for user with id: " + String.valueOf(id));
-
-        }
-        else
-            throw new EntityNotFoundException("No user present with email: " + email);
+    public ResponseEntity<UserDetails> getUserDetails(String username){
+        User user = userRepo.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException(new EntityNotFoundException(Constants.USER_NOT_FOUND_USERNAME + username)));
+        UserDetails userDetails = userDetailsRepo.findById(user.getId())
+                .orElseThrow(() -> new EntityNotFoundException(Constants.USER_DETAILS_NOT_FOUND + user.getId()));
+            return ResponseEntity.ok(userDetails);
     }
 }
