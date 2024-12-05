@@ -1,4 +1,4 @@
-package com.scottphebert.personalwebsite.controllers;
+package com.scottphebert.personalwebsite.controller;
 
 import com.scottphebert.personalwebsite.common.Constants;
 import com.scottphebert.personalwebsite.config.JwtResponse;
