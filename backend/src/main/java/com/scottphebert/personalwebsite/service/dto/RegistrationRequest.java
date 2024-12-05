@@ -22,9 +22,10 @@ public class RegistrationRequest {
     @NotEmpty(message = "password is a required field.")
     private String password;
 
-    public @NotEmpty(message = "email is a required field") String getEmail() {
+    public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -53,9 +54,7 @@ public class RegistrationRequest {
         this.zipcode = zipcode;
     }
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
 
     public void setUsername(String username) {
         this.username = username;
