@@ -22,8 +22,7 @@ public final class Constants {
 
     //user management
     public static final String REGISTRATION_SUCCESS = "User registered successfully";
-    public static final String PASSWORD_UPDATED = "Password has been updated.";
-    public static final String SIGN_OUT_MESSAGE = "Logging out user with token: ";
+    public static final String REGISTRATION_FAILURE = "An error occurred during registration";
 
     //security
     public static final String TOKEN_INVALIDATED = "Token has been invalidated";
@@ -33,4 +32,27 @@ public final class Constants {
     public static final long TOKEN_EXP_TIME = 3600000;
     public static final String JWT_SECRET = "JWT_SECRET";
     public static final String ENCODING_ALGO = "HmacSHA512";
+
+    //Logging
+    public static final String REGISTRATION_SUCCESS_LOG = "Registration successful for user: {}";
+    public static final String EMAIL_ALREADY_EXISTS_LOG = "Email already exists: {}";
+    public static final String USERNAME_TAKEN_LOG = "Username already exists: {}";
+    public static final String REGISTRATION_FAILED = "An error occurred while registering user: {}";
+    public static final String PASSWORD_UPDATE_SUCCESS_LOG = "Password updated for user associated with email: {}";
+    public static final String PASSWORD_UPDATE_FAIL_LOG = "An error occurred while attempting to update password for user associated with email: {}";
+    public static final String LOGIN_SUCCESSFUL_LOG = "Login successful for user: {}";
+    public static final String LOGIN_FAILED_LOG = "Login failed for user: {}";
+    public static final String INVALID_SIGNOUT_TOKEN_LOG = "Invalid sign in token: {}";
+    public static final String SIGN_OUT_SUCCESS_LOG = "Token blacklisted successfully: {}";
+    public static final String USER_DETAILS_SUCCESS_LOG = "User details retrieved for user: {}";
+    public static final String USER_DETAILS_FAIL_LOG = "Unable to fetch user details for user: {}";
+
+    public static final String REGISTRATION_REQUEST_LOG = "Registration request for email: {}";
+    public static final String LOGIN_REQUEST_LOG = "Login request for username: {}";
+    public static final String SIGNOUT_REQUEST_LOG = "Sign out request with token: {}";
+    public static final String CHANGE_PASSWORD_REQUEST_LOG = "Password change request for user associated with email: {}";
+    public static final String RECOVERY_EMAIL_REQUEST_LOG = "Password recovery requested for email: {}";
+    public static final String USER_DETAILS_REQUEST_LOG = "User details request for user: {}";
+
+
 }
