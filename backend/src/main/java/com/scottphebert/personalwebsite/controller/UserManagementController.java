@@ -8,6 +8,8 @@ import com.scottphebert.personalwebsite.service.usermanagement.UserManagementSer
 import com.scottphebert.personalwebsite.service.dto.LoginRequest;
 import com.scottphebert.personalwebsite.service.dto.UserUpdateRequest;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -20,33 +22,34 @@ public class UserManagementController {
     @Autowired
     private UserManagementService userManagementService;
 
+    private static final Logger logger = LoggerFactory.getLogger(UserManagementController.class);
+
+
     //Register a new user
     @PostMapping(Constants.REGISTRATION_URL)
     public ResponseEntity<String> registerUser(@RequestBody RegistrationRequest request){
+        logger.info(Constants.REGISTRATION_REQUEST_LOG, request.getEmail());
         return userManagementService.registerUser(request);
     }
 
     //login user
     @PostMapping(Constants.LOGIN_URL)
     public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest request){
+        logger.info(Constants.LOGIN_REQUEST_LOG, request.getUsername());
         return userManagementService.login(request);
     }
 
     //destroys token on user logout
     @PostMapping(Constants.SIGN_OUT_URL)
     public ResponseEntity<String> signOutUser(@RequestHeader(Constants.AUTHORIZATION) String token) {
-        if (token == null || !token.startsWith(Constants.BEARER)) {
-            return ResponseEntity.badRequest().body(Constants.INVALID_TOKEN);
-        }
-        System.out.println(Constants.SIGN_OUT_MESSAGE + token);
-
-        // Call your service to handle token invalidation logic (e.g., blacklist)
+        logger.info(Constants.SIGNOUT_REQUEST_LOG, token);
         return userManagementService.signOut(token);
     }
 
     //change password
     @PutMapping(Constants.CHANGE_PASSWORD_URL)
     public boolean changePassword(@Valid @RequestBody UserUpdateRequest request, Authentication authentication){
+        logger.info(Constants.CHANGE_PASSWORD_REQUEST_LOG, request.getEmail());
         return userManagementService.updatePassword(request);
     }
 
@@ -54,12 +57,14 @@ public class UserManagementController {
     //Send out recovery email to user, will figure out how I want to send this email at a later time.
     @PostMapping(Constants.PASSWORD_RECOVERY_URL)
     public boolean sendRecoveryEmail(@Valid @RequestParam String email){
+        logger.info(Constants.RECOVERY_EMAIL_REQUEST_LOG, email);
         return true;
     }
 
     //get user details
     @GetMapping(Constants.GET_USER_DETAILS_URL)
     public ResponseEntity<UserDetails> getUserDetails(@Valid @RequestParam String username){
+        logger.info(Constants.USER_DETAILS_REQUEST_LOG, username);
         return userManagementService.getUserDetails(username);
     }
 }
