@@ -69,6 +69,7 @@ public class UserManagementServiceImpl implements UserManagementService {
         userDetails.setLastName(request.getLastName());
         userDetails.setZipcode(request.getZipcode());
         userDetails.setUser(user);
+
         try{
             userRepo.save(user);
             userDetailsRepo.save((userDetails));
@@ -82,19 +83,24 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     //sets a new password in the case of a recovery scenario
-    public boolean updatePassword(UserUpdateRequest request){
-    //todo need to add checks here to ensure user can only change their own password
+    public ResponseEntity<String> updatePassword(UserUpdateRequest request, String authUser){
        User user = userRepo.findByEmail(request.getEmail())
                .orElseThrow(() -> new EntityNotFoundException(Constants.USER_NOT_FOUND_EMAIL + request.getEmail()));
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         try{
-            userRepo.save(user);
-            logger.info(Constants.PASSWORD_UPDATE_SUCCESS_LOG, request.getEmail());
-            return true;
+            if(!request.getUsername().equals(authUser)){
+                logger.warn(Constants.AUTH_MISMATCH_LOG, authUser);
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+            else{
+                userRepo.save(user);
+                logger.info(Constants.PASSWORD_UPDATE_SUCCESS_LOG, request.getEmail());
+                return new ResponseEntity<>(Constants.UPDATE_PASSWORD_SUCCESS, HttpStatus.OK);
+            }
         }
         catch (Exception ex){
             logger.error(Constants.PASSWORD_UPDATE_FAIL_LOG, request.getEmail(), ex);
-            return false;
+            return new ResponseEntity<>(Constants.UPDATE_PASSWORD_FAILURE, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -128,14 +134,20 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     //finds user details based on email
-    public ResponseEntity<UserDetails> getUserDetails(String username){
+    public ResponseEntity<UserDetails> getUserDetails(String username, String authUser){
         try{
-            User user = userRepo.findByUsername(username)
-                .orElseThrow(() -> new EntityNotFoundException(new EntityNotFoundException(Constants.USER_NOT_FOUND_USERNAME + username)));
-            UserDetails userDetails = userDetailsRepo.findById(user.getId())
-                .orElseThrow(() -> new EntityNotFoundException(Constants.USER_DETAILS_NOT_FOUND + user.getId()));
-            logger.info(Constants.USER_DETAILS_SUCCESS_LOG, username);
-            return new ResponseEntity<>(userDetails, HttpStatus.OK);
+            if(!username.equals(authUser)){
+                logger.warn(Constants.AUTH_MISMATCH_LOG, authUser);
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+            else{
+                User user = userRepo.findByUsername(username)
+                    .orElseThrow(() -> new EntityNotFoundException(new EntityNotFoundException(Constants.USER_NOT_FOUND_USERNAME + username)));
+                UserDetails userDetails = userDetailsRepo.findById(user.getId())
+                    .orElseThrow(() -> new EntityNotFoundException(Constants.USER_DETAILS_NOT_FOUND + user.getId()));
+                logger.info(Constants.USER_DETAILS_SUCCESS_LOG, username);
+                return new ResponseEntity<>(userDetails, HttpStatus.OK);
+            }
         }
         catch (Exception ex){
             logger.error(Constants.USER_DETAILS_FAIL_LOG, username, ex);
