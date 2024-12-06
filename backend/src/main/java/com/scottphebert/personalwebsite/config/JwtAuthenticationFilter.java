@@ -27,7 +27,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String token = getToken(request);
-
+        //check if token ias been invalidated
         if(token != null && jwtBlacklistService.isBlackListed(token)){
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             response.getWriter().write(Constants.TOKEN_INVALIDATED);

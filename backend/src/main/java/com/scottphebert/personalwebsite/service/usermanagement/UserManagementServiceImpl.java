@@ -88,6 +88,7 @@ public class UserManagementServiceImpl implements UserManagementService {
                .orElseThrow(() -> new EntityNotFoundException(Constants.USER_NOT_FOUND_EMAIL + request.getEmail()));
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         try{
+            //confirm auth token matches the one associated with the user in the request
             if(!request.getUsername().equals(authUser)){
                 logger.warn(Constants.AUTH_MISMATCH_LOG, authUser);
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -136,6 +137,7 @@ public class UserManagementServiceImpl implements UserManagementService {
     //finds user details based on email
     public ResponseEntity<UserDetails> getUserDetails(String username, String authUser){
         try{
+            //confirm auth token matches the one associated with the user in the request
             if(!username.equals(authUser)){
                 logger.warn(Constants.AUTH_MISMATCH_LOG, authUser);
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);

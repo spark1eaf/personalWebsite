@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("")
+@RequestMapping(Constants.SITE_URL)
 public class UserManagementController {
 
     @Autowired

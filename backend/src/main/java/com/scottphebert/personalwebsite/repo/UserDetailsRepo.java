@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface UserDetailsRepo extends JpaRepository<UserDetails, Long> {
-    Optional<UserDetails> findById(int id);
+    Optional<UserDetails> findById(long id);
 }

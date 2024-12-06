@@ -1,6 +1,7 @@
 package com.scottphebert.personalwebsite.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
@@ -15,8 +16,9 @@ public class User {
     private String username;
 
     @NotEmpty(message = "email is a required field.")
+    @Email(message = "Please provide a valid email.")
     private String email;
-
+    //todo password validation
     @NotEmpty(message = "password is a required field.")
     private String password;
 
