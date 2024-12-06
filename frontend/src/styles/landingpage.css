@@ -1,6 +1,9 @@
 input:hover{
     background-color: rgb(235, 229, 229);
 }
+button{
+    border-style: none;
+}
 
 :focus::placeholder {color: transparent;}
 
@@ -9,13 +12,16 @@ input:hover{
     margin-top: 2em;
     margin-right: 2em;
     justify-content: right;
-    border-style: none;
+}
+
+.login-btns button:hover, .logout-btn:hover {
+    background-color: #ffffff;
+    color: black;
 }
 
 .landing-body{
     text-align: center;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin: 0 5%;
     font-size: 3.5em;
 }
 
@@ -27,6 +33,16 @@ input:hover{
     background-color: transparent;
     width: 100%;
     height: 100%;
+}
+
+.win-close-btn{
+    position: absolute;
+    right: 4%;
+    top: 3%;
+    color: white;
+    background-color: transparent;
+    font-size: 100%;
+    cursor: pointer;
 }
 
 .popup-window{
@@ -41,50 +57,56 @@ input:hover{
     height: 70%;
     font-size: 2em;
     border-radius: 1.5%;
+    overflow: auto;
 }
 
-.win-close-btn{
-    position: absolute;
-    right: 4%;
-    top: 3%;
-    color: white;
-    background-color: transparent;
-    border-style: none;
-    font-size: 100%;
+.registration-form, .logon-form, .recovery-form {
+    display: flex;
+    flex-direction: column;
 }
 
 .win-close-btn:hover{
     color: black;
 }
 
-.registration-form{
-    margin-top: 5%;
-}
-
-.registration-form, .logon-form{
-    margin-top: 5%;
-}
 
 .registration-form input, .logon-form input, .recovery-form input{
     display: block;
     margin-left: 15%;
     margin-right: 15%;
-    margin-top: 3em;
+    margin-bottom: 4%;
     width: 70%;
     height: 3em;
     padding-left: 1%;
 }
 
+.logon-form input, .recovery-form input{
+    margin-top: 1.5%;
+    margin-bottom: 0;
+}
+
+.form-input{
+    position: relative;
+}
+
+.registration-error{
+    position: absolute;
+    bottom: -1%;
+    font-size: 60%;
+    text-align: left;
+    margin-left: 16%;
+    color: rgb(207, 66, 66);
+}
+
 .registration-submit-btn, .login-submit-btn, .recovery-submit-btn{
     position: absolute;
-    right: 0;
-    margin-right: 10%;
-    bottom: 0;
-    margin-bottom: 5%;
+    right: 5%;
+    bottom: 3%;
     width: 10%;
     height: 3em;
     font-size: .6em;
     background-color: white;
+    cursor: pointer;
 }
 
 .registration-submit-btn:hover, .login-submit-btn:hover, .recovery-submit-btn:hover{
@@ -94,11 +116,12 @@ input:hover{
 .forgot-pass-btn{
     display: block;
     background-color: transparent;
-    border-style: none;
     color: white;
+    text-align: left;
     font-size: .6em;
-    margin-left: 15%;
     margin-top: .7em;
+    margin-left: 16%;
+    cursor: pointer;
 }
 
 .forgot-pass-btn:hover{
@@ -107,7 +130,6 @@ input:hover{
 
 .recovery-text{
     text-align: left;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin: 0 15%;
     font-size: 1em;
 }

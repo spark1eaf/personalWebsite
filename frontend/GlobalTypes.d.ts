@@ -1,6 +1,6 @@
 interface LoginData{
     username:string,
-    password:string,
+    password:string
 };
 
 interface UserRegObj{
@@ -15,5 +15,15 @@ interface UserRegObj{
 interface ResponseObj<T> {
     status?: number,
     data?: T,
-    error?: string,
+    error?: string
+};
+
+interface RegFormErrors{
+    emailErr?: string|null,
+    firstNameErr?: string|null,
+    lastNameErr?: string|null,
+    usernameErr?: string|null,
+    zipcodeErr?: string|null,
+    passwordErr?: string|null,
+    confirmPassErr?: string|null
 };

@@ -13,8 +13,7 @@ const LoginWindow = ({displayRecoveryWindow, closeWindow}:Props)=>{
             <>
                 <WindowCloseBtn closeWindow={closeWindow}/>
                 <h1 className="login-title">Login</h1>
-                <LoginForm />
-                <button className="forgot-pass-btn" onClick={displayRecoveryWindow}>Forgot Password?</button>
+                <LoginForm displayRecoveryWindow = {displayRecoveryWindow}/>
             </>
     );
 };
