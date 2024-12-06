@@ -24,7 +24,6 @@ public class UserManagementController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserManagementController.class);
 
-
     //Register a new user
     @PostMapping(Constants.REGISTRATION_URL)
     public ResponseEntity<String> registerUser(@RequestBody RegistrationRequest request){
@@ -53,17 +52,16 @@ public class UserManagementController {
         return userManagementService.updatePassword(request);
     }
 
-    //check the valid on this one
     //Send out recovery email to user, will figure out how I want to send this email at a later time.
     @PostMapping(Constants.PASSWORD_RECOVERY_URL)
-    public boolean sendRecoveryEmail(@Valid @RequestParam String email){
+    public boolean sendRecoveryEmail(@RequestParam String email){
         logger.info(Constants.RECOVERY_EMAIL_REQUEST_LOG, email);
         return true;
     }
 
     //get user details
     @GetMapping(Constants.GET_USER_DETAILS_URL)
-    public ResponseEntity<UserDetails> getUserDetails(@Valid @RequestParam String username){
+    public ResponseEntity<UserDetails> getUserDetails(@RequestParam String username){
         logger.info(Constants.USER_DETAILS_REQUEST_LOG, username);
         return userManagementService.getUserDetails(username);
     }
