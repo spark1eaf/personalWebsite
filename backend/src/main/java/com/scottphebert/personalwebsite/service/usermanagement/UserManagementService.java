@@ -10,11 +10,11 @@ import org.springframework.http.ResponseEntity;
 public interface UserManagementService {
     ResponseEntity<String> registerUser(RegistrationRequest request);
 
-    boolean updatePassword(UserUpdateRequest request);
+    ResponseEntity<String> updatePassword(UserUpdateRequest request, String authUser);
 
     ResponseEntity<JwtResponse> login(LoginRequest request);
 
     ResponseEntity<String>signOut(String authToken);
 
-    ResponseEntity<UserDetails> getUserDetails(String email);
+    ResponseEntity<UserDetails> getUserDetails(String email, String authUser);
 }

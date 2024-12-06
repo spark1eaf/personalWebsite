@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("")
@@ -47,9 +48,9 @@ public class UserManagementController {
 
     //change password
     @PutMapping(Constants.CHANGE_PASSWORD_URL)
-    public boolean changePassword(@Valid @RequestBody UserUpdateRequest request, Authentication authentication){
+    public ResponseEntity<String> changePassword(@Valid @RequestBody UserUpdateRequest request, Authentication authentication, Principal principal){
         logger.info(Constants.CHANGE_PASSWORD_REQUEST_LOG, request.getEmail());
-        return userManagementService.updatePassword(request);
+        return userManagementService.updatePassword(request, principal.getName());
     }
 
     //Send out recovery email to user, will figure out how I want to send this email at a later time.
@@ -61,8 +62,8 @@ public class UserManagementController {
 
     //get user details
     @GetMapping(Constants.GET_USER_DETAILS_URL)
-    public ResponseEntity<UserDetails> getUserDetails(@RequestParam String username){
+    public ResponseEntity<UserDetails> getUserDetails(@RequestParam String username, Principal principal){
         logger.info(Constants.USER_DETAILS_REQUEST_LOG, username);
-        return userManagementService.getUserDetails(username);
+        return userManagementService.getUserDetails(username, principal.getName());
     }
 }

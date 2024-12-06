@@ -21,6 +21,8 @@ public final class Constants {
     //user management
     public static final String REGISTRATION_SUCCESS = "User registered successfully";
     public static final String REGISTRATION_FAILURE = "An error occurred during registration";
+    public static final String UPDATE_PASSWORD_SUCCESS = "Password was successfully changed";
+    public static final String UPDATE_PASSWORD_FAILURE = "An error occurred while attempting to update password";
     //security
     public static final String TOKEN_INVALIDATED = "Token has been invalidated";
     public static final String TOKEN_EXPIRED = "Token expired: ";
@@ -48,4 +50,5 @@ public final class Constants {
     public static final String CHANGE_PASSWORD_REQUEST_LOG = "Password change request for user associated with email: {}";
     public static final String RECOVERY_EMAIL_REQUEST_LOG = "Password recovery requested for email: {}";
     public static final String USER_DETAILS_REQUEST_LOG = "User details request for user: {}";
+    public static final String AUTH_MISMATCH_LOG = "Authorizing user {} does not match user from request";
 }
