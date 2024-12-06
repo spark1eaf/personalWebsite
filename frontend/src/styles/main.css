@@ -21,11 +21,7 @@ body {
     height: 2.5em;
     color: #ffffff;
     background-color: black;
-}
-
-.login-btns button:hover, .logout-btn:hover {
-    background-color: #ffffff;
-    color: black;
+    cursor: pointer;
 }
 
 .footer{
