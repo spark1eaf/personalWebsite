@@ -32,7 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             response.getWriter().write(Constants.TOKEN_INVALIDATED);
         }
-        else if (token != null && jwtTokenProvider.validateToken(token)) {
+        else if (token != null && jwtTokenProvider.validateToken(token)){
             String username = jwtTokenProvider.getUsernameFromToken(token);
             // Set the authentication in the Spring Security context
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
@@ -42,10 +42,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     // Extract JWT token from the "Authorization" header
-    private String getToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader(Constants.AUTHORIZATION);
-        if (bearerToken != null && bearerToken.startsWith(Constants.BEARER)) {
-            return bearerToken.substring(7);
+    public String getToken(HttpServletRequest request) {
+        if (request.getCookies() != null) {
+            for (jakarta.servlet.http.Cookie cookie : request.getCookies()){
+                if (Constants.AUTH_TOKEN.equals(cookie.getName())){
+                    return cookie.getValue();
+                }
+            }
         }
         return null;
     }

@@ -7,6 +7,8 @@ import com.scottphebert.personalwebsite.service.dto.RegistrationRequest;
 import com.scottphebert.personalwebsite.service.usermanagement.UserManagementService;
 import com.scottphebert.personalwebsite.service.dto.LoginRequest;
 import com.scottphebert.personalwebsite.service.dto.UserUpdateRequest;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
-@RequestMapping(Constants.SITE_URL)
+@RequestMapping(Constants.SITE_PREFIX)
 public class UserManagementController {
 
     @Autowired
@@ -34,16 +36,15 @@ public class UserManagementController {
 
     //login user
     @PostMapping(Constants.LOGIN_URL)
-    public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest request){
+    public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest request, HttpServletResponse response){
         logger.info(Constants.LOGIN_REQUEST_LOG, request.getUsername());
-        return userManagementService.login(request);
+        return userManagementService.login(request, response);
     }
 
     //destroys token on user logout
     @PostMapping(Constants.SIGN_OUT_URL)
-    public ResponseEntity<String> signOutUser(@RequestHeader(Constants.AUTHORIZATION) String token) {
-        logger.info(Constants.SIGNOUT_REQUEST_LOG, token);
-        return userManagementService.signOut(token);
+    public ResponseEntity<String> signOutUser(HttpServletRequest request, HttpServletResponse response) {
+        return userManagementService.signOut(request, response);
     }
 
     //change password

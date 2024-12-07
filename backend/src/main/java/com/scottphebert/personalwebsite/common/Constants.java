@@ -5,7 +5,7 @@ public final class Constants {
     private Constants(){}
 
     //endpoints
-    public static final String SITE_URL = "/site";
+    public static final String SITE_PREFIX = "/site";
     public static final String REGISTRATION_URL = "/register";
     public static final String LOGIN_URL = "/login";
     public static final String SIGN_OUT_URL = "/signout";
@@ -28,6 +28,7 @@ public final class Constants {
     public static final String INVALID_TOKEN = "Invalid token";
     public static final String BEARER = "Bearer ";
     public static final String AUTHORIZATION = "Authorization";
+    public static final String AUTH_TOKEN = "authToken";
     //todo keep it flexible???
     public static final long TOKEN_EXP_TIME = 3600000;
     public static final String JWT_SECRET = "JWT_SECRET";
@@ -52,6 +53,6 @@ public final class Constants {
     public static final String RECOVERY_EMAIL_REQUEST_LOG = "Password recovery requested for email: {}";
     public static final String USER_DETAILS_REQUEST_LOG = "User details request for user: {}";
     public static final String AUTH_MISMATCH_LOG = "Authorizing user {} does not match user from request";
-    public static final String TOKEN_EXPIRED_LOG = "Token: {} has expired: ";
+    public static final String TOKEN_EXPIRED_LOG = "Validation failed. Token: {} has expired: ";
     public static final String INVALID_TOKEN_LOG = "Token: {} is invalid";
 }
