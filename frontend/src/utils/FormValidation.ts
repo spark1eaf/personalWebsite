@@ -1,5 +1,6 @@
 
 const checkEmail = (email:string|undefined) =>{
+    console.log("chedaklsdjkl")
     if(!email)
         return"";
     let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -22,7 +23,7 @@ const checkName = (name:string|undefined) =>{
 
 const checkZip = (zipcode:string|undefined) =>{
     if(!zipcode)
-        return null;
+        return "";
     let regex = /\d/;
     if(zipcode && zipcode.length != 5)
         return "Zipcode must be 5 digits.";
@@ -47,7 +48,7 @@ const checkUsername = (username:string|undefined) =>{
 
 const checkPass = (password:string|undefined) =>{
     if(!password)
-        return null
+        return "";
     if(password.length <6)
         return "Password must be atleast 6 characters.";
     let regex = /\d/;
@@ -66,7 +67,7 @@ const checkPass = (password:string|undefined) =>{
 };
 
 const checkPassMatch = (password:string|undefined, confirmPassword:string|undefined) =>{
-    if(password !== confirmPassword)
+    if(confirmPassword && password !== confirmPassword)
         return "Passwords do not match.";
     return "";
 }

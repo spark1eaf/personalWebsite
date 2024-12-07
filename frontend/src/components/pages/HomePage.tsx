@@ -4,16 +4,19 @@ import userManagement from "../../service/userManagement";
 import * as Constants from "../../constants/constants"
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 const HomePage = () =>{
-    
+    const [name, setName] = useState("");
     const navigator = useNavigate();
+    const [submitting, setSubmitting] = useState(false);
+
+    //send out request to retrieve user details
     const populateUserDetails = async () =>{
         try {
-            const response = await userManagement.getUserDetails(localStorage.getItem("username") ||"", localStorage.getItem("authentication") || "");
+            const response = await userManagement.getUserDetails(sessionStorage.getItem("username") ||"");
             if(response.status === 200){
-                localStorage.setItem("firstName", response.data.firstName)
-                localStorage.setItem("zipcode", response.data.zipcode)
+                setName(response.data.firstName);
             }
         } catch (error) {
             if(axios.isAxiosError(error))
@@ -22,15 +25,19 @@ const HomePage = () =>{
                 alert(Constants.UNEXPECTED_ERROR_MSG);     
         }
     }
-    
-    //Sends request for backend to blacklist auth token and removes it from local storage.
+
+    useEffect(() =>{populateUserDetails();}, []);
+
+    //Sends request to blacklist auth token and adjusts session storage for route guarding.
     const handleSignOut = async () =>{
+        setSubmitting(true);
+        
         try {
-            const response = await userManagement.signout(localStorage.getItem("authentication")|| "");
+            const response = await userManagement.signout();
             if(response.status === 200 || response.status === 503){
-                localStorage.removeItem("authentication");
                 navigator(Constants.LANDING_PAGE);
                 alert(Constants.SIGNOUT_SUCCESSFUL);
+                sessionStorage.removeItem("loggedIn");
             }
 
         } catch (error) {
@@ -39,14 +46,14 @@ const HomePage = () =>{
             else
                 alert(Constants.UNEXPECTED_ERROR_MSG);     
         }
+
+        setSubmitting(false);
     }
-    //send out request to retrieve user details
-    populateUserDetails()
 
     return(
         <div className="home-page">
-            <button onClick={handleSignOut} className="logout-btn"> Sign out</button>
-            <h1 className="title">{`Welcome ${localStorage.getItem("firstName")}!`}</h1>
+            <button disabled={submitting} onClick={handleSignOut} className="logout-btn"> Sign out</button>
+            <h1 className="title">{`Welcome ${name}!`}</h1>
             <Footer/>
         </div>
     )
