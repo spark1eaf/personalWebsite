@@ -12,6 +12,7 @@ const RegistrationForm = () =>{
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [submitting, setSubmitting] = useState(false);
     
     const [errors, setErrors] = useState<RegFormErrors>({});
 
@@ -86,6 +87,7 @@ const RegistrationForm = () =>{
 
     const sendRegistrationData = async(event:FormEvent) =>{
         event.preventDefault();
+        setSubmitting(true);
         validateForm();
         const isValid = !(errors == undefined); 
         console.log("got it???  " + isValid)
@@ -116,6 +118,7 @@ const RegistrationForm = () =>{
                     alert(Constants.UNEXPECTED_ERROR_MSG);     
             }
         }
+        setSubmitting(false);
     };
 
     return(
@@ -148,7 +151,7 @@ const RegistrationForm = () =>{
                 <input type="password" onChange={handleConfirmPassword} placeholder="Confirm Password" name="passwordConfirmation" value={confirmPassword} required/>
                 {errors.confirmPassErr && <p className="registration-error">{errors.confirmPassErr}</p>}
             </div>
-            <button type="submit" className="registration-submit-btn">Sign Up</button>
+            <button type="submit" disabled={submitting} className="registration-submit-btn">Sign Up</button>
         </form> 
     );
 };
