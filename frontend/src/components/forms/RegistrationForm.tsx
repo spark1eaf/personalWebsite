@@ -9,92 +9,69 @@ const RegistrationForm = () =>{
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [zipcode, setZipCode] = useState("");
-    const [userName, setUserName] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [submitting, setSubmitting] = useState(false);
-    
     const [errors, setErrors] = useState<RegFormErrors>({});
 
-    const handleEmailChange = (event:ChangeEvent<HTMLInputElement>) =>{
-        setEmail(event.target.value);
-    };
-
-    const handleFirstNameChange = (event:ChangeEvent<HTMLInputElement>) =>{
-        setFirstName(event.target.value);
-    };
-    
-    const handleLastNameChange = (event:ChangeEvent<HTMLInputElement>) =>{
-        setLastName(event.target.value);
-    };
-
-    const handleZipcodeChange = (event:ChangeEvent<HTMLInputElement>) =>{
-        setZipCode(event.target.value);
-    };
-
-    const handleUsernameChange = (event:ChangeEvent<HTMLInputElement>) =>{
-        setUserName(event.target.value);
-    };
-
-    const handlePasswordChange = (event:ChangeEvent<HTMLInputElement>) =>{
-        setPassword(event.target.value);
-    };
-
-    const handleConfirmPassword = (event:ChangeEvent<HTMLInputElement>) =>{
-        setConfirmPassword(event.target.value);
-    };
-
-    useEffect(() => {
-        setErrors((prevErrors) => ({...prevErrors,emailErr: FormValidation.checkEmail(email),}));
-      }, [email]);
-    
-    useEffect(() => {
-        setErrors((prevErrors) => ({...prevErrors, firstNameErr: FormValidation.checkName(firstName),}));
-      }, [firstName]);
-    
-    useEffect(() => {
-        setErrors((prevErrors) => ({...prevErrors, lastNameErr: FormValidation.checkName(lastName),}));
-      }, [lastName]);
-    
-    useEffect(() => {
-        setErrors((prevErrors) => ({...prevErrors, zipcodeErr: FormValidation.checkZip(zipcode),}));
-      }, [zipcode]);
-    
-    useEffect(() => {
-        setErrors((prevErrors) => ({...prevErrors, usernameErr: FormValidation.checkUsername(userName),}));
-      }, [userName]);
-    
-    useEffect(() => {
-        setErrors((prevErrors) => ({...prevErrors,passwordErr: FormValidation.checkPass(password),}));
-      }, [password]);
-    
-    useEffect(() => {
-        setErrors((prevErrors) => ({...prevErrors, confirmPassErr: FormValidation.checkPassMatch(password, confirmPassword),}));
-      }, [confirmPassword, password]);
-
-    const validateForm = () =>{
+    //validates form fields returning an object containing all errors
+    const validateFormFields = () =>{
         const errors:RegFormErrors = {};
         errors.emailErr = FormValidation.checkEmail(email);
         errors.firstNameErr = FormValidation.checkName(firstName);
         errors.lastNameErr = FormValidation.checkName(lastName);
         errors.zipcodeErr = FormValidation.checkZip(zipcode);
-        errors.usernameErr = FormValidation.checkUsername(userName);
+        errors.usernameErr = FormValidation.checkUsername(username);
         errors.passwordErr = FormValidation.checkPass(password);
-        if(confirmPassword !== password)
-            errors.confirmPassErr = "Password does not match.";
-        setErrors(errors);
+        errors.confirmPassErr = FormValidation.checkPassMatch(password, confirmPassword);
+        return errors;
     }
+    
+    const handleChange = (event:ChangeEvent<HTMLInputElement>) =>{
+        switch (event.target.name) {
+            case "firstName":
+                setFirstName(event.target.value);
+                break;
+            case "lastName":
+                setLastName(event.target.value);
+                break;
+            case "email":
+                setEmail(event.target.value);
+                break;
+            case "zipcode":
+                setZipCode(event.target.value);
+                break
+            case "username":
+                setUsername(event.target.value);
+                break;
+            case "password":
+                setPassword(event.target.value);
+                break;
+            case "confirmPassword":
+                setConfirmPassword(event.target.value);
+                break;
+          }
+    };
+    //throttle error validation so user wont see errors while typing
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            const newErrors = validateFormFields();
+            setErrors(newErrors);
+        }, 300);
+    
+        return () => clearTimeout(timer);
+    }, [email, firstName, lastName, zipcode, username, password, confirmPassword]);
 
     const sendRegistrationData = async(event:FormEvent) =>{
         event.preventDefault();
         setSubmitting(true);
-        validateForm();
-        const isValid = !(errors == undefined); 
-        console.log("got it???  " + isValid)
+        const errors = validateFormFields();
+        const isValid = Object.values(errors).every(element => element === "" || element === undefined);
         if(isValid){
             //new user
             const user:UserRegObj = {
-                username: userName,
+                username: username,
                 email: email,
                 password: password,
                 firstName: firstName,
@@ -124,31 +101,31 @@ const RegistrationForm = () =>{
     return(
         <form className="registration-form" onSubmit={sendRegistrationData}>
             <div className="form-input">
-                <input type="text" onChange={handleEmailChange} placeholder="Email" name="email" value={email} required/>
+                <input type="text" onChange={handleChange} placeholder="Email" name="email" value={email} required/>
                 {errors.emailErr && <p className="registration-error">{errors.emailErr}</p>}   
             </div>
             <div className="form-input">
-                <input type="text" onChange={handleFirstNameChange} placeholder="First name" name="firstName" value={firstName} required/>
+                <input type="text" onChange={handleChange} placeholder="First name" name="firstName" value={firstName} required/>
                 {errors.firstNameErr && <p className="registration-error">{errors.firstNameErr}</p>}
             </div>
             <div className="form-input">
-                <input type="text" onChange={handleLastNameChange} placeholder="Last name" name="lastName" value={lastName} required/>
+                <input type="text" onChange={handleChange} placeholder="Last name" name="lastName" value={lastName} required/>
                 {errors.lastNameErr && <p className="registration-error">{errors.lastNameErr}</p>}        
             </div>
             <div className="form-input">
-                <input type="text" onChange={handleZipcodeChange} placeholder="Zipcode" name="zipcode" value={zipcode} required/>
+                <input type="text" onChange={handleChange} placeholder="Zipcode" name="zipcode" value={zipcode} required/>
                 {errors.zipcodeErr && <p className="registration-error">{errors.zipcodeErr}</p>}
             </div>
             <div className="form-input">
-                <input type="text" onChange={handleUsernameChange} placeholder="Username" name="username" value={userName} required/>
+                <input type="text" onChange={handleChange} placeholder="Username" name="username" value={username} required/>
                 {errors.usernameErr && <p className="registration-error">{errors.usernameErr}</p>}
             </div>
             <div className="form-input">
-                <input type="password" onChange={handlePasswordChange} placeholder="Enter a Password" name="password" value={password} required/>
+                <input type="password" onChange={handleChange} placeholder="Enter a Password" name="password" value={password} required/>
                 {errors.passwordErr && <p className="registration-error">{errors.passwordErr}</p>}
             </div>
             <div className="form-input">
-                <input type="password" onChange={handleConfirmPassword} placeholder="Confirm Password" name="passwordConfirmation" value={confirmPassword} required/>
+                <input type="password" onChange={handleChange} placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} required/>
                 {errors.confirmPassErr && <p className="registration-error">{errors.confirmPassErr}</p>}
             </div>
             <button type="submit" disabled={submitting} className="registration-submit-btn">Sign Up</button>

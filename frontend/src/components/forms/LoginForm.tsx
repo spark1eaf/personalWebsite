@@ -5,17 +5,20 @@ import axios from "axios";
 import * as Constants from "../../constants/constants"
 
 const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow: MouseEventHandler<HTMLButtonElement>}) =>{
-    const [username, setUserName] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [submitting, setSubmitting] = useState(false);
     const navigator = useNavigate();
-    
-    const handleUsernameChange = (event:ChangeEvent<HTMLInputElement>) =>{
-        setUserName(event.target.value);
-    };
 
-    const handlePasswordChange = (event:ChangeEvent<HTMLInputElement>) =>{
-        setPassword(event.target.value);
+    const handleChange = (event:ChangeEvent<HTMLInputElement>) =>{
+        switch (event.target.name) {
+            case "firstName":
+                setUsername(event.target.value);
+                break;
+            case "lastName":
+                setPassword(event.target.value);
+                break;
+          }
     };
 
     const sendLoginData = async (event:FormEvent) =>{
@@ -47,9 +50,9 @@ const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow: MouseEventHa
     };
     return(
         <form className="logon-form" onSubmit={sendLoginData}>
-            <input type="text" onChange={handleUsernameChange} placeholder="Username" name="username" value={username} required />
+            <input type="text" onChange={handleChange} placeholder="Username" name="username" value={username} required />
             <button className="forgot-pass-btn" onClick={displayRecoveryWindow}>Forgot Password?</button>
-            <input type="password" onChange={handlePasswordChange} placeholder="Password" name="password" value={password} required />
+            <input type="password" onChange={handleChange} placeholder="Password" name="password" value={password} required />
             <button type="submit" disabled={submitting} className="login-submit-btn">Log in</button>
         </form>
     );
