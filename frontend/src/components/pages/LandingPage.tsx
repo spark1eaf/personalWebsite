@@ -6,7 +6,7 @@ import {DUMMY_TEXT} from "../../constants/constants";
 import "../../styles/landingpage.css"
 
 const LandingPage = ()=>{
-
+    
     const [windowToDisplay, setWindowToDisplay] = useState("");
 
     const displayLoginWindow = () =>{

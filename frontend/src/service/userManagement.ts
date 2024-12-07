@@ -1,6 +1,8 @@
 import axios from "axios";
 import * as Constants from "../constants/constants"
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const handleError = (error:unknown): ResponseObj<any> =>{
     if (axios.isAxiosError(error)) {
         console.error(`Error: ${error.message}`, error);
@@ -19,9 +21,9 @@ const handleError = (error:unknown): ResponseObj<any> =>{
 
 //sends a login request and retrieves an auth token apon successful login
 const login = async(loginObj:LoginData): Promise<ResponseObj<any>> =>{
-    const url = Constants.LOGIN;
+    const url = `${API_URL}${Constants.LOGIN}`;
     try {
-        const response = await axios.post(url, loginObj);
+        const response = await axios.post(url, loginObj, {withCredentials: true});
         return{status:response.status, data:response.data}
     } catch (error) {
         return handleError(error);
@@ -29,12 +31,10 @@ const login = async(loginObj:LoginData): Promise<ResponseObj<any>> =>{
 };
 
 //sends a logout request
-const signout = async(token:string): Promise<ResponseObj<any>> =>{
-    const url = Constants.SIGNOUT;
+const signout = async(): Promise<ResponseObj<any>> =>{
+    const url = `${API_URL}${Constants.SIGNOUT}`;
     try {
-        const response = await axios.post(url,{}, {
-            headers: {'Authorization': `Bearer ${token}`}
-    });
+        const response = await axios.post(url,{},{withCredentials: true});
         return{status:response.status, data:response.data}
     } catch (error) {
         return handleError(error);
@@ -43,7 +43,7 @@ const signout = async(token:string): Promise<ResponseObj<any>> =>{
 
 //Sends a registration request for a new user
 const register = async(newUser:UserRegObj): Promise<ResponseObj<any>> =>{
-    const url = Constants.REGISTER;
+    const url = `${API_URL}${Constants.REGISTER}`;
     try {
         const response = await axios.post(url, newUser);    
         return{status:response.status, data: response.data}
@@ -54,9 +54,9 @@ const register = async(newUser:UserRegObj): Promise<ResponseObj<any>> =>{
 
 //sends a request to change a users password
 const changePassword = async(email:string) =>{
-    const url = Constants.CHANGEPASS + Constants.EMAIL_PARAM + encodeURIComponent(email);
+    const url = `${API_URL}${Constants.CHANGEPASS}${encodeURIComponent(email)}`;
     try {
-        const response = await axios.put(url);
+        const response = await axios.put(url,{},{withCredentials: true});
         //todo move logic into calling method after its created
         if(response.status === 200)
             alert(Constants.PASSWORD_UPDATED)
@@ -67,20 +67,17 @@ const changePassword = async(email:string) =>{
 
 //Sends a request triggering an emauil with recovery link to be sent to the user
 const requestRecoveryEmail = async (email:string) =>{
-    const url = Constants.RECOVERY;
+    const url = `${API_URL}${Constants.RECOVERY}`;
     //not sure type of request needed atm.
 };
 
 //sends a request to retrieve userdetails
-const getUserDetails = async(username:string, token:string): Promise<ResponseObj<any>> =>{
-    const url = Constants.GET_USER_DETAILS + Constants.USERNAME_PARAM + encodeURIComponent(username);
+const getUserDetails = async(username:string): Promise<ResponseObj<any>> =>{
+    const url = `${API_URL}${Constants.GET_USER_DETAILS}${Constants.USERNAME_PARAM}${encodeURIComponent(username)}`;
     try {
         const response = await axios.get(url, {
             withCredentials: true,
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'    
-            }
+            headers: {'Content-Type': 'application/json'}
         })
         return {status:response.status, data:response.data};
     } 

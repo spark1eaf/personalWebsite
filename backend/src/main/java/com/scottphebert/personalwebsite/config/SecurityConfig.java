@@ -30,8 +30,8 @@ public class SecurityConfig {
         http.cors(withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(Constants.LOGIN_URL, Constants.REGISTRATION_URL, Constants.SIGN_OUT_URL).permitAll()
-                .requestMatchers(Constants.CHANGE_PASSWORD_URL).authenticated()
+                .requestMatchers(Constants.SITE_PREFIX + Constants.LOGIN_URL, Constants.SITE_PREFIX + Constants.REGISTRATION_URL, Constants.SITE_PREFIX +Constants.SIGN_OUT_URL).permitAll()
+                .requestMatchers(Constants.SITE_PREFIX + Constants.CHANGE_PASSWORD_URL).authenticated()
                 .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

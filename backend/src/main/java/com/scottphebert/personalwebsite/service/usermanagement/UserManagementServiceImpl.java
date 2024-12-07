@@ -1,6 +1,7 @@
 package com.scottphebert.personalwebsite.service.usermanagement;
 
 import com.scottphebert.personalwebsite.common.Constants;
+import com.scottphebert.personalwebsite.config.JwtAuthenticationFilter;
 import com.scottphebert.personalwebsite.config.JwtResponse;
 import com.scottphebert.personalwebsite.config.JwtTokenProvider;
 import com.scottphebert.personalwebsite.model.User;
@@ -12,6 +13,9 @@ import com.scottphebert.personalwebsite.service.dto.RegistrationRequest;
 import com.scottphebert.personalwebsite.service.dto.UserUpdateRequest;
 import com.scottphebert.personalwebsite.service.security.JWTBlacklistService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +42,9 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     @Autowired
     JwtTokenProvider jwtTokenProvider;
+
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -106,14 +113,21 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     //Checks if user exists, returning an authentication token for said user
-    public ResponseEntity<JwtResponse> login(LoginRequest request){
+    public ResponseEntity<JwtResponse> login(LoginRequest request, HttpServletResponse response){
         try{
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     request.getUsername(),request.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = jwtTokenProvider.generateToken(request.getUsername());
+
+            Cookie cookie = new Cookie("authToken", token);
+            cookie.setHttpOnly(true);
+            cookie.setSecure(true);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+
             logger.info(Constants.LOGIN_SUCCESSFUL_LOG, request.getUsername());
-            return new ResponseEntity<>(new JwtResponse(token), HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception ex){
             logger.error(Constants.LOGIN_FAILED_LOG, request.getUsername(), ex);
@@ -122,17 +136,26 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     //blacklists authtoken in a  sign-out scenario
-    public ResponseEntity<String>signOut(String authToken){
-        if (authToken == null || !authToken.startsWith(Constants.BEARER)) {
-            logger.warn(Constants.INVALID_SIGNOUT_TOKEN_LOG, authToken);
-            return ResponseEntity.badRequest().body(Constants.INVALID_TOKEN);
-        }
-        else{
+    public ResponseEntity<String>signOut(HttpServletRequest request, HttpServletResponse response){
+        String authToken = jwtAuthenticationFilter.getToken(request);
+        logger.info(Constants.SIGNOUT_REQUEST_LOG, authToken);
+        if (authToken != null) {
             jwtBlacklistService.addToList(authToken.substring(7));
             logger.info(Constants.SIGN_OUT_SUCCESS_LOG, authToken);
+
+            //send response to remove cookie from the client-side
+            Cookie cookie = new Cookie("authToken", null);
+            cookie.setSecure(true);
+            cookie.setHttpOnly(true);
+            cookie.setPath("/");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+
             return new ResponseEntity<>(Constants.TOKEN_INVALIDATED, HttpStatus.OK);
         }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
 
     //finds user details based on email
     public ResponseEntity<UserDetails> getUserDetails(String username, String authUser){
