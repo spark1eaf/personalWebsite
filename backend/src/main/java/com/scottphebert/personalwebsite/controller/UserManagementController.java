@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
-@RequestMapping(Constants.SITE_PREFIX)
+@RequestMapping(Constants.PREFIX)
 public class UserManagementController {
 
     @Autowired
