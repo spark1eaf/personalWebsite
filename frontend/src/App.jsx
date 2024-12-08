@@ -6,12 +6,13 @@ import ProtectedRoutes from './utils/ProtectedRoutes'
 
 
 const App = () =>{
+
   return (
-    <Router>
+    <Router basename={Constants.BASENAME}>
       <Routes>
-        <Route path={Constants.LANDING_PAGE} element={<LandingPage/>}/>\
+        <Route path={""} element={<LandingPage/>}/>
         <Route element={<ProtectedRoutes/>}>
-          <Route path={"/home"} element={<HomePage/>}/>
+          <Route path={Constants.DASHBOARD} element={<HomePage/>}/>
         </Route>
       </Routes>
     </Router>

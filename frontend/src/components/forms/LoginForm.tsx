@@ -12,10 +12,10 @@ const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow: MouseEventHa
 
     const handleChange = (event:ChangeEvent<HTMLInputElement>) =>{
         switch (event.target.name) {
-            case "firstName":
+            case "username":
                 setUsername(event.target.value);
                 break;
-            case "lastName":
+            case "password":
                 setPassword(event.target.value);
                 break;
           }
@@ -33,7 +33,7 @@ const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow: MouseEventHa
             if(response.status === 200){
                 sessionStorage.setItem("loggedIn", "true")
                 sessionStorage.setItem("username", username);
-                navigator(Constants.HOME_PAGE);
+                navigator(Constants.DASHBOARD);
             }
             else if(response.status === 403){
                 alert(Constants.INCORRECT_CREDENTIALS)

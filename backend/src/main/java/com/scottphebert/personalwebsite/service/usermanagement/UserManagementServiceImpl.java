@@ -120,11 +120,7 @@ public class UserManagementServiceImpl implements UserManagementService {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = jwtTokenProvider.generateToken(request.getUsername());
 
-            Cookie cookie = new Cookie("authToken", token);
-            cookie.setHttpOnly(true);
-            cookie.setSecure(true);
-            cookie.setPath("/");
-            response.addCookie(cookie);
+            response.setHeader("Set-Cookie", "authToken=" + token + "; Path=/; HttpOnly; secure; SameSite=None");
 
             logger.info(Constants.LOGIN_SUCCESSFUL_LOG, request.getUsername());
             return new ResponseEntity<>(HttpStatus.OK);
@@ -144,12 +140,7 @@ public class UserManagementServiceImpl implements UserManagementService {
             logger.info(Constants.SIGN_OUT_SUCCESS_LOG, authToken);
 
             //send response to remove cookie from the client-side
-            Cookie cookie = new Cookie("authToken", null);
-            cookie.setSecure(true);
-            cookie.setHttpOnly(true);
-            cookie.setPath("/");
-            cookie.setMaxAge(0);
-            response.addCookie(cookie);
+            response.setHeader("Set-Cookie", "authToken=" + null + "; Path=/; HttpOnly; secure; SameSite=None");
 
             return new ResponseEntity<>(Constants.TOKEN_INVALIDATED, HttpStatus.OK);
         }
