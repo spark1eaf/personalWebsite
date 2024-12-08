@@ -1,28 +1,35 @@
 package com.scottphebert.personalwebsite.config;
 
 import com.scottphebert.personalwebsite.common.Constants;
-import com.scottphebert.personalwebsite.service.usermanagement.UserManagementServiceImpl;
+import com.scottphebert.personalwebsite.service.utils.SecretsService;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 import java.util.Date;
-import io.github.cdimascio.dotenv.Dotenv;
 
 @Component
 public class JwtTokenProvider {
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
-//    SecretKey key =  Keys.secretKeyFor(SignatureAlgorithm.HS512);
-//    String stringKey = Base64.getEncoder().encodeToString(key.getEncoded());
-    Dotenv dotenv = Dotenv.configure().load();
-    byte[] decodedKey = Base64.getDecoder().decode(dotenv.get(Constants.JWT_SECRET).replaceAll("\\s+", "")); // Remove spaces before decoding
-    private final SecretKey jwtSecret =  new SecretKeySpec(decodedKey, 0, decodedKey.length, Constants.ENCODING_ALGO);
+    private final SecretsService secretsService;
+    private final SecretKey jwtSecret;
 
-    // generate token for user authentication
+    @Autowired
+    public JwtTokenProvider(SecretsService secretsService) {
+        this.secretsService = secretsService;
+        String a = secretsService.getSecret(Constants.JWT_SECRET);
+        // Fetch the JWT secret from Secrets Manager
+        byte[] decodedKey = Base64.getDecoder().decode(secretsService.getSecret(Constants.JWT_SECRET).replaceAll("\\s+", "")); // Remove spaces before decoding
+        this.jwtSecret = new SecretKeySpec(decodedKey, 0, decodedKey.length, Constants.ENCODING_ALGO);
+    }
+
+    // Generate token for user authentication
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
@@ -32,7 +39,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    // get username from token
+    // Get username from token
     public String getUsernameFromToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(jwtSecret)
@@ -42,7 +49,7 @@ public class JwtTokenProvider {
                 .getSubject();
     }
 
-    // check if valid token
+    // Check if valid token
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder()
