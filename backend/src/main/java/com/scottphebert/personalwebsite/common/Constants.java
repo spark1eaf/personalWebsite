@@ -5,7 +5,7 @@ public final class Constants {
     private Constants(){}
 
     //endpoints
-    public static final String SITE_PREFIX = "/site";
+    public static final String PREFIX = "/resources";
     public static final String REGISTRATION_URL = "/register";
     public static final String LOGIN_URL = "/login";
     public static final String SIGN_OUT_URL = "/signout";

@@ -5,8 +5,9 @@ Et alias minima ex fugit ullam ut tempore itaque. Nam dicta neque sed ipsa optio
 export const RECOVERY_TEXT = `Please provide the email address linked to your account below and you will recieve a recovery email shortly.`
 
 //pages
+export const BASENAME = import.meta.env.MODE === 'production' ? '' : '/site';
 export const LANDING_PAGE = `/site`;
-export const HOME_PAGE = `/home`;
+export const DASHBOARD = `/dashboard`;
 //footer
 export const FOOTER_P1 = `All Rights Reserved`;
 export const FOOTER_P2 = `@Scott Hebert 2024`;
