@@ -1,10 +1,10 @@
 package com.scottphebert.personalwebsite.service.usermanagement;
 
 import com.scottphebert.personalwebsite.config.JwtResponse;
-import com.scottphebert.personalwebsite.model.UserDetails;
-import com.scottphebert.personalwebsite.service.dto.LoginRequest;
-import com.scottphebert.personalwebsite.service.dto.RegistrationRequest;
-import com.scottphebert.personalwebsite.service.dto.UserUpdateRequest;
+import com.scottphebert.personalwebsite.model.entity.UserDetails;
+import com.scottphebert.personalwebsite.model.dto.LoginRequest;
+import com.scottphebert.personalwebsite.model.dto.RegistrationRequest;
+import com.scottphebert.personalwebsite.model.dto.UserUpdateRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
