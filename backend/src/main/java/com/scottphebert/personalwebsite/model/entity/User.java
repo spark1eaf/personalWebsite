@@ -1,4 +1,4 @@
-package com.scottphebert.personalwebsite.model;
+package com.scottphebert.personalwebsite.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

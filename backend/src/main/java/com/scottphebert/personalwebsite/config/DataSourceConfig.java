@@ -3,7 +3,7 @@ package com.scottphebert.personalwebsite.config;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.scottphebert.personalwebsite.common.Constants;
-import com.scottphebert.personalwebsite.model.DbCredentials;
+import com.scottphebert.personalwebsite.model.dto.DbCredentials;
 import com.scottphebert.personalwebsite.service.utils.SecretsService;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.slf4j.Logger;

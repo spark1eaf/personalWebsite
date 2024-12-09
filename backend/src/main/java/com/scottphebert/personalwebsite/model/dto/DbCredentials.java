@@ -1,4 +1,4 @@
-package com.scottphebert.personalwebsite.model;
+package com.scottphebert.personalwebsite.model.dto;
 
 public class DbCredentials {
     private String username;
@@ -9,9 +9,7 @@ public class DbCredentials {
     private String dbname;
     private String dbInstanceIdentifier;
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
 
     public void setUsername(String username) {
         this.username = username;

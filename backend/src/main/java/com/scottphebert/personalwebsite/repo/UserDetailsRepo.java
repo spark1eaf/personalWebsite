@@ -1,6 +1,6 @@
 package com.scottphebert.personalwebsite.repo;
 
-import com.scottphebert.personalwebsite.model.UserDetails;
+import com.scottphebert.personalwebsite.model.entity.UserDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package com.scottphebert.personalwebsite.service.dto;
+package com.scottphebert.personalwebsite.model.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 

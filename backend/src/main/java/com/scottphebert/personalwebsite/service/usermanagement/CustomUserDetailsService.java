@@ -1,7 +1,7 @@
 package com.scottphebert.personalwebsite.service.usermanagement;
 
 import com.scottphebert.personalwebsite.common.Constants;
-import com.scottphebert.personalwebsite.model.User;
+import com.scottphebert.personalwebsite.model.entity.User;
 import com.scottphebert.personalwebsite.repo.UserRepo;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
