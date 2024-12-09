@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
@@ -23,7 +22,6 @@ public class JwtTokenProvider {
     @Autowired
     public JwtTokenProvider(SecretsService secretsService) {
         this.secretsService = secretsService;
-        String a = secretsService.getSecret(Constants.JWT_SECRET);
         // Fetch the JWT secret from Secrets Manager
         byte[] decodedKey = Base64.getDecoder().decode(secretsService.getSecret(Constants.JWT_SECRET).replaceAll("\\s+", "")); // Remove spaces before decoding
         this.jwtSecret = new SecretKeySpec(decodedKey, 0, decodedKey.length, Constants.ENCODING_ALGO);
