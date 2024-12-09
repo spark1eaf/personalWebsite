@@ -1,7 +1,6 @@
 package com.scottphebert.personalwebsite.service.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.scottphebert.personalwebsite.common.Constants;
 import com.scottphebert.personalwebsite.config.JwtTokenProvider;
@@ -17,26 +16,29 @@ import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRespon
 public class SecretsServiceImpl implements SecretsService {
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
-    // Method to fetch secrets from Secrets Manager
+    // fetch secrets from AWS secrets manager
     public String getSecret(String secret) {
-
-
-        Region region = Region.of("us-east-1");  // Adjust region if necessary
+        Region region = Region.of(Constants.AWS_REGION);  // Adjust region if necessary
         SecretsManagerClient client = SecretsManagerClient.builder()
                 .region(region)
                 .build();
 
         GetSecretValueRequest getSecretValueRequest = GetSecretValueRequest.builder()
-                .secretId(Constants.JWT_SECRET)
+                .secretId(secret)
                 .build();
+        GetSecretValueResponse aa = client.getSecretValue(getSecretValueRequest);
+        String a = aa.secretString();
         try {
-            return new ObjectMapper()
-                    .readTree(client.getSecretValue(getSecretValueRequest).secretString())
-                    .get(Constants.JWT_SECRET)
-                    .asText();
-        } catch (JsonProcessingException e) {
-            logger.error("Error retrieving secret key: {}", "jwt-secret");
-            throw new RuntimeException("Failed to parse secret value", e);
+            if (secret.equals(Constants.JWT_SECRET))
+                return new ObjectMapper()
+                        .readTree(client.getSecretValue(getSecretValueRequest).secretString())
+                        .get(secret)
+                        .asText();
+            else
+                return client.getSecretValue(getSecretValueRequest).secretString();
+        } catch (JsonProcessingException ex) {
+            logger.error(Constants.SECRET_RETRIEVAL_ERROR_LOG, secret);
+            throw new RuntimeException(Constants.PARSING_FAILURE, ex);
         }
     }
 }
