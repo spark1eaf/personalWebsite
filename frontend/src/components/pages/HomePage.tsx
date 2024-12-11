@@ -35,7 +35,7 @@ const HomePage = () =>{
         try {
             const response = await userManagement.signout();
             if(response.status === 200 || response.status === 503){
-                navigator(Constants.LANDING_PAGE);
+                navigator("/");
                 alert(Constants.SIGNOUT_SUCCESSFUL);
                 sessionStorage.removeItem("loggedIn");
             }
