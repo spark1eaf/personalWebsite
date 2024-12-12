@@ -19,6 +19,7 @@ export const REGISTER = `/register`;
 export const CHANGEPASS = `/changepass`;
 export const RECOVERY = `/recovery`;
 export const GET_USER_DETAILS = `/getuserdetails`;
+export const GET_LOGIN_STATUS = `/getloginstatus`
 
 //params
 export const USERNAME_PARAM = `?username=`;
@@ -35,3 +36,8 @@ export const REGISTRATION_SUCCESSFUL = `Registration successful`;
 export const PASSWORD_UPDATED = `Password has been successfully updated`;
 export const INCORRECT_CREDENTIALS = `Incorrect username or password, please try again.`;
 export const RECOVERY_EMAIL_SENT = `Recovery email sent.`;
+export const LOGIN_CHECK_RESPONSE = `User is logged in.`
+
+//session
+export const SESSION_USER = `username`;
+export const LOGIN_STATUS = `loggedIn`;

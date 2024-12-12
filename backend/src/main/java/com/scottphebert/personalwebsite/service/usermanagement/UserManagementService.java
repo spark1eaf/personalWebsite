@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 
+import java.security.Principal;
+
 public interface UserManagementService {
     ResponseEntity<String> registerUser(RegistrationRequest request);
 
@@ -16,7 +18,10 @@ public interface UserManagementService {
 
     ResponseEntity<JwtResponse> login(LoginRequest request, HttpServletResponse response);
 
+    ResponseEntity<String> getLoginStatus(String username, String authUser);
+
     ResponseEntity<String>signOut(HttpServletRequest request, HttpServletResponse response);
 
-    ResponseEntity<UserDetails> getUserDetails(String email, String authUser);
+    ResponseEntity<UserDetails> getUserDetails(String username, String authUser);
+
 }

@@ -146,6 +146,24 @@ public class UserManagementServiceImpl implements UserManagementService {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    //checks if a token exists for user request
+    public ResponseEntity<String> getLoginStatus(String username, String authUser) {
+        try{
+            //confirm auth token matches the one associated with the user in the request
+            if(!username.equals(authUser)){
+                logger.info(Constants.USER_NOT_LOGGED_ON_LOG, username);
+                return new ResponseEntity<>(Constants.NOT_LOGGED_IN, HttpStatus.OK);
+            }
+            else{
+                logger.info(Constants.USER_LOGGED_ON_LOG, username);
+                return new ResponseEntity<>(Constants.LOGGED_IN, HttpStatus.OK);
+            }
+        }
+        catch (Exception ex){
+            logger.warn("An error occured while fetching the login status for user: {}", username, ex);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     //finds user details based on email
     public ResponseEntity<UserDetails> getUserDetails(String username, String authUser){
