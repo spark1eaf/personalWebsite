@@ -29,7 +29,7 @@ public class UserManagementController {
 
     //Register a new user
     @PostMapping(Constants.REGISTRATION_URL)
-    public ResponseEntity<String> registerUser(@RequestBody RegistrationRequest request){
+    public ResponseEntity<String> registerUser(@RequestBody @Valid RegistrationRequest request){
         logger.info(Constants.REGISTRATION_REQUEST_LOG, request.getEmail());
         return userManagementService.registerUser(request);
     }
