@@ -8,6 +8,7 @@ public final class Constants {
     public static final String PREFIX = "/resources";
     public static final String REGISTRATION_URL = "/register";
     public static final String LOGIN_URL = "/login";
+    public static final String LOGIN_STATUS_URL = "/getloginstatus";
     public static final String SIGN_OUT_URL = "/signout";
     public static final String CHANGE_PASSWORD_URL = "/changepass";
     public static final String PASSWORD_RECOVERY_URL = "/recovery";
@@ -24,6 +25,8 @@ public final class Constants {
     public static final String REGISTRATION_FAILURE = "An error occurred during registration";
     public static final String UPDATE_PASSWORD_SUCCESS = "Password was successfully changed";
     public static final String UPDATE_PASSWORD_FAILURE = "An error occurred while attempting to update password";
+    public static final String LOGGED_IN = "User is logged in.";
+    public static final String NOT_LOGGED_IN = "User is not currently logged in.";
     //security
     public static final String TOKEN_INVALIDATED = "Token has been invalidated";
     public static final String INVALID_TOKEN = "Invalid token";
@@ -56,6 +59,9 @@ public final class Constants {
     public static final String TOKEN_EXPIRED_LOG = "Validation failed. Token: {} has expired: ";
     public static final String INVALID_TOKEN_LOG = "Token: {} is invalid";
     public static final String SECRET_RETRIEVAL_ERROR_LOG = "Error retrieving secret key: {}";
+    public static final String LOGIN_STATUS_REQUEST_LOG = "Checking login status for user: {}";
+    public static final String USER_NOT_LOGGED_ON_LOG = "User is not currently logged in: {}";
+    public static final String USER_LOGGED_ON_LOG = "User is logged in: {}";
 
     //db
     public static final String DATASOURCE_DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";

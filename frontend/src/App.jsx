@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import LandingPage from './components/pages/LandingPage';
-import HomePage from './components/pages/HomePage'
+import Dashboard from './components/pages/Dashboard'
 import * as Constants from './constants/constants'
 import ProtectedRoutes from './utils/ProtectedRoutes'
 
@@ -12,7 +12,7 @@ const App = () =>{
       <Routes>
         <Route path={""} element={<LandingPage/>}/>
         <Route element={<ProtectedRoutes/>}>
-          <Route path={Constants.DASHBOARD} element={<HomePage/>}/>
+          <Route path={Constants.DASHBOARD} element={<Dashboard/>}/>
         </Route>
       </Routes>
     </Router>

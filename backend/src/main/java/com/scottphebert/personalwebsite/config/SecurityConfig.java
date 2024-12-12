@@ -31,7 +31,8 @@ public class SecurityConfig {
                 .cors(withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(Constants.PREFIX + Constants.LOGIN_URL, Constants.PREFIX + Constants.REGISTRATION_URL, Constants.PREFIX +Constants.SIGN_OUT_URL).permitAll()
+                .requestMatchers(Constants.PREFIX + Constants.LOGIN_URL, Constants.PREFIX + Constants.REGISTRATION_URL,
+                        Constants.PREFIX +Constants.SIGN_OUT_URL).permitAll()
                 .requestMatchers(Constants.PREFIX + Constants.CHANGE_PASSWORD_URL).authenticated()
                 .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

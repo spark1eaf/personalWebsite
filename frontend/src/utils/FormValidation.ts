@@ -1,6 +1,5 @@
 
 const checkEmail = (email:string|undefined) =>{
-    console.log("chedaklsdjkl")
     if(!email)
         return"";
     let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;

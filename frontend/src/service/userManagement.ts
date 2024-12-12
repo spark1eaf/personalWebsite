@@ -86,4 +86,20 @@ const getUserDetails = async(username:string): Promise<ResponseObj<any>> =>{
     }
 };
 
-export default {login, signout, register, changePassword, requestRecoveryEmail, getUserDetails};
+    //sends request to query if user is already logged in
+const getLoginStatus = async(username:string): Promise<ResponseObj<any>> =>{
+        
+    const url = `${API_URL}${Constants.GET_LOGIN_STATUS}${Constants.USERNAME_PARAM}${encodeURIComponent(username)}`
+    try {
+        const response = await axios.post(url, {}, {
+            withCredentials: true,
+            headers: {'Content-Type': 'application/json'}
+        })
+        return {status:response.status, data:response.data};
+    } 
+    catch (error) {
+        return handleError(error);
+    }
+};
+
+export default {login, signout, register, changePassword, requestRecoveryEmail, getUserDetails, getLoginStatus};
