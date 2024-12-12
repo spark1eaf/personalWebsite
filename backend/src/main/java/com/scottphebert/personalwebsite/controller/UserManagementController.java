@@ -41,6 +41,13 @@ public class UserManagementController {
         return userManagementService.login(request, response);
     }
 
+    //check if user is logged in currently
+    @PostMapping(Constants.LOGIN_STATUS_URL)
+    public ResponseEntity<String> checkLoginStatus(@RequestParam String username, Principal principal){
+        logger.info(Constants.LOGIN_STATUS_REQUEST_LOG, username);
+        return userManagementService.getLoginStatus(username, principal.getName());
+    }
+
     //destroys token on user logout
     @PostMapping(Constants.SIGN_OUT_URL)
     public ResponseEntity<String> signOutUser(HttpServletRequest request, HttpServletResponse response) {

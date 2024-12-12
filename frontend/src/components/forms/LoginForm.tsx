@@ -31,8 +31,8 @@ const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow: MouseEventHa
         try {
             const response = await userManagement.login(user);
             if(response.status === 200){
-                sessionStorage.setItem("loggedIn", "true")
-                sessionStorage.setItem("username", username);
+                sessionStorage.setItem(Constants.LOGIN_STATUS, "true")
+                sessionStorage.setItem(Constants.SESSION_USER, username);
                 navigator(Constants.DASHBOARD);
             }
             else if(response.status === 403){

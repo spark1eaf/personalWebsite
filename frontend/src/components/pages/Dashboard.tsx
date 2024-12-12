@@ -6,15 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const HomePage = () =>{
+const Dashboard = () =>{
     const [name, setName] = useState("");
     const navigator = useNavigate();
-    const [submitting, setSubmitting] = useState(false);
-
+    const [submitting, setSubmitting] = useState(false);    
+    
     //send out request to retrieve user details
     const populateUserDetails = async () =>{
         try {
-            const response = await userManagement.getUserDetails(sessionStorage.getItem("username") ||"");
+            const response = await userManagement.getUserDetails(sessionStorage.getItem(Constants.SESSION_USER) ||"");
             if(response.status === 200){
                 setName(response.data.firstName);
             }
@@ -37,7 +37,7 @@ const HomePage = () =>{
             if(response.status === 200 || response.status === 503){
                 navigator("/");
                 alert(Constants.SIGNOUT_SUCCESSFUL);
-                sessionStorage.removeItem("loggedIn");
+                sessionStorage.removeItem(Constants.LOGIN_STATUS);
             }
 
         } catch (error) {
@@ -59,4 +59,4 @@ const HomePage = () =>{
     )
 };
 
-export default HomePage;
+export default Dashboard;
