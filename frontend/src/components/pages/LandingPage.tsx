@@ -49,8 +49,14 @@ const LandingPage = ()=>{
     return (
         <div className="landing-page">
             <LoginBtns displayLoginWindow={displayLoginWindow} displayRegistrationWindow={displayRegistrationWindow}/>
-            <h1 className="title">Welcome</h1>
-            <p className="landing-body">{DUMMY_TEXT}</p>
+            <h1 className="title">About</h1>
+            <p className="feature-prefix">{Constants.ABOUT_TEXT_PREFIX}</p>
+            <ul className="site-features">
+                <li>{Constants.ABOUT_TEXT_LOGIN}</li>
+                <li>{Constants.ABOUT_TEXT_WEATHER}</li>
+
+            </ul>
+            {/* <p className="landing-body">{DUMMY_TEXT}</p> */}
             <PopupWindow windowToDisplay={windowToDisplay} displayRecoveryWindow={displayRecoveryWindow} closeWindow={closeWindow}/>
              <Footer/>
         </div>

@@ -15,11 +15,22 @@ input:hover{
     background-color: #ffffff;
     color: black;
 }
+.feature-prefix{
+    margin-top: 10%;
+    margin-left: 15%;
+    font-size: 3.2em;
+}
 
-.landing-body{
+.site-features{
     text-align: center;
-    margin: 0 5%;
-    font-size: 3.5em;
+    margin-left: 20%;
+    margin-right: 1%;
+    margin-bottom: 20%;
+    font-size: 1.6em;
+}
+.site-features li{
+    margin-top: 1%;
+    text-align: left;
 }
 
 .registration-form, .logon-form, .recovery-form {

@@ -3,6 +3,7 @@ import weatherService from "../../services/weatherService";
 import * as Constants from "../../constants/constants";
 import { WeatherPeriod, ResponsePeriod } from "./WeatherInterfaces";
 import coordinatesService from "../../services/coordinatesService";
+import { forEach } from "lodash";
 
 interface Props{
     zipcode:string,
@@ -55,6 +56,30 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
             sessionStorage.setItem("weatherData", JSON.stringify(weatherData));
         }
     };
+    //gets the current weather data set based on the time and day
+    const fetchCurrentWeatherData = (): WeatherPeriod | null =>{
+        const date = new Date();
+        const offset = -date.getTimezoneOffset();      
+        const current = new Date(date.getTime() + offset * 60 * 1000);
+        const hourOffset = String(Math.abs(offset) / 60).padStart(2, '0');
+        const timezone = `-${hourOffset}:00`;
+        const currentISO = `${current.toISOString().substring(0, 19)}${timezone}`;
+        const currentDate = currentISO.substring(0,10);
+        const currentTime = currentISO.substring(11,16)
+        let result: WeatherPeriod|null= null;
+        weatherData.forEach(element =>{
+            let ISOTime = element.startTime;
+            const date = ISOTime.substring(0,10);
+            const startTime = ISOTime.substring(11,16);
+            ISOTime = element.endTime;
+            const endTime = ISOTime.substring(11,16);
+            console.log(startTime)
+            console.log(endTime)
+            if(currentDate === date && startTime < currentTime && currentTime < endTime)
+                result = element;
+        })
+        return result;
+    }
 
     useEffect(() => {
         if (zipcode && getByZip) 
@@ -67,21 +92,20 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
     }, [latitude,longitude]);
 
 
-    const test = weatherData[0] || "";
+    const currentWeather = fetchCurrentWeatherData();
+    const currentTime = new Date().toLocaleTimeString();
 
     return (
         <div className="weather-widget">
-            {test ? <>
+            {currentWeather ? <>
                      <h1 className="Weather-widget-title">{city}, {state}</h1>
                      <div className="weather-widget-specs">
-                         {/* <p>{test.startTime}</p>
-                         //work in current time later If i decide i want it.*/}
-                         <p>{test.isDaytime}</p>
-                         <p>Current Temperature: {test.temperature}°F</p>
-                         <p>Humidity: {test.humidity}%</p>
-                         <p>Precipitation Chance: {test.precipChance}%</p>
-                         <p>Wind Speed: {test.windspeed}</p>
-                         <p>Prediction: {test.shortForcast}</p>
+                         <p>Time: {currentTime}</p>
+                         <p>Current Temperature: {currentWeather.temperature}°F</p>
+                         <p>Humidity: {currentWeather.humidity}%</p>
+                         <p>Precipitation Chance: {currentWeather.precipChance}%</p>
+                         <p>Wind Speed: {currentWeather.windspeed}</p>
+                         <p>Prediction: {currentWeather.shortForcast}</p>
                      </div>
             </> : null}
         </div>
