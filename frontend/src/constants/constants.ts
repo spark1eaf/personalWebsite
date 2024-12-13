@@ -8,6 +8,7 @@ export const RECOVERY_TEXT = `Please provide the email address linked to your ac
 export const BASENAME = import.meta.env.MODE === 'production' ? '' : '/site';
 export const LANDING_PAGE = `/site`;
 export const DASHBOARD = `/dashboard`;
+
 //footer
 export const FOOTER_P1 = `All Rights Reserved`;
 export const FOOTER_P2 = `@Scott Hebert 2024`;
@@ -20,6 +21,10 @@ export const CHANGEPASS = `/changepass`;
 export const RECOVERY = `/recovery`;
 export const GET_USER_DETAILS = `/getuserdetails`;
 export const GET_LOGIN_STATUS = `/getloginstatus`
+
+//external apis
+export const COORDINATES_URL = `https://api.zippopotam.us/US/`
+export const WEATHER_URL = `https://api.weather.gov/points/`
 
 //params
 export const USERNAME_PARAM = `?username=`;
@@ -38,6 +43,14 @@ export const INCORRECT_CREDENTIALS = `Incorrect username or password, please try
 export const RECOVERY_EMAIL_SENT = `Recovery email sent.`;
 export const LOGIN_CHECK_RESPONSE = `User is logged in.`
 
+//Weather service
+export const STATE_CODES = new Map([["Alabama", "AL"], ["Alaska", "AK"], ["Arizona", "AZ"], ["Arkansas", "AR"], ["California", "CA"], ["Colorado", "CO"], ["Connecticut", "CT"], ["Delaware", "DE"], ["Florida", "FL"], ["Georgia", "GA"], ["Hawaii", "HI"],
+    ["Idaho", "ID"], ["Illinois", "IL"], ["Indiana", "IN"], ["Iowa", "IA"], ["Kansas", "KS"], ["Kentucky", "KY"], ["Louisiana", "LA"], ["Maine", "ME"], ["Maryland", "MD"],["Massachusetts", "MA"], ["Michigan", "MI"], ["Minnesota", "MN"],
+    ["Mississippi", "MS"], ["Missouri", "MO"], ["Montana", "MT"], ["Nebraska", "NE"], ["Nevada", "NV"], ["New Hampshire", "NH"], ["New Jersey", "NJ"], ["New Mexico", "NM"], ["New York", "NY"], ["North Carolina", "NC"], ["North Dakota", "ND"],
+    ["Ohio", "OH"], ["Oklahoma", "OK"], ["Oregon", "OR"], ["Pennsylvania", "PA"], ["Rhode Island", "RI"], ["South Carolina", "SC"], ["South Dakota", "SD"], ["Tennessee", "TN"], ["Texas", "TX"], ["Utah", "UT"], ["Vermont", "VT"], ["Virginia", "VA"],
+    ["Washington", "WA"], ["Washington D.C.", "DC"], ["West Virginia", "WV"], ["Wisconsin", "WI"], ["Wyoming", "WY"]]);
+
 //session
 export const SESSION_USER = `username`;
 export const LOGIN_STATUS = `loggedIn`;
+

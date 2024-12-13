@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import PopupWindow from "../windows/PopupWindow";
 import {DUMMY_TEXT} from "../../constants/constants";
 import "../../styles/landingpage.css"
-import userManagement from "../../service/userManagement";
+import userManagement from "../../services/userManagement";
 import { useNavigate } from "react-router-dom";
 import * as Constants from "../../constants/constants"
 import axios from "axios";
@@ -20,6 +20,7 @@ const LandingPage = ()=>{
     const displayRegistrationWindow = () =>{
         setWindowToDisplay("registration");
     };
+
     const displayRecoveryWindow = () =>{
         setWindowToDisplay("recovery");
     };
@@ -30,13 +31,8 @@ const LandingPage = ()=>{
     const checkLoginStatus = async() =>{
             try {
                 const response = await userManagement.getLoginStatus(sessionStorage.getItem(Constants.SESSION_USER) ||""); 
-                console.log(response)
-                if (response.status === 200 && response.data === Constants.LOGIN_CHECK_RESPONSE) { 
-                    console.log("user is logged in")
+                if (response.status === 200 && response.data === Constants.LOGIN_CHECK_RESPONSE)
                     navigator(Constants.DASHBOARD)
-                }
-                else
-                    console.log("user is not logged in")
             } catch (error) {
                 if(axios.isAxiosError(error))
                     console.error(error.response?.data.message);

@@ -1,8 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import userManagement from "../../service/userManagement";
-import axios from "axios";
-import * as Constants from "../../constants/constants"
-import FormValidation from "../../utils/FormValidation";
+import * as Constants from "../../../constants/constants"
+import FormValidation from "../../../utils/FormValidation";
+import userManagement from "../../../services/userManagement";
 
 const RegistrationForm = () =>{
     const [firstName, setFirstName] = useState("");
@@ -78,22 +77,13 @@ const RegistrationForm = () =>{
                 lastName: lastName,
                 zipcode: zipcode
             };
-            
-            try {
-                const response = await userManagement.register(user);
-                if(response.status === 200){
-                    console.log(response.data);
-                    alert(Constants.REGISTRATION_SUCCESSFUL);
-                    location.reload();
-                }
-                else
-                    alert(response.error || Constants.UNEXPECTED_ERROR_MSG);
-            } catch (error){
-                if(axios.isAxiosError(error))
-                    alert(error.response?.data.message);
-                else
-                    alert(Constants.UNEXPECTED_ERROR_MSG);     
+            const response = await userManagement.register(user);
+            if(response.status === 200){
+                alert(Constants.REGISTRATION_SUCCESSFUL);
+                location.reload();
             }
+            else
+                alert(response.error || Constants.UNEXPECTED_ERROR_MSG);
         }
         setSubmitting(false);
     };
@@ -128,7 +118,7 @@ const RegistrationForm = () =>{
                 <input type="password" onChange={handleChange} placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} required/>
                 {errors.confirmPassErr && <p className="registration-error">{errors.confirmPassErr}</p>}
             </div>
-            <button type="submit" disabled={submitting} className="registration-submit-btn">Sign Up</button>
+            <button type="submit" disabled={submitting} className="submit-btn">Sign Up</button>
         </form> 
     );
 };
