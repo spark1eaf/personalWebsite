@@ -1,10 +1,11 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 import * as Constants from "../../../constants/constants"
 import locationService from "../../../services/locationService";
-import axios from "axios";
+import { DateTime } from 'luxon';
+
 
 interface Props{
-    setLocationDetails?: (userCity:string, userState:string, userLongitude:string, userLatitude:string) => void,
+    setLocationDetails?: (userCity:string, userState:string, userLongitude:string, userLatitude:string, userTimezone:number) => void,
     closeWindow:()=>void
 };
 
@@ -23,42 +24,48 @@ const LocationForm = ({setLocationDetails, closeWindow}:Props) =>{
           }
     };
 
-    //sends request to retrieve current coordinates
-    const populateLocationCoordinates = async(event:FormEvent) =>{
+    //sends request to retrieve current coordinates and timezone
+    const populateLocationDetails = async(event:FormEvent) =>{
         event.preventDefault();
         const states = Array.from(Constants.STATE_CODES.keys())
         let isPresent = false;
         states.forEach(element => {
             if(element.toLowerCase() === state.toLowerCase()){
-                isPresent = true
+                isPresent = true;
             }
         });
         if(!isPresent)
             alert("Invalid entry. Please provide a valid US state.")
         else{
-            try {
-                const response = await locationService.getCoordinates(undefined, city, state);
-                if(response.status === 200){
-                    const longitude = response.data.places[0].longitude;
-                    const latitude = response.data.places[0].latitude;
-                    setLocationDetails?.(city, state, longitude, latitude);
-                    closeWindow();
-                }
+            //get coordinates
+            const coordinatesAPIResponse = await locationService.getCoordinates(undefined, city, state);
+            if(coordinatesAPIResponse.status === 200 ){
+                const longitude = coordinatesAPIResponse.data.places[0].longitude;
+                const latitude = coordinatesAPIResponse.data.places[0].latitude;
 
-                else if(response.status === 404)
-                    alert("Unable to find location info for the city you entered.")
-            } catch (error){
-                if(axios.isAxiosError(error))
-                    alert(error.response?.data.message);
+                //get timezone
+                const timezoneAPIResponse = await locationService.getTimezone(latitude, longitude);
+                let timezone = 0
+                if(timezoneAPIResponse.status === 200 && timezoneAPIResponse.data.gmtOffset){
+                    if(DateTime.now().isInDST)
+                        timezone = timezoneAPIResponse.data.dstOffSet;
+                    else
+                        timezone = timezoneAPIResponse.data.gmtOffset;
+                }
                 else
-                    alert(Constants.UNEXPECTED_ERROR_MSG);     
+                alert("Unable to find location info for the city you entered.");
+
+                setLocationDetails?.(city, state, longitude, latitude, timezone);
+                closeWindow();
             }
+            else if(coordinatesAPIResponse.status === 404)
+                alert("Unable to find location info for the city you entered.");
         }
 
     }
 
     return(
-        <form className="location-form" onSubmit={populateLocationCoordinates}>
+        <form className="location-form" onSubmit={populateLocationDetails}>
             <input type="text" onChange={handleChange} placeholder="Enter City" name="city" value={city} required/>
             <input type="text" onChange={handleChange} placeholder="Enter state" name="state" value={state} required/>
         <button type="submit" className="submit-btn">Submit</button>

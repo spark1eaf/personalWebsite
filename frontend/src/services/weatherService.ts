@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as Constants from "../constants/constants"
+import handleError from "../utils/ErrorHandler";
 
 //gets response containing endpoints for the provided coordinates
 const getWeatherEndpoints = async(longitude:string, latitude:string):Promise<ResponseObj<any>> =>{
@@ -9,24 +10,12 @@ const getWeatherEndpoints = async(longitude:string, latitude:string):Promise<Res
         return response;
     } 
     catch (error) {
-        if (axios.isAxiosError(error)) {
-            console.error(`Error: ${error.message}`, error);
-            const statusCode = error.code === "ERR_NETWORK" ? 503 : error.response?.status
-            return {
-                status: statusCode,
-                error: error.response?.data || Constants.ERROR_TRY_AGAIN_MSG
-            };
-        }
-        else{
-            const errorMessage = error instanceof Error ? error.message: Constants.UNEXPECTED_ERROR;
-            console.error(`Error retrieving weather endpoints: ${errorMessage}`)
-            return {error: Constants.UNEXPECTED_ERROR_MSG };    
-        }
+        return handleError(error, `Error retrieving weather endpoints`)
     }
 }
-//     //retrieve weather data
-const getlocalWeather = async(latitude:string, longitude:string):Promise<ResponseObj<any>> =>{
 
+//retrieve weather data
+const getlocalWeather = async(latitude:string, longitude:string):Promise<ResponseObj<any>> =>{
     try {
         const endpointsResponse = await getWeatherEndpoints(latitude,longitude);
         if(endpointsResponse.status === 200){
@@ -41,19 +30,7 @@ const getlocalWeather = async(latitude:string, longitude:string):Promise<Respons
         }
     }
     catch (error) {
-        if (axios.isAxiosError(error)) {
-            console.error(`Error: ${error.message}`, error);
-            const statusCode = error.code === "ERR_NETWORK" ? 503 : error.response?.status
-            return {
-                status: statusCode,
-                error: error.response?.data || Constants.ERROR_TRY_AGAIN_MSG
-            };
-        }
-        else{
-            const errorMessage = error instanceof Error ? error.message: Constants.UNEXPECTED_ERROR;
-            console.error(`Error retrieving weather data: ${errorMessage}`)
-            return {error: Constants.UNEXPECTED_ERROR_MSG};
-        }
+        return handleError(error, `Error retrieving weather data`);
     }
 };
 export default {getlocalWeather}

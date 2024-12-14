@@ -27,8 +27,9 @@ export const GET_USER_DETAILS = `/getuserdetails`;
 export const GET_LOGIN_STATUS = `/getloginstatus`;
 
 //external apis
-export const COORDINATES_URL = `https://api.zippopotam.us/US/`
-export const WEATHER_URL = `https://api.weather.gov/points/`
+export const COORDINATES_URL = `https://api.zippopotam.us/US/`;
+export const WEATHER_URL = `https://api.weather.gov/points/`;
+export const TIMEZONE_URL = `http://api.geonames.org/timezoneJSON?`;
 
 //params
 export const USERNAME_PARAM = `?username=`;
@@ -45,7 +46,7 @@ export const REGISTRATION_SUCCESSFUL = `Registration successful`;
 export const PASSWORD_UPDATED = `Password has been successfully updated`;
 export const INCORRECT_CREDENTIALS = `Incorrect username or password, please try again.`;
 export const RECOVERY_EMAIL_SENT = `Recovery email sent.`;
-export const LOGIN_CHECK_RESPONSE = `User is logged in.`
+export const LOGIN_CHECK_RESPONSE = `User is logged in.`;
 export const SESSION_LOGIN_STATUS = `loggedIn`;
 export const SESSION_USER = `username`;
 
@@ -60,3 +61,4 @@ export const SESSION_CITY_LOCATION = "city";
 export const SESSION_LONGITUDE = "longitude";
 export const SESSION_LATITUDE = "latitude";
 export const SESSION_WEATHER_DATA = "weatherData";
+export const GENOMES_KEY = import.meta.env.VITE_GEONAMES_USER;

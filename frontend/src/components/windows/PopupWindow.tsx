@@ -8,7 +8,7 @@ interface Props{
     windowToDisplay:string,
     closeWindow:MouseEventHandler<HTMLButtonElement>
     displayRecoveryWindow?:MouseEventHandler<HTMLButtonElement>,
-    setLocationDetails?: (userCity:string, userState:string, userLongitude:string, userLatitude:string) => void
+    setLocationDetails?: (userCity:string, userState:string, userLongitude:string, userLatitude:string, userTimezone:number) => void
 };
 
 const PopupWindow = ({windowToDisplay, closeWindow, displayRecoveryWindow, setLocationDetails}:Props) =>{   

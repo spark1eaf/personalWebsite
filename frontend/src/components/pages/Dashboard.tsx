@@ -18,6 +18,7 @@ const Dashboard = () =>{
     const [state, setState] = useState("");
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
+    const [timezone, setTimezone] = useState<number | null>(null);
     const [windowToDisplay, setWindowToDisplay] = useState("");
     
     //send out request to retrieve user details
@@ -38,7 +39,7 @@ const Dashboard = () =>{
 
     useEffect(() =>{populateUserDetails();}, []);
 
-    //Sends request to blacklist auth token and adjusts session storage for route guarding.
+    //Sends request to blacklist auth token and clears session storage.
     const handleSignOut = async () =>{
         setSubmitting(true);
         
@@ -47,7 +48,7 @@ const Dashboard = () =>{
             if(response.status === 200 || response.status === 503){
                 navigator("/");
                 alert(Constants.SIGNOUT_SUCCESSFUL);
-                sessionStorage.removeItem(Constants.SESSION_LOGIN_STATUS);
+                sessionStorage.clear();
             }
 
         } catch (error) {
@@ -64,14 +65,13 @@ const Dashboard = () =>{
         setWindowToDisplay("");
     };
     
-    const setLocationDetails = (userCity:string, userState:string, userLongitude:string,userLatitude:string) =>{
-        console.log("remove weather data")
+    const setLocationDetails = (userCity:string, userState:string, userLongitude:string, userLatitude:string, timezone:number) =>{
         sessionStorage.removeItem(Constants.SESSION_WEATHER_DATA);
-        console.log("weather data removed")
         setCity(userCity);
         setState(userState);
         setLongitude(userLongitude);
         setLatitude(userLatitude)
+        setTimezone(timezone);
         //tells widget to get weather info by state and city instead of user home location
         setGetByZip(false);
         //clear weatherdata cache
@@ -87,8 +87,8 @@ const Dashboard = () =>{
             <div className="widgets">
                 {zipcode ?             
                     <div className="weather-widget-cont">
-                        <WeatherWidget key={city} zipcode={zipcode} getByZip={getByZip} currentCity={city} currentState={state} currentLongitude={longitude} currentLatitude={latitude}/> 
-                        <button onClick={handleCustomLocation} className="weather-widget-btn">Not at home? Click here to get the weather for your current location.</button>
+                        <WeatherWidget key={timezone} zipcode={zipcode} getByZip={getByZip} currentCity={city} currentState={state} currentLongitude={longitude} currentLatitude={latitude} currentTimezone={timezone}/> 
+                        <button onClick={handleCustomLocation} className="weather-widget-btn">Click here to get the weather for another location.</button>
                     </div>
                     : null}
                 <PopupWindow windowToDisplay={windowToDisplay} closeWindow={closeWindow} setLocationDetails={setLocationDetails}/>

@@ -4,7 +4,7 @@ import LocationForm from "../forms/widgets/LocationForm";
 
 interface Props{
     closeWindow:MouseEventHandler<HTMLButtonElement>|(()=>void)
-    setLocationDetails?: (userCity:string, userState:string, userLongitude:string, userLatitude:string) => void;
+    setLocationDetails?: (userCity:string, userState:string, userLongitude:string, userLatitude:string, userTimezone:number) => void;
 }
 
 const GetCurrentLocationWindow = ({closeWindow, setLocationDetails}: Props) =>{
