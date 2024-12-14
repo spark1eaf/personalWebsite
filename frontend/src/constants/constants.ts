@@ -29,7 +29,7 @@ export const GET_LOGIN_STATUS = `/getloginstatus`;
 //external apis
 export const COORDINATES_URL = `https://api.zippopotam.us/US/`;
 export const WEATHER_URL = `https://api.weather.gov/points/`;
-export const TIMEZONE_URL = `http://api.geonames.org/timezoneJSON?`;
+export const TIMEZONE_URL = `https://api.geonames.org/timezoneJSON?`;
 
 //params
 export const USERNAME_PARAM = `?username=`;
