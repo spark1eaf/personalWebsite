@@ -15,20 +15,23 @@ interface Props{
 };
 
 const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLongitude, currentLatitude}:Props) => {
-    const [city, setCity] = useState(currentCity|| "");
-    const [state, setState] = useState(currentState|| "");;
-    const [longitude, setLongitude] = useState(currentLongitude || "");
-    const [latitude, setLatitude] = useState(currentLatitude || "");
-    const temp = sessionStorage.getItem("weatherData");
+    const [city, setCity] = useState(currentCity|| sessionStorage.getItem(Constants.SESSION_CITY_LOCATION));
+    const [state, setState] = useState(currentState|| sessionStorage.getItem(Constants.SESSION_STATE_LOCATION));;
+    const [longitude, setLongitude] = useState(currentLongitude || sessionStorage.getItem(Constants.SESSION_LONGITUDE) || "");
+    const [latitude, setLatitude] = useState(currentLatitude || sessionStorage.getItem(Constants.SESSION_LATITUDE) || "");
+    const temp = sessionStorage.getItem(Constants.SESSION_WEATHER_DATA);
     const cachedWeatherData: WeatherPeriod[] = temp ? JSON.parse(temp) : [];
     const [weatherData, setWeatherData] = useState<WeatherPeriod[]>(cachedWeatherData);
 
     const getLocationData = async () => {
             const response = await coordinatesService.getCoordinates(zipcode);
             if (response.status === 200) {
-                sessionStorage.setItem("city", response.data.places[0]["place name"]);
+                //store fields for caching
+                sessionStorage.setItem(Constants.SESSION_CITY_LOCATION, response.data.places[0]["place name"]);
+                sessionStorage.setItem(Constants.SESSION_STATE_LOCATION, response.data.places[0].state);
+                sessionStorage.setItem(Constants.SESSION_LONGITUDE, response.data.places[0].longitude)
+                sessionStorage.setItem(Constants.SESSION_LATITUDE, response.data.places[0].latitude)
                 setCity(response.data.places[0]["place name"]);
-                sessionStorage.setItem("state", response.data.places[0].state);
                 setState(response.data.places[0].state);
                 setLongitude(response.data.places[0].longitude);
                 setLatitude(response.data.places[0].latitude);
@@ -52,8 +55,10 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
                     shortForcast: period.shortForecast,
                 };
             });
+            //store data for caching
+            console.log("caching weather data")
+            sessionStorage.setItem(Constants.SESSION_WEATHER_DATA, JSON.stringify(weatherData));
             setWeatherData(weatherData);
-            sessionStorage.setItem("weatherData", JSON.stringify(weatherData));
         }
     };
     //gets the current weather data set based on the time and day
@@ -73,8 +78,6 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
             const startTime = ISOTime.substring(11,16);
             ISOTime = element.endTime;
             const endTime = ISOTime.substring(11,16);
-            console.log(startTime)
-            console.log(endTime)
             if(currentDate === date && startTime < currentTime && currentTime < endTime)
                 result = element;
         })
@@ -82,12 +85,12 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
     }
 
     useEffect(() => {
-        if (zipcode && getByZip) 
+        if (zipcode && getByZip && !city && !state) 
             getLocationData();
     }, []);
 
     useEffect(() => {
-        if (latitude && longitude) 
+        if (latitude && longitude && weatherData.length === 0) 
             getWeatherData();
     }, [latitude,longitude]);
 

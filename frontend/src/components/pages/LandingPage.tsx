@@ -42,7 +42,7 @@ const LandingPage = ()=>{
     };
 
     useEffect(() =>{
-        if(sessionStorage.getItem(Constants.LOGIN_STATUS))
+        if(sessionStorage.getItem(Constants.SESSION_LOGIN_STATUS))
             checkLoginStatus();
     },[]);
 

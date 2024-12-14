@@ -47,7 +47,7 @@ const Dashboard = () =>{
             if(response.status === 200 || response.status === 503){
                 navigator("/");
                 alert(Constants.SIGNOUT_SUCCESSFUL);
-                sessionStorage.removeItem(Constants.LOGIN_STATUS);
+                sessionStorage.removeItem(Constants.SESSION_LOGIN_STATUS);
             }
 
         } catch (error) {
@@ -65,12 +65,16 @@ const Dashboard = () =>{
     };
     
     const setLocationDetails = (userCity:string, userState:string, userLongitude:string,userLatitude:string) =>{
+        console.log("remove weather data")
+        sessionStorage.removeItem(Constants.SESSION_WEATHER_DATA);
+        console.log("weather data removed")
         setCity(userCity);
         setState(userState);
         setLongitude(userLongitude);
         setLatitude(userLatitude)
         //tells widget to get weather info by state and city instead of user home location
         setGetByZip(false);
+        //clear weatherdata cache
     }
 
     const handleCustomLocation = () =>{

@@ -29,7 +29,7 @@ const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow?: MouseEventH
         event.preventDefault();
         const response = await userManagement.login(user);
         if(response.status === 200){
-            sessionStorage.setItem(Constants.LOGIN_STATUS, "true")
+            sessionStorage.setItem(Constants.SESSION_LOGIN_STATUS, "true")
             sessionStorage.setItem(Constants.SESSION_USER, username);
             navigator(Constants.DASHBOARD);
         }
