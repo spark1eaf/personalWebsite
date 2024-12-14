@@ -1,23 +1,8 @@
 import axios from "axios";
 import * as Constants from "../constants/constants"
+import handleError from "../utils/ErrorHandler";
 
 const API_URL = import.meta.env.VITE_API_URL;
-
-const handleError = (error:unknown): ResponseObj<any> =>{
-    if (axios.isAxiosError(error)) {
-        console.error(`Error: ${error.message}`, error);
-        const statusCode = error.code === "ERR_NETWORK" ? 503 : error.response?.status
-        return {
-            status: statusCode,
-            error: error.response?.data || Constants.ERROR_TRY_AGAIN_MSG
-        };
-    }
-    else {
-        const errorMessage = error instanceof Error ? error.message: Constants.UNEXPECTED_ERROR;
-        console.error(`${Constants.UNEXPECTED_ERROR}: ${errorMessage}`);
-        return {error: Constants.UNEXPECTED_ERROR_MSG };
-    }
-}
 
 //sends a login request and retrieves an auth token apon successful login
 const login = async(loginObj:LoginData): Promise<ResponseObj<any>> =>{
@@ -26,7 +11,7 @@ const login = async(loginObj:LoginData): Promise<ResponseObj<any>> =>{
         const response = await axios.post(url, loginObj, {withCredentials: true});
         return{status:response.status, data:response.data}
     } catch (error) {
-        return handleError(error);
+        return handleError(error, Constants.UNEXPECTED_ERROR);
     }
 };
 
@@ -37,7 +22,7 @@ const signout = async(): Promise<ResponseObj<any>> =>{
         const response = await axios.post(url,{},{withCredentials: true});
         return{status:response.status, data:response.data}
     } catch (error) {
-        return handleError(error);
+        return handleError(error, Constants.UNEXPECTED_ERROR);
     }
 };
 
@@ -48,7 +33,7 @@ const register = async(newUser:UserRegObj): Promise<ResponseObj<any>> =>{
         const response = await axios.post(url, newUser);    
         return{status:response.status, data: response.data}
     } catch (error) {
-        return handleError(error);
+        return handleError(error,Constants.UNEXPECTED_ERROR);
     }
 };
 
@@ -61,7 +46,7 @@ const changePassword = async(email:string) =>{
         if(response.status === 200)
             alert(Constants.PASSWORD_UPDATED)
     } catch (error) {
-        return handleError(error);
+        return handleError(error,Constants.UNEXPECTED_ERROR);
     }
 };
 
@@ -82,11 +67,11 @@ const getUserDetails = async(username:string): Promise<ResponseObj<any>> =>{
         return {status:response.status, data:response.data};
     } 
     catch (error) {
-        return handleError(error);
+        return handleError(error, Constants.UNEXPECTED_ERROR);
     }
 };
 
-    //sends request to query if user is already logged in
+//sends request to query if user is already logged in
 const getLoginStatus = async(username:string): Promise<ResponseObj<any>> =>{
         
     const url = `${API_URL}${Constants.GET_LOGIN_STATUS}${Constants.USERNAME_PARAM}${encodeURIComponent(username)}`
@@ -98,7 +83,7 @@ const getLoginStatus = async(username:string): Promise<ResponseObj<any>> =>{
         return {status:response.status, data:response.data};
     } 
     catch (error) {
-        return handleError(error);
+        return handleError(error, Constants.UNEXPECTED_ERROR);
     }
 };
 

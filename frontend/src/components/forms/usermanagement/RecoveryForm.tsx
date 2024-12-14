@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import userManagement from "../../service/userManagement";
-import * as Constants from "../../constants/constants"
+import * as Constants from "../../../constants/constants"
+import userManagementService from "../../../services/userManagementService";
 
 const RecoveryForm = () =>{
     const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ const RecoveryForm = () =>{
     const requestRecovery = (event:FormEvent) =>{
         setSubmitting(true)
         event.preventDefault();
-        userManagement.requestRecoveryEmail(email);
+        userManagementService.requestRecoveryEmail(email);
         console.log(Constants.RECOVERY_EMAIL_SENT);
         setSubmitting(false);
     };
@@ -21,7 +21,7 @@ const RecoveryForm = () =>{
     return(
         <form className="recovery-form" onSubmit={requestRecovery}>
             <input type="email" onChange={handleEmailChange} placeholder="Email" name="email" value={email} required/>
-            <button type="submit" disabled={submitting} className="recovery-submit-btn">Submit</button>
+            <button type="submit" disabled={submitting} className="submit-btn">Submit</button>
         </form>
     );
 };

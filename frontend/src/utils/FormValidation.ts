@@ -15,8 +15,10 @@ const checkEmail = (email:string|undefined) =>{
 const checkName = (name:string|undefined) =>{
     if(!name)
         return "";
-    if(name.trim().includes(" "))
+    else if(name.trim().includes(" "))
         return "Field cannot include spaces.";
+    else if(name.length < 3)
+        return "Field must be atleast length 3."
     return "";
 };
 

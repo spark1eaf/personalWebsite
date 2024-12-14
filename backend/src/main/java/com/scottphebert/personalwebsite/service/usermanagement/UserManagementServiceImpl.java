@@ -11,6 +11,7 @@ import com.scottphebert.personalwebsite.repo.UserRepo;
 import com.scottphebert.personalwebsite.model.dto.LoginRequest;
 import com.scottphebert.personalwebsite.model.dto.RegistrationRequest;
 import com.scottphebert.personalwebsite.model.dto.UserUpdateRequest;
+import com.scottphebert.personalwebsite.repo.ZipcodeRepo;
 import com.scottphebert.personalwebsite.service.security.JWTBlacklistService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,6 +35,9 @@ public class UserManagementServiceImpl implements UserManagementService {
     private UserRepo userRepo;
 
     @Autowired
+    private ZipcodeRepo zipcodeRepo;
+
+    @Autowired
     private UserDetailsRepo userDetailsRepo;
 
     @Autowired
@@ -43,13 +47,14 @@ public class UserManagementServiceImpl implements UserManagementService {
     JwtTokenProvider jwtTokenProvider;
 
     @Autowired
+    JWTBlacklistService jwtBlacklistService;
+
+    @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    JWTBlacklistService jwtBlacklistService;
 
     private static final Logger logger = LoggerFactory.getLogger(UserManagementServiceImpl.class);
 
@@ -65,6 +70,10 @@ public class UserManagementServiceImpl implements UserManagementService {
             logger.warn(Constants.USERNAME_TAKEN_LOG, request.getUsername());
             return new ResponseEntity<>(Constants.USERNAME_TAKEN, HttpStatus.BAD_REQUEST);
         }
+        else if(!zipcodeRepo.existsByZip(request.getZipcode())){
+            logger.warn("Invalid US zipcode provided: {}", request.getZipcode());
+            return new ResponseEntity<>("Invalid zipcode provided.", HttpStatus.BAD_REQUEST);
+        }
         User user = new User();
         user.setEmail(request.getEmail());
         user.setUsername(request.getUsername());
@@ -75,7 +84,6 @@ public class UserManagementServiceImpl implements UserManagementService {
         userDetails.setLastName(request.getLastName());
         userDetails.setZipcode(request.getZipcode());
         userDetails.setUser(user);
-
         try{
             userRepo.save(user);
             userDetailsRepo.save((userDetails));
