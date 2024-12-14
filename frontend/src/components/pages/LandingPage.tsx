@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import LoginBtns from "../buttons/LoginBtns";
 import Footer from "../Footer";
 import PopupWindow from "../windows/PopupWindow";
-import {DUMMY_TEXT} from "../../constants/constants";
 import "../../styles/landingpage.css"
-import userManagement from "../../service/userManagement";
+import userManagementService from "../../services/userManagementService";
 import { useNavigate } from "react-router-dom";
 import * as Constants from "../../constants/constants"
 import axios from "axios";
@@ -20,6 +19,7 @@ const LandingPage = ()=>{
     const displayRegistrationWindow = () =>{
         setWindowToDisplay("registration");
     };
+
     const displayRecoveryWindow = () =>{
         setWindowToDisplay("recovery");
     };
@@ -29,14 +29,9 @@ const LandingPage = ()=>{
     //check if user is already logged in, in which case redirects to homepage
     const checkLoginStatus = async() =>{
             try {
-                const response = await userManagement.getLoginStatus(sessionStorage.getItem(Constants.SESSION_USER) ||""); 
-                console.log(response)
-                if (response.status === 200 && response.data === Constants.LOGIN_CHECK_RESPONSE) { 
-                    console.log("user is logged in")
+                const response = await userManagementService.getLoginStatus(sessionStorage.getItem(Constants.SESSION_USER) ||""); 
+                if (response.status === 200 && response.data === Constants.LOGIN_CHECK_RESPONSE)
                     navigator(Constants.DASHBOARD)
-                }
-                else
-                    console.log("user is not logged in")
             } catch (error) {
                 if(axios.isAxiosError(error))
                     console.error(error.response?.data.message);
@@ -46,15 +41,21 @@ const LandingPage = ()=>{
     };
 
     useEffect(() =>{
-        if(sessionStorage.getItem(Constants.LOGIN_STATUS))
+        if(sessionStorage.getItem(Constants.SESSION_LOGIN_STATUS))
             checkLoginStatus();
     },[]);
 
     return (
         <div className="landing-page">
             <LoginBtns displayLoginWindow={displayLoginWindow} displayRegistrationWindow={displayRegistrationWindow}/>
-            <h1 className="title">Welcome</h1>
-            <p className="landing-body">{DUMMY_TEXT}</p>
+            <h1 className="title">About</h1>
+            <p className="feature-prefix">{Constants.ABOUT_TEXT_PREFIX}</p>
+            <ul className="site-features">
+                <li>{Constants.ABOUT_TEXT_LOGIN}</li>
+                <li>{Constants.ABOUT_TEXT_WEATHER}</li>
+
+            </ul>
+            {/* <p className="landing-body">{DUMMY_TEXT}</p> */}
             <PopupWindow windowToDisplay={windowToDisplay} displayRecoveryWindow={displayRecoveryWindow} closeWindow={closeWindow}/>
              <Footer/>
         </div>

@@ -2,6 +2,10 @@ html,body {height:100%;}
 
 a {text-decoration: none;}
 
+#root{
+    height: 100%;
+}
+
 body { 
     margin-left: 0;
     font-family: "Roboto Mono";
@@ -11,9 +15,8 @@ body {
 
 .title{
     text-align: center;
-    font-size: 4em;
+    font-size: 5em;
 }
-
 
 .login-btns button, .logout-btn{
     font-size: 1.5em;
@@ -25,8 +28,65 @@ body {
 }
 
 .footer{
-    margin-top: 15%;
-    padding-bottom: 10%;
     font-size: 1.5em;
     text-align: center;
+    bottom: 0;
+}
+
+button{
+    border-style: none;
+}
+
+.popup-window{
+    position: absolute;
+    z-index: 2;
+    top: 15%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: #31393cf6;
+    text-align: center;
+    width: 50%;
+    height: 70%;
+    font-size: 2em;
+    border-radius: 1.5%;
+    overflow: auto;
+}
+
+.invis-window{
+    position: absolute;
+    z-index: 1;
+    top: 0%;
+    bottom: 0;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+}
+
+.win-close-btn{
+    position: absolute;
+    right: 4%;
+    top: 3%;
+    color: white;
+    background-color: transparent;
+    font-size: 100%;
+    cursor: pointer;
+}
+
+.win-close-btn:hover{
+    color: black;
+}
+
+.submit-btn{
+    position: absolute;
+    right: 5%;
+    bottom: 3%;
+    width: 10%;
+    height: 3em;
+    font-size: .6em;
+    background-color: white;
+    cursor: pointer;
+}
+
+.submit-btn:hover{
+    color: gray;
 }

@@ -1,7 +1,6 @@
 import { MouseEventHandler } from "react";
-import WindowCloseBtn from "../buttons/WindowCloseBtn";
-import RegistrationForm from "../forms/RegistrationForm";
-
+import WindowCloseBtn from "../../buttons/WindowCloseBtn";
+import RegistrationForm from "../../forms/usermanagement/RegistrationForm";
 const RegistrationWindow = ({closeWindow}: {closeWindow:MouseEventHandler<HTMLButtonElement>}) =>{
 
     return(

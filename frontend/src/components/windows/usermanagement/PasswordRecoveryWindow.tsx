@@ -1,7 +1,8 @@
 import { MouseEventHandler } from "react";
-import WindowCloseBtn from "../buttons/WindowCloseBtn";
-import RecoveryForm from "../forms/RecoveryForm";
-import { RECOVERY_TEXT } from "../../constants/constants";
+import WindowCloseBtn from "../../buttons/WindowCloseBtn";
+import { RECOVERY_TEXT } from "../../../constants/constants";
+import RecoveryForm from "../../forms/usermanagement/RecoveryForm";
+
 const PasswordRecoverWindow = ({closeWindow}: {closeWindow:MouseEventHandler<HTMLButtonElement>}) =>{
     return(
             <>
