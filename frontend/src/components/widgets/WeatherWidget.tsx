@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import weatherService from "../../services/weatherService";
 import * as Constants from "../../constants/constants";
 import { WeatherPeriod, ResponsePeriod } from "./WeatherInterfaces";
-import coordinatesService from "../../services/coordinatesService";
-import { forEach } from "lodash";
+import locationService from "../../services/locationService";
 
 interface Props{
     zipcode:string,
@@ -24,7 +23,7 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
     const [weatherData, setWeatherData] = useState<WeatherPeriod[]>(cachedWeatherData);
 
     const getLocationData = async () => {
-            const response = await coordinatesService.getCoordinates(zipcode);
+            const response = await locationService.getCoordinates(zipcode);
             if (response.status === 200) {
                 //store fields for caching
                 sessionStorage.setItem(Constants.SESSION_CITY_LOCATION, response.data.places[0]["place name"]);

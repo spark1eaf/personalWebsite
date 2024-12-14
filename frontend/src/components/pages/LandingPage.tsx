@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import LoginBtns from "../buttons/LoginBtns";
 import Footer from "../Footer";
 import PopupWindow from "../windows/PopupWindow";
-import {DUMMY_TEXT} from "../../constants/constants";
 import "../../styles/landingpage.css"
-import userManagement from "../../services/userManagement";
+import userManagementService from "../../services/userManagementService";
 import { useNavigate } from "react-router-dom";
 import * as Constants from "../../constants/constants"
 import axios from "axios";
@@ -30,7 +29,7 @@ const LandingPage = ()=>{
     //check if user is already logged in, in which case redirects to homepage
     const checkLoginStatus = async() =>{
             try {
-                const response = await userManagement.getLoginStatus(sessionStorage.getItem(Constants.SESSION_USER) ||""); 
+                const response = await userManagementService.getLoginStatus(sessionStorage.getItem(Constants.SESSION_USER) ||""); 
                 if (response.status === 200 && response.data === Constants.LOGIN_CHECK_RESPONSE)
                     navigator(Constants.DASHBOARD)
             } catch (error) {

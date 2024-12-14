@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import * as Constants from "../../../constants/constants"
 import FormValidation from "../../../utils/FormValidation";
-import userManagement from "../../../services/userManagement";
+import userManagementService from "../../../services/userManagementService";
 
 const RegistrationForm = () =>{
     const [firstName, setFirstName] = useState("");
@@ -77,7 +77,7 @@ const RegistrationForm = () =>{
                 lastName: lastName,
                 zipcode: zipcode
             };
-            const response = await userManagement.register(user);
+            const response = await userManagementService.register(user);
             if(response.status === 200){
                 alert(Constants.REGISTRATION_SUCCESSFUL);
                 location.reload();

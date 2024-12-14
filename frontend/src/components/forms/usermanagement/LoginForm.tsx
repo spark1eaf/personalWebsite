@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, MouseEventHandler, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import userManagement from "../../../services/userManagement";
+import userManagementService from "../../../services/userManagementService";
 import * as Constants from "../../../constants/constants"
 
 const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow?: MouseEventHandler<HTMLButtonElement>}) =>{
@@ -27,7 +27,7 @@ const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow?: MouseEventH
             password: password
         };
         event.preventDefault();
-        const response = await userManagement.login(user);
+        const response = await userManagementService.login(user);
         if(response.status === 200){
             sessionStorage.setItem(Constants.SESSION_LOGIN_STATUS, "true")
             sessionStorage.setItem(Constants.SESSION_USER, username);

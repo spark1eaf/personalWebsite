@@ -1,6 +1,6 @@
 import "../../styles/dashboard.css"
 import Footer from "../Footer";
-import userManagement from "../../services/userManagement";
+import userManagementService from "../../services/userManagementService";
 import * as Constants from "../../constants/constants"
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
@@ -23,7 +23,7 @@ const Dashboard = () =>{
     //send out request to retrieve user details
     const populateUserDetails = async () =>{
         try {
-            const response = await userManagement.getUserDetails(sessionStorage.getItem(Constants.SESSION_USER) ||"");
+            const response = await userManagementService.getUserDetails(sessionStorage.getItem(Constants.SESSION_USER) ||"");
             if(response.status === 200){
                 setName(response.data.firstName);
                 setZipcode(response.data.zipcode);
@@ -43,7 +43,7 @@ const Dashboard = () =>{
         setSubmitting(true);
         
         try {
-            const response = await userManagement.signout();
+            const response = await userManagementService.signout();
             if(response.status === 200 || response.status === 503){
                 navigator("/");
                 alert(Constants.SIGNOUT_SUCCESSFUL);

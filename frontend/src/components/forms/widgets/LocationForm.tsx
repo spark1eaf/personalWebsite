@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 import * as Constants from "../../../constants/constants"
-import coordinatesService from "../../../services/coordinatesService";
+import locationService from "../../../services/locationService";
 import axios from "axios";
 
 interface Props{
@@ -37,7 +37,7 @@ const LocationForm = ({setLocationDetails, closeWindow}:Props) =>{
             alert("Invalid entry. Please provide a valid US state.")
         else{
             try {
-                const response = await coordinatesService.getCoordinates(undefined, city, state);
+                const response = await locationService.getCoordinates(undefined, city, state);
                 if(response.status === 200){
                     const longitude = response.data.places[0].longitude;
                     const latitude = response.data.places[0].latitude;
