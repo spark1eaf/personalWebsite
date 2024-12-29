@@ -71,8 +71,8 @@ public class UserManagementServiceImpl implements UserManagementService {
             return new ResponseEntity<>(Constants.USERNAME_TAKEN, HttpStatus.BAD_REQUEST);
         }
         else if(!zipcodeRepo.existsByZip(request.getZipcode())){
-            logger.warn("Invalid US zipcode provided: {}", request.getZipcode());
-            return new ResponseEntity<>("Invalid zipcode provided.", HttpStatus.BAD_REQUEST);
+            logger.warn(Constants.INVALID_ZIPCODE_LOG, request.getZipcode());
+            return new ResponseEntity<>(Constants.INVALID_ZIPCODE, HttpStatus.BAD_REQUEST);
         }
         User user = new User();
         user.setEmail(request.getEmail());
@@ -168,7 +168,7 @@ public class UserManagementServiceImpl implements UserManagementService {
             }
         }
         catch (Exception ex){
-            logger.warn("An error occured while fetching the login status for user: {}", username, ex);
+            logger.warn(Constants.LOGIN_STATUS_UNAVAILABLE_LOG, username, ex);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
