@@ -10,7 +10,7 @@ const getWeatherEndpoints = async(longitude:string, latitude:string):Promise<Res
         return response;
     } 
     catch (error) {
-        return handleError(error, `Error retrieving weather endpoints`)
+        return handleError(error, Constants.WEATHER_ENDPOINT_RETRIEVAL_ERROR);
     }
 }
 
@@ -25,12 +25,13 @@ const getlocalWeather = async(latitude:string, longitude:string):Promise<Respons
             return response;
         }
         else{
-            console.error("Error retrieving weather data");
+            console.error(Constants.WEATHER_DATA_RETRIEVAL_ERROR);
             return {error: endpointsResponse.error};
         }
     }
     catch (error) {
-        return handleError(error, `Error retrieving weather data`);
+        return handleError(error, Constants.WEATHER_DATA_RETRIEVAL_ERROR);
     }
 };
-export default {getlocalWeather}
+
+export default {getlocalWeather};
