@@ -55,7 +55,6 @@ const LandingPage = ()=>{
                 <li>{Constants.ABOUT_TEXT_WEATHER}</li>
 
             </ul>
-            {/* <p className="landing-body">{DUMMY_TEXT}</p> */}
             <PopupWindow windowToDisplay={windowToDisplay} displayRecoveryWindow={displayRecoveryWindow} closeWindow={closeWindow}/>
              <Footer/>
         </div>

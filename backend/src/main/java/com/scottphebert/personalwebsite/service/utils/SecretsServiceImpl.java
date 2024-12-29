@@ -14,7 +14,7 @@ import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRespon
 
 @Service
 public class SecretsServiceImpl implements SecretsService {
-    private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
+    private static final Logger logger = LoggerFactory.getLogger(SecretsServiceImpl.class);
 
     // fetch secrets from AWS secrets manager
     public String getSecret(String secret) {
@@ -29,13 +29,13 @@ public class SecretsServiceImpl implements SecretsService {
         GetSecretValueResponse aa = client.getSecretValue(getSecretValueRequest);
         String a = aa.secretString();
         try {
-            if (secret.equals(Constants.JWT_SECRET))
+            if (secret.equals(Constants.DB_SECRET_NAME))
+                return client.getSecretValue(getSecretValueRequest).secretString();
+            else
                 return new ObjectMapper()
                         .readTree(client.getSecretValue(getSecretValueRequest).secretString())
                         .get(secret)
                         .asText();
-            else
-                return client.getSecretValue(getSecretValueRequest).secretString();
         } catch (JsonProcessingException ex) {
             logger.error(Constants.SECRET_RETRIEVAL_ERROR_LOG, secret);
             throw new RuntimeException(Constants.PARSING_FAILURE, ex);

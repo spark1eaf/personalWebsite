@@ -1,6 +1,7 @@
 package com.scottphebert.personalwebsite.model.dto;
 
 public class DbCredentials {
+
     private String username;
     private String password;
     private String engine;

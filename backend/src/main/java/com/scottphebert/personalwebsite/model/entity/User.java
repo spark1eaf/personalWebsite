@@ -18,7 +18,6 @@ public class User {
     @NotEmpty(message = "email is a required field.")
     @Email(message = "Please provide a valid email.")
     private String email;
-    //todo password validation
     @NotEmpty(message = "password is a required field.")
     private String password;
 
