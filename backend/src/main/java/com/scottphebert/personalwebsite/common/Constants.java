@@ -13,13 +13,18 @@ public final class Constants {
     public static final String CHANGE_PASSWORD_URL = "/changepass";
     public static final String PASSWORD_RECOVERY_URL = "/recovery";
     public static final String GET_USER_DETAILS_URL = "/getuserdetails";
+    public static final String LOCATION_DETAILS = "/locationdetails";
+
     //exceptions and error handling
     public static final String USER_NOT_FOUND_EMAIL = "No user present with email: ";
     public static final String USER_NOT_FOUND_USERNAME = "No user present with username: ";
+    public static final String INVALID_ZIPCODE= "Invalid zipcode provided.";
     public static final String USER_ALREADY_EXISTS = "User already exists for this email.";
     public static final String USERNAME_TAKEN = "Username already exists.";
     public static final String USER_DETAILS_NOT_FOUND = "User details not found for user with id: ";
     public static final String PARSING_FAILURE = "Failed to parse secret value";
+    public static final String LOCATION_RETRIEVAL_FAILURE = "Failed to fetch location details: ";
+
     //user management
     public static final String REGISTRATION_SUCCESS = "User registered successfully";
     public static final String REGISTRATION_FAILURE = "An error occurred during registration";
@@ -27,6 +32,7 @@ public final class Constants {
     public static final String UPDATE_PASSWORD_FAILURE = "An error occurred while attempting to update password";
     public static final String LOGGED_IN = "User is logged in.";
     public static final String NOT_LOGGED_IN = "User is not currently logged in.";
+
     //security
     public static final String TOKEN_INVALIDATED = "Token has been invalidated";
     public static final String INVALID_TOKEN = "Invalid token";
@@ -37,6 +43,7 @@ public final class Constants {
     public static final long TOKEN_EXP_TIME = 3600000;
     public static final String JWT_SECRET = "JWT_SECRET";
     public static final String ENCODING_ALGO = "HmacSHA512";
+
     //Logging
     public static final String REGISTRATION_SUCCESS_LOG = "Registration successful for user: {}";
     public static final String EMAIL_ALREADY_EXISTS_LOG = "Email already exists: {}";
@@ -62,6 +69,10 @@ public final class Constants {
     public static final String LOGIN_STATUS_REQUEST_LOG = "Checking login status for user: {}";
     public static final String USER_NOT_LOGGED_ON_LOG = "User is not currently logged in: {}";
     public static final String USER_LOGGED_ON_LOG = "User is logged in: {}";
+    public static final String LOCATION_REQUESTED_LOG = "location details requested for longitude and latitude: {}, {}";
+    public static final String GEONAMES_API_ERROR_LOG = "Error response from GeoNames API: {}";
+    public static final String INVALID_ZIPCODE_LOG = "Invalid US zipcode: {}";
+    public static final String LOGIN_STATUS_UNAVAILABLE_LOG = "An error occured while fetching the login status for user: {}";
 
     //db
     public static final String DATASOURCE_DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
@@ -74,9 +85,16 @@ public final class Constants {
     //profiles
     public static final String PROD_ENV = "prod";
     public static final String DEV_EVN = "dev";
+
     //misc
     public static final String SEPARATOR = "://";
     public static final String COLON = ":";
     public static final String SLASH = "/";
 
+    //external api
+    public static final String GEONAMES_URL = "http://api.geonames.org/timezoneJSON";
+    public static final String LATITUDE_PARAM = "?lat=";
+    public static final String LONGITUDE_PARAM = "&lng=";
+    public static final String USERNAME_PARAM = "&username=";
+    public static final String GEONAMES_API_KEY_NAME = "GEONAMES_USER";
 }

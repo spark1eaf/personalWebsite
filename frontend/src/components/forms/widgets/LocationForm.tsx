@@ -35,7 +35,7 @@ const LocationForm = ({setLocationDetails, closeWindow}:Props) =>{
             }
         });
         if(!isPresent)
-            alert("Invalid entry. Please provide a valid US state.")
+            alert(Constants.INVALID_STATE_ERROR);
         else{
             //get coordinates
             const coordinatesAPIResponse = await locationService.getCoordinates(undefined, city, state);
@@ -53,13 +53,13 @@ const LocationForm = ({setLocationDetails, closeWindow}:Props) =>{
                         timezone = timezoneAPIResponse.data.gmtOffset;
                 }
                 else
-                alert("Unable to find location info for the city you entered.");
+                    alert(Constants.UNABLE_TO_FIND_LOC_INFO);
 
                 setLocationDetails?.(city, state, longitude, latitude, timezone);
                 closeWindow();
             }
             else if(coordinatesAPIResponse.status === 404)
-                alert("Unable to find location info for the city you entered.");
+                alert(Constants.UNABLE_TO_FIND_LOC_INFO);
         }
 
     }

@@ -2,10 +2,10 @@
 export const DUMMY_TEXT = `Lorem ipsum dolor sit amet. Est doloribus sunt ut quibusdam quidem quo voluptatum debitis eos officia natus non voluptatum reiciendis et libero labore. Et tenetur unde aut eius doloribus et cupiditate pariatur ut facere natus est ipsa labore.
 Aut quos cumque qui saepe commodi ex veniam accusamus qui aperiam enim vel quia voluptatem et quod quas. In fugit eaque est veritatis porro et temporibus placeat ex reiciendis adipisci est repudiandae aspernatur. Et dolorem modi est explicabo quam ut omnis nostrum aut quia neque cum molestias ipsum.
 Et alias minima ex fugit ullam ut tempore itaque. Nam dicta neque sed ipsa optio ut magni consequatur sit unde sint non itaque velit? Eum atque quia et suscipit delectus aut exercitationem quia et officiis accusamus et nemo obcaecati 33 animi pariatur et iusto voluptatum! Cum soluta totam eum culpa minima ex quibusdam nihil ut quia cumque sed incidunt veniam hic quos galisum aut repudiandae praesentium.`;
-export const ABOUT_TEXT_PREFIX = `Current site features:`;
+export const ABOUT_TEXT_PREFIX = `Current Site Features:`;
 
-export const ABOUT_TEXT_LOGIN = `Full registration and login functionality. Password change and account recovery are a planned feature but are yet to be implemented.`;
-export const ABOUT_TEXT_WEATHER = `Ability to get the current weather along with the weekly forecast in cities across the US(provides your home forecast by default.)`;
+export const ABOUT_TEXT_LOGIN = `Full registration and login functionality. Password change and account recovery are planned features but are yet to be implemented.`;
+export const ABOUT_TEXT_WEATHER = `Ability to get the current weather along with the weekly forecast in cities across the US (provides your home location forecast by default.)`;
 
 export const RECOVERY_TEXT = `Please provide the email address linked to your account below and you will recieve a recovery email shortly.`;
 //pages
@@ -25,6 +25,7 @@ export const CHANGEPASS = `/changepass`;
 export const RECOVERY = `/recovery`;
 export const GET_USER_DETAILS = `/getuserdetails`;
 export const GET_LOGIN_STATUS = `/getloginstatus`;
+export const GET_LOCATION_DETAILS = `/locationdetails`;
 
 //external apis
 export const COORDINATES_URL = `https://api.zippopotam.us/US/`;
@@ -34,11 +35,20 @@ export const TIMEZONE_URL = `https://api.geonames.org/timezoneJSON?`;
 //params
 export const USERNAME_PARAM = `?username=`;
 export const EMAIL_PARAM = `?email=`;
+export const LONGITUDE_PARAM = `?longitude=`;
+export const LATITUDE_PARAM = `&latitude=`;
+export const SPACE =  `%20`;
 
 //errors and exceptions
 export const UNEXPECTED_ERROR = `Unexpected Error`;
 export const UNEXPECTED_ERROR_MSG = `An unexpected error occurred. Please try again later.`;
 export const ERROR_TRY_AGAIN_MSG = `An error has occurred, please try again.`;
+export const TIMEZONE_ERROR = `Error retrieving timezone`;
+export const COORDINATES_ERROR = `Error retrieving coordinates`;
+export const INVALID_STATE_ERROR = `Invalid entry. Please provide a valid US state.`;
+export const UNABLE_TO_FIND_LOC_INFO = `Unable to find location info for the city you entered.`;
+export const WEATHER_DATA_RETRIEVAL_ERROR = `Error retrieving weather data`;
+export const WEATHER_ENDPOINT_RETRIEVAL_ERROR = `Error retrieving weather endpoints`;
 
 //user management
 export const SIGNOUT_SUCCESSFUL = `You've been signed out successfully.`;
@@ -61,4 +71,3 @@ export const SESSION_CITY_LOCATION = "city";
 export const SESSION_LONGITUDE = "longitude";
 export const SESSION_LATITUDE = "latitude";
 export const SESSION_WEATHER_DATA = "weatherData";
-export const GENOMES_KEY = import.meta.env.VITE_GEONAMES_USER;
