@@ -123,6 +123,7 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
                          <p>Wind Speed: {currentWeather.windspeed}</p>
                          <p>Prediction: {currentWeather.shortForcast}</p>
                      </div>
+                     <button className="view-forcast-btn">Click to view this week's forcast</button>
             </> : null}
         </div>
     );

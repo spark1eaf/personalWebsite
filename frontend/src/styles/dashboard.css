@@ -7,8 +7,9 @@
     height: 100%;
 }
 
-.widgets{
+.home-page-title{ font-size: 5em;}
 
+.widgets{
     display: flex;
     justify-content: flex-end;
     margin-top: 10%;
@@ -28,12 +29,13 @@
     background-color: #1c1e1f;
     min-height: 90%;
     border-radius: 6%;
+    display: flex;
+    flex-direction: column; /* Arrange children vertically */
 }
 
 .Weather-widget-title{
-    height: 20%;
     margin-left: 50%;
-    font-size: 2.5em;
+    font-size: 2.2em;
     transform: translateX(-50%);
 }
 
@@ -43,6 +45,18 @@
     margin-left: 10%;
 }
 
+.view-forcast-btn {
+    background-color: transparent;
+    color: white;
+    font-size: 1.2em;
+    margin-top: auto; /* Ensure the button moves to the bottom */
+    margin-bottom: 2.5%;
+}
+
+.view-forcast-btn:hover{
+    color: rgb(122, 118, 118);
+    cursor: pointer;
+}
 
 .weather-widget-btn{
     font-size: 1.3em;
@@ -64,4 +78,45 @@
     width: 70%;
     height: 3em;
     padding-left: 1%;
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1120px) {
+    .home-page-title{ margin-top: 20%;}
+
+    .weather-widget-cont{
+        width: 80%;
+        margin: 0 10%;
+    }
+}
+
+@media (max-width: 600px){
+
+    .get-location-title{
+        margin-top: 30%;
+        font-size: 1em;
+    }
+
+    .home-page-title{
+        font-size: 2.7em;
+        margin-top: 40%;
+    }
+
+    .weather-widget-cont{margin: 5% 5%;}
+
+    .Weather-widget-title{ 
+        font-size: 1.6em;
+        margin: 10%;
+        transform: translateX(0);
+        height: 0;
+        margin-bottom: 25%;
+    }
+
+    .weather-widget-specs{
+        font-size: 1.1em;
+    }
+
+    .view-forcast-btn {
+        font-size: .9em;
+        margin-bottom: 8%;
+    }
 }
