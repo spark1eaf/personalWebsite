@@ -18,7 +18,7 @@ const Dashboard = () =>{
     const [state, setState] = useState("");
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
-    const [timezone, setTimezone] = useState<number | null>(null);
+    const [timezone, setTimezone] = useState<number | undefined>(undefined);
     const [windowToDisplay, setWindowToDisplay] = useState("");
     
     //send out request to retrieve user details
@@ -91,8 +91,8 @@ const Dashboard = () =>{
                         <button onClick={handleCustomLocation} className="weather-widget-btn">Click here to get the weather for another location.</button>
                     </div>
                     : null}
-                <PopupWindow windowToDisplay={windowToDisplay} closeWindow={closeWindow} setLocationDetails={setLocationDetails}/>
             </div>
+            <PopupWindow windowToDisplay={windowToDisplay} closeWindow={closeWindow} setLocationDetails={setLocationDetails}/>
             <Footer/>
         </div>
     )

@@ -48,7 +48,7 @@ const LandingPage = ()=>{
     return (
         <div className="landing-page">
             <LoginBtns displayLoginWindow={displayLoginWindow} displayRegistrationWindow={displayRegistrationWindow}/>
-            <h1 className="title">About</h1>
+            <h1 className="title landing-title">About</h1>
             <p className="feature-prefix">{Constants.ABOUT_TEXT_PREFIX}</p>
             <ul className="site-features">
                 <li>{Constants.ABOUT_TEXT_LOGIN}</li>

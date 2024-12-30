@@ -13,10 +13,7 @@ body {
     color: ivory;
 }
 
-.title{
-    text-align: center;
-    font-size: 5em;
-}
+.title{text-align: center;}
 
 .login-btns button, .logout-btn{
     font-size: 1.5em;
@@ -77,10 +74,11 @@ button{
 }
 
 .submit-btn{
+    display: inline-block;
     position: absolute;
     right: 5%;
     bottom: 3%;
-    width: 10%;
+    width: 13%;
     height: 3em;
     font-size: .6em;
     background-color: white;
@@ -89,4 +87,13 @@ button{
 
 .submit-btn:hover{
     color: gray;
+}
+
+@media (max-width: 1120px){
+    .popup-window{width: 80%;}        
+    .submit-btn{ width: 30%;}
+}
+
+@media (max-width: 550px){
+    .submit-btn{ width: 40%;}
 }
