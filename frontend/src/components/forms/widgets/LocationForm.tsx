@@ -40,7 +40,6 @@ const LocationForm = ({setLocationDetails, closeWindow}:Props) =>{
             //get coordinates
             const coordinatesAPIResponse = await locationService.getCoordinates(undefined, city, state);
             if(coordinatesAPIResponse.status === 200 ){
-                console.log("hit a 200")
                 const longitude = coordinatesAPIResponse.data.places[0].longitude;
                 const latitude = coordinatesAPIResponse.data.places[0].latitude;
 
