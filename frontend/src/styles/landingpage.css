@@ -128,6 +128,9 @@ input:hover{
 }
 
 @media (max-width: 550px){
+    
+    .registration-form input, .logon-form input, .recovery-form input{ padding-left: 3%;}
+    
     .registration-title{
         margin-top: 35%;
         font-size: 1.5em;
@@ -151,4 +154,5 @@ input:hover{
         margin-top: 10%;
         left:55%;
     }
+
 }

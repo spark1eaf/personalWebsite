@@ -40,6 +40,7 @@ const LocationForm = ({setLocationDetails, closeWindow}:Props) =>{
             //get coordinates
             const coordinatesAPIResponse = await locationService.getCoordinates(undefined, city, state);
             if(coordinatesAPIResponse.status === 200 ){
+                console.log("hit a 200")
                 const longitude = coordinatesAPIResponse.data.places[0].longitude;
                 const latitude = coordinatesAPIResponse.data.places[0].latitude;
 
@@ -51,17 +52,15 @@ const LocationForm = ({setLocationDetails, closeWindow}:Props) =>{
                         timezone = timezoneAPIResponse.data.dstOffSet;
                     else
                         timezone = timezoneAPIResponse.data.gmtOffset;
+                    setLocationDetails?.(city, state, longitude, latitude, timezone);
+                    closeWindow();
                 }
                 else
                     alert(Constants.UNABLE_TO_FIND_LOC_INFO);
-
-                setLocationDetails?.(city, state, longitude, latitude, timezone);
-                closeWindow();
             }
             else if(coordinatesAPIResponse.status === 404)
                 alert(Constants.UNABLE_TO_FIND_LOC_INFO);
         }
-
     }
 
     return(

@@ -15,6 +15,7 @@
     margin-top: 10%;
     margin-bottom: 10%;
     width: 100%;
+    min-height: 50%;
 }
 .weather-widget-cont{
     display: flex;
@@ -109,12 +110,18 @@
         margin-bottom: 25%;
     }
 
-    .weather-widget-specs{
-        font-size: 1.1em;
-    }
+    .weather-widget-specs{ font-size: 1.1em;}
+
+    .location-form input{ padding-left: 3%;}
 
     .view-forcast-btn {
         font-size: .9em;
         margin-bottom: 8%;
     }
+
+    .weather-widget-btn{
+        margin-top: 5%;
+        font-size: .8em;
+    }
+
 }
