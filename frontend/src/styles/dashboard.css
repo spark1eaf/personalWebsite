@@ -33,9 +33,8 @@
 }
 
 .Weather-widget-title{
-    margin-left: 50%;
+    text-align: center;
     font-size: 2.2em;
-    transform: translateX(-50%);
 }
 
 .weather-widget-specs{
@@ -100,7 +99,10 @@
         margin-top: 40%;
     }
 
-    .weather-widget-cont{margin: 5% 5%;}
+    .weather-widget-cont{
+        width: 90%;
+        margin: 5% 5%;
+    }
 
     .Weather-widget-title{ 
         font-size: 1.6em;
