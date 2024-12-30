@@ -51,17 +51,15 @@ const LocationForm = ({setLocationDetails, closeWindow}:Props) =>{
                         timezone = timezoneAPIResponse.data.dstOffSet;
                     else
                         timezone = timezoneAPIResponse.data.gmtOffset;
+                    setLocationDetails?.(city, state, longitude, latitude, timezone);
+                    closeWindow();
                 }
                 else
                     alert(Constants.UNABLE_TO_FIND_LOC_INFO);
-
-                setLocationDetails?.(city, state, longitude, latitude, timezone);
-                closeWindow();
             }
             else if(coordinatesAPIResponse.status === 404)
                 alert(Constants.UNABLE_TO_FIND_LOC_INFO);
         }
-
     }
 
     return(
