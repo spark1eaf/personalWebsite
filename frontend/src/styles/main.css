@@ -8,9 +8,9 @@ a {text-decoration: none;}
 
 body { 
     margin-left: 0;
-    font-family: "Roboto Mono";
     background-color: #1f2b12;
     color: ivory;
+    font-family: "Roboto Mono";
 }
 
 .title{text-align: center;}
