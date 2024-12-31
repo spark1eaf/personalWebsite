@@ -3,9 +3,7 @@
     top: 2em;
     right: 2em;
 }
-.home-page{
-    height: 100%;
-}
+.home-page{ height: 100%;}
 
 .home-page-title{ font-size: 5em;}
 
@@ -78,12 +76,87 @@
     padding-left: 1%;
 }
 
+.forecast-popup-window{
+    position: absolute;
+    z-index: 2;
+    top: 5%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: #31393cf6;
+    margin-top: 0;
+    width: 95%;
+    height: 90%;
+    font-size: 2em;
+    border-radius: 1.5%;
+}
+
+.weatherset-container{
+    display: flex;
+    gap: 1.3%;
+    margin-top: 6%;
+    width: 90%;
+    margin-left: 5%;
+    height: 80%;
+    flex-wrap: wrap;
+}
+
+.weatherset h1, .weatherset-date{ text-align: center;}
+
+.weatherset{
+    flex: 0 0 20%;
+    background-color: #4b5558;
+    font-size: .7em;
+    padding: 0% 2%;
+    margin-bottom: 2%;
+    border-radius: 1.5%;
+}
+
+@media (max-width: 1500px) and (min-width: 1301px){
+    .weatherset-container{ margin-top: 10%;}
+}
+
+@media (max-width: 1300px){
+
+    .weatherset-container-mobile{
+        display: flex;
+        margin-top: 10%;
+        width: 90%;
+        margin-left: 5%;
+        height: 80%;
+    }
+
+    .weatherset-mobile{
+        background-color: #4b5558;
+        width: 100%;
+        font-size: 1em;
+        padding: 0% 5%;
+        border-radius: 1.5%;
+        margin: 2% 5%;
+    }
+
+    .weatherset-select-btn{
+        font-size: 5em;
+        background-color: transparent;
+    }
+}
+
 @media only screen and (min-width: 601px) and (max-width: 1120px) {
     .home-page-title{ margin-top: 20%;}
 
     .weather-widget-cont{
         width: 80%;
         margin: 0 10%;
+    }
+}
+
+@media (max-width: 820px) {
+    .weatherset-select-btn{
+        font-size: 3em;
+    }
+
+    .weatherset-mobile{
+        text-align: center;
+        font-size: .8em;
     }
 }
 
@@ -126,4 +199,10 @@
         font-size: .8em;
     }
 
+    .weatherset-select-btn{ font-size: 1.3em;}
+
+    .weatherset-mobile{
+        margin-top: 20%;
+        font-size: .5em;
+    }
 }
