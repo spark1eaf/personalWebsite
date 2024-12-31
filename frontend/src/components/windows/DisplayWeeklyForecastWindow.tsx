@@ -64,19 +64,13 @@ const DisplayWeeklyForecastWindow = ({closeWindow, currentTimezone}: Props) =>{
     }
 
     const showPreviousSet = () =>{
-        if(elementToDisplay !== 0){
+        if(elementToDisplay > 0)
             setElementToDisplay(currentElement => currentElement - 1)
-            console.log("changed")
-            console.log(elementToDisplay)
-        }
     }
 
     const showNextSet = () =>{
-        if(elementToDisplay !== 7){
+        if(forecastList && elementToDisplay < forecastList.length - 1)
             setElementToDisplay(currentElement => currentElement + 1)
-            console.log("changed")
-            console.log(elementToDisplay)
-        }
     }
 
     const getAverage = (data: number[]) =>{
