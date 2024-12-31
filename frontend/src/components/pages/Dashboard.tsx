@@ -87,12 +87,12 @@ const Dashboard = () =>{
             <div className="widgets">
                 {zipcode ?             
                     <div className="weather-widget-cont">
-                        <WeatherWidget key={timezone} zipcode={zipcode} getByZip={getByZip} currentCity={city} currentState={state} currentLongitude={longitude} currentLatitude={latitude} currentTimezone={timezone}/> 
+                        <WeatherWidget key={timezone} zipcode={zipcode} getByZip={getByZip} currentCity={city} currentState={state} currentLongitude={longitude} currentLatitude={latitude} currentTimezone={timezone} setWindowToDisplay={setWindowToDisplay}/> 
                         <button onClick={handleCustomLocation} className="weather-widget-btn">Click here to get the weather for another location.</button>
                     </div>
                     : null}
             </div>
-            <PopupWindow windowToDisplay={windowToDisplay} closeWindow={closeWindow} setLocationDetails={setLocationDetails}/>
+            <PopupWindow windowToDisplay={windowToDisplay} closeWindow={closeWindow} setLocationDetails={setLocationDetails} currentTimezone={timezone}/>
             <Footer/>
         </div>
     )
