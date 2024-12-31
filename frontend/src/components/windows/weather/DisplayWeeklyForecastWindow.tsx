@@ -1,7 +1,7 @@
 import { CSSProperties, MouseEventHandler, useEffect, useState } from "react";
-import WindowCloseBtn from "../buttons/WindowCloseBtn";
-import { WeatherPeriod } from "../widgets/WeatherInterfaces";
 import { throttle } from "lodash";
+import WindowCloseBtn from "../../buttons/WindowCloseBtn";
+import { WeatherPeriod } from "../../widgets/weather/WeatherInterfaces";
 
 interface Props{
     closeWindow:MouseEventHandler<HTMLButtonElement>,

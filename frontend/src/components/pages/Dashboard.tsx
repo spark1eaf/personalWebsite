@@ -5,8 +5,8 @@ import * as Constants from "../../constants/constants"
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useEffect, useState } from "react";
-import WeatherWidget from "../widgets/WeatherWidget";
 import PopupWindow from "../windows/PopupWindow";
+import WeatherWidget from "../widgets/weather/WeatherWidget";
 
 const Dashboard = () =>{
     const [name, setName] = useState("");

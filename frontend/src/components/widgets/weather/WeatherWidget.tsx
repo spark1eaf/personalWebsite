@@ -1,8 +1,8 @@
 import { CSSProperties, useEffect, useState } from "react";
-import weatherService from "../../services/weatherService";
-import * as Constants from "../../constants/constants";
+import * as Constants from "../../../constants/constants";
+import locationService from "../../../services/locationService";
+import weatherService from "../../../services/weatherService";
 import { WeatherPeriod, ResponsePeriod } from "./WeatherInterfaces";
-import locationService from "../../services/locationService";
 
 interface Props{
     zipcode:string,

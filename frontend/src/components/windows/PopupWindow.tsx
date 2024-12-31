@@ -2,8 +2,8 @@ import { MouseEventHandler, useEffect, useState } from "react";
 import LoginWindow from "./usermanagement/LoginWindow";
 import RegistrationWindow from "./usermanagement/RegistrationWindow";
 import PasswordRecoverWindow from "./usermanagement/PasswordRecoveryWindow";
-import GetCurrentLocationWindow from "./GetCurrentLocationWindow";
-import DisplayWeeklyForecastWindow from "./DisplayWeeklyForecastWindow";
+import GetCurrentLocationWindow from "./weather/GetCurrentLocationWindow";
+import DisplayWeeklyForecastWindow from "./weather/DisplayWeeklyForecastWindow";
 
 interface Props{
     windowToDisplay:string,
