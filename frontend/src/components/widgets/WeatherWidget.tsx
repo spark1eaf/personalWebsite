@@ -11,10 +11,11 @@ interface Props{
     currentState?:string,
     currentLongitude?:string,
     currentLatitude?:string
-    currentTimezone?:number
+    currentTimezone?:number,
+    setWindowToDisplay: React.Dispatch<React.SetStateAction<string>>
 };
 
-const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLongitude, currentLatitude, currentTimezone}:Props) => {
+const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLongitude, currentLatitude, currentTimezone, setWindowToDisplay}:Props) => {
     let currentTimeAndDate = "";
     const [city, setCity] = useState(currentCity|| sessionStorage.getItem(Constants.SESSION_CITY_LOCATION));
     const [state, setState] = useState(currentState|| sessionStorage.getItem(Constants.SESSION_STATE_LOCATION));;
@@ -92,6 +93,10 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
         return result;
     }
 
+    const displayWeeklyForecast = () =>{
+        setWindowToDisplay("displayWeeklyForecast");
+    }
+
     useEffect(() => {
         if (zipcode && getByZip && !city && !state) 
             getLocationData();
@@ -123,7 +128,7 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
                          <p>Wind Speed: {currentWeather.windspeed}</p>
                          <p>Prediction: {currentWeather.shortForcast}</p>
                      </div>
-                     <button className="view-forcast-btn">Click to view this week's forcast</button>
+                     <button onClick={displayWeeklyForecast} className="view-forcast-btn">Click to view this week's forcast</button>
             </> : null}
         </div>
     );
