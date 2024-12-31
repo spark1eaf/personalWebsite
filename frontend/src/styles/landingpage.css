@@ -40,7 +40,7 @@ input:hover{
 .registration-form, .logon-form, .recovery-form {
     display: flex;
     flex-direction: column;
-    
+    justify-content: flex-start;
 }
 
 .win-close-btn:hover{
@@ -54,7 +54,7 @@ input:hover{
     margin-right: 15%;
     margin-bottom: 4%;
     width: 70%;
-    height: 3em;
+    min-height: 3em;
     padding-left: 1%;
 }
 
@@ -76,7 +76,7 @@ input:hover{
     color: rgb(207, 66, 66);
 }
 
-.registration-submit-btn, .login-submit-btn, .recovery-submit-btn{
+.login-submit-btn, .recovery-submit-btn{
     position: absolute;
     right: 5%;
     bottom: 3%;
@@ -87,8 +87,15 @@ input:hover{
     cursor: pointer;
 }
 
-.registration-submit-btn:hover, .login-submit-btn:hover, .recovery-submit-btn:hover{
-    color: gray;
+.registration-btn{
+    width: 13%;
+    min-height: 3em;
+    font-size: .6em;
+    background-color: white;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-right: 5%;
+    margin-bottom: 5%;
 }
 
 .forgot-pass-btn{
@@ -111,19 +118,23 @@ input:hover{
     margin: 0 15%;
     font-size: 1em;
 }
+@media only screen and (min-width: 1121px) and (max-width: 1900px) {
+    .registration-form input{ margin-bottom: 5.5%;}
 
-@media (max-width: 1120px){        
-        
-    .registration-btn{
-        position: relative;
-        left:80%;
-        width: 13%;
-        margin-bottom: 5%;
-    }
+    .registration-error{ bottom: -15%;}
+}
 
+@media (max-width: 1120px) and (min-width: 551px){        
     .recovery-title{
         margin-top: 15%;
         font-size: 1.5em;
+    }
+
+    .registration-form input{ margin-bottom: 5.5%;}
+
+    .registration-error{ 
+        bottom: -18%;
+        font-size: 50%;
     }
 }
 
@@ -151,8 +162,14 @@ input:hover{
         margin-bottom: 5%;
     }
     .registration-btn{
-        margin-top: 10%;
-        left:55%;
+        width: 40%;
+        margin-bottom: 10%;
     }
     
+    .registration-form input{ margin-bottom: 8%;}
+
+    .registration-error{ 
+        bottom: -14%;
+        font-size: 40%;
+    }
 }

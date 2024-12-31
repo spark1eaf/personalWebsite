@@ -118,7 +118,7 @@ const RegistrationForm = () =>{
                 <input type="password" onChange={handleChange} placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} required/>
                 {errors.confirmPassErr && <p className="registration-error">{errors.confirmPassErr}</p>}
             </div>
-            <button type="submit" disabled={submitting} className="submit-btn registration-btn">Sign Up</button>
+            <button type="submit" disabled={submitting} className="registration-btn">Sign Up</button>
         </form> 
     );
 };
