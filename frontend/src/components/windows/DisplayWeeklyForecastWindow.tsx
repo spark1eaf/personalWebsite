@@ -72,7 +72,7 @@ const DisplayWeeklyForecastWindow = ({closeWindow, currentTimezone}: Props) =>{
     }
 
     const showNextSet = () =>{
-        if(elementToDisplay !== 6){
+        if(elementToDisplay !== 7){
             setElementToDisplay(currentElement => currentElement + 1)
             console.log("changed")
             console.log(elementToDisplay)
@@ -86,7 +86,6 @@ const DisplayWeeklyForecastWindow = ({closeWindow, currentTimezone}: Props) =>{
         });
         return Math.round(total / data.length * 100);
     }
-
 
     useEffect(() => {
         const handleResize = throttle(() => {
