@@ -111,8 +111,19 @@
     border-radius: 1.5%;
 }
 
-@media (max-width: 1500px) and (min-width: 1301px){
+.get-location-title{
+    margin-top: 8%;
+}
+
+@media (max-width: 1500px) and (min-width: 1430px){
     .weatherset-container{ margin-top: 10%;}
+}
+@media (max-width: 1429px) and (min-width: 1301px){
+    .weatherset-container{ margin-top: 10%;}
+    
+    .weatherset{
+        font-size: .6em;
+    }
 }
 
 @media (max-width: 1300px){
