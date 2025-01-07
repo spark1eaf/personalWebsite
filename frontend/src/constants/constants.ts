@@ -26,6 +26,7 @@ export const RECOVERY = `/recovery`;
 export const GET_USER_DETAILS = `/getuserdetails`;
 export const GET_LOGIN_STATUS = `/getloginstatus`;
 export const GET_LOCATION_DETAILS = `/locationdetails`;
+export const WORDLE_ATTEMPT = `/wordleattempt`;
 
 //external apis
 export const COORDINATES_URL = `https://api.zippopotam.us/US/`;

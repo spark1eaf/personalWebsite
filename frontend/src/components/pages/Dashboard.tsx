@@ -1,4 +1,6 @@
 import "../../styles/dashboard.css"
+import "../../styles/weatherwidget.css"
+import "../../styles/wordlewidget.css"
 import Footer from "../Footer";
 import userManagementService from "../../services/userManagementService";
 import * as Constants from "../../constants/constants"
@@ -7,6 +9,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import PopupWindow from "../windows/PopupWindow";
 import WeatherWidget from "../widgets/weather/WeatherWidget";
+import WordleWidget from "../widgets/wordle/WordleWidget";
 
 const Dashboard = () =>{
     const [name, setName] = useState("");
@@ -81,15 +84,18 @@ const Dashboard = () =>{
         setWindowToDisplay("getCurrentLocation");
     }
     return(
-        <div className="home-page">
+        <div className="dashboard">
             <button disabled={submitting} onClick={handleSignOut} className="logout-btn"> Sign out</button>
-            <h1 className="title home-page-title">{`Welcome ${name}!`}</h1>
+            <h1 className="title dashboard-title">{`Welcome ${name}!`}</h1>
             <div className="widgets">
-                {zipcode ?             
-                    <div className="weather-widget-cont">
-                        <WeatherWidget key={timezone} zipcode={zipcode} getByZip={getByZip} currentCity={city} currentState={state} currentLongitude={longitude} currentLatitude={latitude} currentTimezone={timezone} setWindowToDisplay={setWindowToDisplay}/> 
-                        <button onClick={handleCustomLocation} className="weather-widget-btn">Click here to get the weather for another location.</button>
+                    <div className="widget-cont">
+                        <WordleWidget setWindowToDisplay={setWindowToDisplay}/> 
                     </div>
+                    {zipcode ?             
+                        <div className="widget-cont">
+                            <WeatherWidget key={timezone} zipcode={zipcode} getByZip={getByZip} currentCity={city} currentState={state} currentLongitude={longitude} currentLatitude={latitude} currentTimezone={timezone} setWindowToDisplay={setWindowToDisplay}/> 
+                            <button onClick={handleCustomLocation} className="weather-widget-btn">Click here to get the weather for another location.</button>
+                        </div>
                     : null}
             </div>
             <PopupWindow windowToDisplay={windowToDisplay} closeWindow={closeWindow} setLocationDetails={setLocationDetails} currentTimezone={timezone}/>

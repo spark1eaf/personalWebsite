@@ -17,7 +17,7 @@ interface WeeklyData{
     humidities:number[]
 }
 
-const DisplayWeeklyForecastWindow = ({closeWindow, currentTimezone}: Props) =>{
+const WeeklyForecastWindow = ({closeWindow, currentTimezone}: Props) =>{
     const [forecastList, setForecastList] = useState<WeeklyData[]>();
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const [elementToDisplay, setElementToDisplay] = useState(0);
@@ -155,4 +155,4 @@ const DisplayWeeklyForecastWindow = ({closeWindow, currentTimezone}: Props) =>{
     }
 }
 
-export default DisplayWeeklyForecastWindow;
+export default WeeklyForecastWindow;

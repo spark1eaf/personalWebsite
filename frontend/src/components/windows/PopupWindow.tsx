@@ -3,7 +3,8 @@ import LoginWindow from "./usermanagement/LoginWindow";
 import RegistrationWindow from "./usermanagement/RegistrationWindow";
 import PasswordRecoverWindow from "./usermanagement/PasswordRecoveryWindow";
 import GetCurrentLocationWindow from "./weather/GetCurrentLocationWindow";
-import DisplayWeeklyForecastWindow from "./weather/DisplayWeeklyForecastWindow";
+import WeeklyForecastWindow from "./weather/WeeklyForecastWindow";
+import WordleWindow from "./WordleWindow";
 
 interface Props{
     windowToDisplay:string,
@@ -21,16 +22,17 @@ const PopupWindow = ({windowToDisplay, closeWindow, displayRecoveryWindow, setLo
         ["registration", <RegistrationWindow closeWindow={closeWindow}/>],
         ["recovery", <PasswordRecoverWindow closeWindow={closeWindow}/>],
         ["getCurrentLocation", <GetCurrentLocationWindow closeWindow={closeWindow} setLocationDetails={setLocationDetails}/>],
-        ["displayWeeklyForecast", <DisplayWeeklyForecastWindow closeWindow={closeWindow} currentTimezone={currentTimezone}/>]
+        ["displayWeeklyForecast", <WeeklyForecastWindow closeWindow={closeWindow} currentTimezone={currentTimezone}/>],
+        ["wordle", <WordleWindow closeWindow={closeWindow}/>]
     ]);
 
     const componentToDisplay = displayMap.get(windowToDisplay);
 
     useEffect(() =>{
-        if(windowToDisplay === "displayWeeklyForecast")
-            setClassname("forecast-popup-window");
+        if(windowToDisplay === "displayWeeklyForecast" || windowToDisplay === "wordle")
+            setClassname("widget-popup-window");
         else
-            setClassname("popup-window")
+            setClassname("popup-window");
     },[windowToDisplay])
 
     if(windowToDisplay)

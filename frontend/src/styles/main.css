@@ -2,9 +2,7 @@ html,body {height:100%;}
 
 a {text-decoration: none;}
 
-#root{
-    height: 100%;
-}
+#root{ height: 100%;}
 
 body { 
     margin-left: 0;
@@ -12,6 +10,8 @@ body {
     color: ivory;
     font-family: "Roboto Mono";
 }
+
+button{ border-style: none;}
 
 .title{text-align: center;}
 
@@ -31,9 +31,6 @@ body {
     padding-bottom: 5%;
 }
 
-button{
-    border-style: none;
-}
 
 .popup-window{
     position: absolute;
@@ -42,7 +39,6 @@ button{
     margin-left: 50%;
     transform: translateX(-50%);
     background-color: #31393cf6;
-    text-align: center;
     width: 50%;
     height: 70%;
     font-size: 2em;
@@ -60,19 +56,23 @@ button{
     height: 100%;
 }
 
+.close-btn-cont{
+    height: 5%;
+    display: grid;
+    justify-items: end;
+}
+
 .win-close-btn{
-    position: absolute;
-    right: 4%;
-    top: 3%;
+    margin-right: 4%;
+    height: 5%;
+    margin-top: 2%;
     color: white;
     background-color: transparent;
     font-size: 100%;
     cursor: pointer;
 }
 
-.win-close-btn:hover{
-    color: black;
-}
+.win-close-btn:hover{ color: black;}
 
 .submit-btn{
     display: inline-block;
@@ -86,9 +86,7 @@ button{
     cursor: pointer;
 }
 
-.submit-btn:hover{
-    color: gray;
-}
+.submit-btn:hover{ color: gray;}
 
 @media (max-width: 1120px){
     .popup-window{width: 80%;}        
@@ -98,3 +96,4 @@ button{
 @media (max-width: 550px){
     .submit-btn{ width: 40%;}
 }
+
