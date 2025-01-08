@@ -11,11 +11,13 @@ import PopupWindow from "../windows/PopupWindow";
 import WeatherWidget from "../widgets/weather/WeatherWidget";
 import WordleWidget from "../widgets/wordle/WordleWidget";
 
+
+
 const Dashboard = () =>{
-    const [name, setName] = useState("");
     const navigator = useNavigate();
     const [submitting, setSubmitting] = useState(false);    
-    const [zipcode, setZipcode] = useState("")
+    const [name, setName] = useState("");
+    const [zipcode, setZipcode] = useState("");
     const [getByZip, setGetByZip] = useState(true);
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
@@ -31,6 +33,9 @@ const Dashboard = () =>{
             if(response.status === 200){
                 setName(response.data.firstName);
                 setZipcode(response.data.zipcode);
+                sessionStorage.setItem("streak", response.data.wordleStreak);
+                sessionStorage.setItem("maxStreak", response.data.wordleMaxStreak);
+                sessionStorage.setItem("attemptLimitReached", response.data.wordleAttemptLimitReached);
             }
         } catch (error) {
             if(axios.isAxiosError(error))
