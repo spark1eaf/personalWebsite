@@ -6,6 +6,14 @@
     margin-bottom: 10%;
 }
 
+.wordle-attempted-msg{
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 10%;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
 .attempt-wordle-btn:hover{
     color: rgb(122, 118, 118);
     cursor: pointer;
@@ -40,7 +48,7 @@
     font-size: 2.5em;
     text-align: center;
     height: 10%;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
 }
 
 .letter-container{
@@ -95,9 +103,9 @@
     cursor: pointer;
 }
 
-.wordle-submit-btn:hover, .get-word-btn:hover{ color: gray;}{ color: gray;}
+.wordle-submit-btn:hover, .get-word-btn:hover{ color: gray;}
 
-.no-attempts-cont{
+.no-attempts-cont, .successful-attempt-cont{
     height: 30%;
     text-align: center;
     font-size: .8em;
@@ -117,7 +125,8 @@
 .daily-word-txt{ font-size: 3em;;}
 
 @media (max-width: 1250px){
-    .no-attempts-cont{ font-size: .6em;}
+    .wordle-title{margin-bottom: 10%;}
+    .no-attempts-cont, .successful-attempt-cont{ font-size: .6em;}
     .get-word-btn{ width: 15%;}
 }
 
@@ -136,7 +145,7 @@
 }
 
 @media (max-width: 600px){
-    .wordle-title{ margin-bottom: 10%;}
+    .wordle-title{ margin-bottom: 20%;}
     .wordle-form input{ padding-left: 3%;}
     .get-word-btn{ width: 25%;}
 }

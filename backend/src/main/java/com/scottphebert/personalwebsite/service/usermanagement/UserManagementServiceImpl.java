@@ -2,7 +2,7 @@ package com.scottphebert.personalwebsite.service.usermanagement;
 
 import com.scottphebert.personalwebsite.common.Constants;
 import com.scottphebert.personalwebsite.config.JwtAuthenticationFilter;
-import com.scottphebert.personalwebsite.config.JwtResponse;
+import com.scottphebert.personalwebsite.model.dto.JwtResponse;
 import com.scottphebert.personalwebsite.config.JwtTokenProvider;
 import com.scottphebert.personalwebsite.model.entity.User;
 import com.scottphebert.personalwebsite.model.entity.UserDetails;
