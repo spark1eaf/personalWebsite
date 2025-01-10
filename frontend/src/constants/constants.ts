@@ -95,4 +95,3 @@ export const WORDLE_WINDOW = "wordle";
 
 //leetcode
 export const LEETCODE_PREFIX = "https://leetcode.com/problems/";
-export const LEETCODE_FILENAME = "leetcodelinks.txt";

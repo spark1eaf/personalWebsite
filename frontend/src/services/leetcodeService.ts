@@ -2,10 +2,10 @@ import axios from "axios";
 import handleError from "../utils/ErrorHandler";
 import * as Constants from "../constants/constants"
 
-const getlinkData = async(attempts = 3,) =>{
-    const timestamp = new Date().getTime();
+const getlinkData = async() =>{
+    const path = import.meta.env.VITE_LEETCODE_FILEPATH;
     try {
-        const response = await axios.get(`${Constants.LEETCODE_FILENAME}?t=${timestamp}`, { responseType: 'text' })
+        const response = await axios.get(path, { responseType: 'text' })
         return response;
     } 
     catch (error) {
