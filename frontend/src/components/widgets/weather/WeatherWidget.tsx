@@ -1,8 +1,8 @@
 import { CSSProperties, useEffect, useState } from "react";
-import weatherService from "../../services/weatherService";
-import * as Constants from "../../constants/constants";
+import * as Constants from "../../../constants/constants";
+import locationService from "../../../services/locationService";
+import weatherService from "../../../services/weatherService";
 import { WeatherPeriod, ResponsePeriod } from "./WeatherInterfaces";
-import locationService from "../../services/locationService";
 
 interface Props{
     zipcode:string,
@@ -58,7 +58,7 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
                     shortForcast: period.shortForecast,
                 };
             });
-            //store data for caching
+            //cache data
             console.log("weather data cached")
             sessionStorage.setItem(Constants.SESSION_WEATHER_DATA, JSON.stringify(weatherData));
             setWeatherData(weatherData);
@@ -94,7 +94,7 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
     }
 
     const displayWeeklyForecast = () =>{
-        setWindowToDisplay("displayWeeklyForecast");
+        setWindowToDisplay(Constants.WEEKLY_FORECAST_WINDOW);
     }
 
     useEffect(() => {

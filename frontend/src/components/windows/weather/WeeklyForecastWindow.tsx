@@ -1,7 +1,8 @@
 import { CSSProperties, MouseEventHandler, useEffect, useState } from "react";
-import WindowCloseBtn from "../buttons/WindowCloseBtn";
-import { WeatherPeriod } from "../widgets/WeatherInterfaces";
 import { throttle } from "lodash";
+import WindowCloseBtn from "../../buttons/WindowCloseBtn";
+import { WeatherPeriod } from "../../widgets/weather/WeatherInterfaces";
+import * as Constants from "../../../constants/constants"
 
 interface Props{
     closeWindow:MouseEventHandler<HTMLButtonElement>,
@@ -17,7 +18,7 @@ interface WeeklyData{
     humidities:number[]
 }
 
-const DisplayWeeklyForecastWindow = ({closeWindow, currentTimezone}: Props) =>{
+const WeeklyForecastWindow = ({closeWindow, currentTimezone}: Props) =>{
     const [forecastList, setForecastList] = useState<WeeklyData[]>();
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const [elementToDisplay, setElementToDisplay] = useState(0);
@@ -29,7 +30,7 @@ const DisplayWeeklyForecastWindow = ({closeWindow, currentTimezone}: Props) =>{
     const [hoverRight, setHoverRight] = useState(false)
 
     const getWeeksData = () =>{
-        const data:WeatherPeriod[] = JSON.parse(sessionStorage.getItem("weatherData") || "[]");
+        const data:WeatherPeriod[] = JSON.parse(sessionStorage.getItem(Constants.SESSION_WEATHER_DATA) || "[]");
         const weeklyData: WeeklyData[] = [];
 
         if(data !== null){
@@ -155,4 +156,4 @@ const DisplayWeeklyForecastWindow = ({closeWindow, currentTimezone}: Props) =>{
     }
 }
 
-export default DisplayWeeklyForecastWindow;
+export default WeeklyForecastWindow;

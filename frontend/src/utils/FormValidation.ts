@@ -73,4 +73,10 @@ const checkPassMatch = (password:string|undefined, confirmPassword:string|undefi
     return "";
 }
 
-export default {checkEmail, checkUsername, checkPass, checkZip, checkName, checkPassMatch}
+//checks if word entered is valid
+const isWord = (word:string) =>{
+    const regex = /[^a-zA-Z]/;
+    return regex.test(word.trim());
+}
+
+export default {checkEmail, checkUsername, checkPass, checkZip, checkName, checkPassMatch, isWord}

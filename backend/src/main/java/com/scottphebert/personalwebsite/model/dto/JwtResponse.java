@@ -1,4 +1,4 @@
-package com.scottphebert.personalwebsite.config;
+package com.scottphebert.personalwebsite.model.dto;
 
 import com.scottphebert.personalwebsite.common.Constants;
 

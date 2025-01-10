@@ -27,3 +27,18 @@ interface RegFormErrors{
     passwordErr?: string|null,
     confirmPassErr?: string|null
 };
+
+interface WordleAttemptData{
+    username:string,
+    word:string
+    attemptNum:number
+};
+
+interface WordleResponse{
+    response: WordleResponseObj[]
+}
+
+interface WordleResponseObj{
+    letter:string,
+    matchType:string
+}

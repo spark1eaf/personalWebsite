@@ -1,7 +1,7 @@
 package com.scottphebert.personalwebsite.controller;
 
 import com.scottphebert.personalwebsite.common.Constants;
-import com.scottphebert.personalwebsite.config.JwtResponse;
+import com.scottphebert.personalwebsite.model.dto.JwtResponse;
 import com.scottphebert.personalwebsite.model.entity.UserDetails;
 import com.scottphebert.personalwebsite.model.dto.RegistrationRequest;
 import com.scottphebert.personalwebsite.service.usermanagement.UserManagementService;

@@ -1,0 +1,153 @@
+.attempt-wordle-btn {
+    background-color: transparent;
+    color: white;
+    font-size: 1.2em;
+    margin-top: auto;
+    margin-bottom: 10%;
+}
+
+.wordle-attempted-msg{
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 10%;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+.attempt-wordle-btn:hover{
+    color: rgb(122, 118, 118);
+    cursor: pointer;
+}
+
+.wordle-widget-title{
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 5%;
+}
+
+.wordle-streak{
+    margin-left: 9%;
+    font-size: 1.3em;
+}
+
+.widget-popup-window{
+    position: fixed;
+    z-index: 2;
+    top: 5%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: #31393cf6;
+    width: 95%;
+    height: 90%;
+    font-size: 2em;
+    border-radius: 1.5%;
+    overflow: auto;
+}
+
+.wordle-title{
+    font-size: 2.5em;
+    text-align: center;
+    height: 10%;
+    margin-bottom: 5%;
+}
+
+.attempt-container{
+    width: 86%;
+    margin-left: 7%;
+    margin-right: 7%;
+    display: flex;
+    height: 10%;
+}
+
+.letter-block-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    border-style: solid;
+    border-color: black;
+}
+
+.letter-block-cont p{
+    color: black;
+    font-size: 3em;
+}
+
+.wordle-form{
+    position: relative;
+    height: 30%;
+    margin-bottom: 3%;
+    margin-top: 8%;
+}
+
+.wordle-form p{ text-align: center;}
+
+.wordle-form input{
+    display: block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 15%;
+    padding-left: 1%;
+}
+
+.wordle-submit-btn{
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    width: 13%;
+    height: 15%;
+    font-size: .6em;
+    background-color: white;
+    cursor: pointer;
+}
+
+.wordle-submit-btn:hover, .get-word-btn:hover{ color: gray;}
+
+.no-attempts-cont, .successful-attempt-cont{
+    margin-top: 5%;
+    height: 30%;
+    text-align: center;
+    font-size: .8em;
+}
+
+.get-word-btn{
+    width: 12%;
+    height: 45%;
+    background-color: white;
+    cursor: pointer;
+    font-size: 1.5em;
+    margin-top: 2%;
+}
+
+.todays-word-txt{ font-size: 1.7em;}
+
+.daily-word-txt{ font-size: 3em;;}
+
+@media (max-width: 1250px){
+    .wordle-title{margin-bottom: 10%;}
+    .no-attempts-cont, .successful-attempt-cont{ font-size: .6em;}
+    .get-word-btn{ width: 15%;}
+}
+
+@media (max-width: 750px), (max-height: 965px){
+    .letter-block-cont p{ font-size: 2em;}
+    .wordle-submit-btn{
+        width: 40%;
+        margin-left: 55%;
+        height: 20%;
+    }
+
+    .wordle-form input{
+        width: 80%;
+        margin-bottom: 20%;
+    }
+}
+
+@media (max-width: 600px), (max-height: 670px){
+    .letter-block-cont p{ font-size: 1.5em;}
+    .wordle-title{ margin-bottom: 20%;}
+    .wordle-form input{ padding-left: 3%;}
+    .get-word-btn{ width: 25%;}
+}
