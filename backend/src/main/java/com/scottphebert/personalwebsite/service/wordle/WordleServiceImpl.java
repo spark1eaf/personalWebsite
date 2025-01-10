@@ -55,11 +55,12 @@ public class WordleServiceImpl implements WordleService {
             UserDetails userDetails = userDetailsRepo.findById(user.getId())
                     .orElseThrow(() -> new EntityNotFoundException(Constants.USER_DETAILS_NOT_FOUND + user.getId()));
             if(!userDetails.isWordleAttemptLimitReached()){
-                if(attemptNum == 5) {
+                //sets attempt limit indicator if attempt number is five unless user is using the guest account
+                if(attemptNum == 5 && !username.equals(Constants.GUEST_USERNAME)) {
                     userDetails.setWordleAttemptLimitReached(true);
                     userDetailsRepo.save(userDetails);
                 }
-                return evaluateAttempt(word.toUpperCase(), userDetails);
+                return evaluateAttempt(word.toUpperCase(), userDetails, username);
             }
             else
                 return new ResponseEntity<>(Constants.ATTEMPT_LIMIT_REACHED , HttpStatus.OK);
@@ -70,10 +71,11 @@ public class WordleServiceImpl implements WordleService {
     }
 
     //evaluates provided attempt and returns a response entity containing the results
-    private ResponseEntity<Object> evaluateAttempt(String word, UserDetails userDetails){
+    private ResponseEntity<Object> evaluateAttempt(String word, UserDetails userDetails, String username){
 
         String dailyWord = scheduledDataRepo.findWordleWord()
                 .orElseThrow(() -> new EntityNotFoundException(Constants.DAILY_WORD_NOT_FOUND));
+        logger.info(Constants.EVALUATING_USER_ATTEMPT_LOG, word, dailyWord);
         WordleResponse response = new WordleResponse();
         //word is invalid length
         if(word.length() != 5)
@@ -81,7 +83,7 @@ public class WordleServiceImpl implements WordleService {
         //word is exact match
         else if(dailyWord.equalsIgnoreCase(word)){
             try {
-                updateWordleDetails(userDetails);
+                updateWordleDetails(userDetails, username);
             }
             catch (Exception ex){
                 logger.error(Constants.USER_DETAILS_UPDATE_ERROR_LOG, userDetails.getId(), ex.getMessage());
@@ -143,13 +145,17 @@ public class WordleServiceImpl implements WordleService {
     }
 
     //updates wordle data in user details table
-    private void updateWordleDetails(UserDetails userDetails) {
-        userDetails.setWordleAttemptLimitReached(true);
-        userDetails.setWordleStreak(userDetails.getWordleStreak() + 1);
-        userDetails.setWordleSolved(true);
-        if(userDetails.getWordleMaxStreak() < userDetails.getWordleStreak())
-            userDetails.setWordleMaxStreak(userDetails.getWordleStreak());
-        userDetailsRepo.save(userDetails);
+    private void updateWordleDetails(UserDetails userDetails, String username) {
+        logger.info(Constants.UPDATING_WORDLE_DETAILS_LOG, userDetails.getId());
+        //dont update if user is using guest account
+        if(!username.equals(Constants.GUEST_USERNAME)){
+            userDetails.setWordleAttemptLimitReached(true);
+            userDetails.setWordleStreak(userDetails.getWordleStreak() + 1);
+            userDetails.setWordleSolved(true);
+            if(userDetails.getWordleMaxStreak() < userDetails.getWordleStreak())
+                userDetails.setWordleMaxStreak(userDetails.getWordleStreak());
+            userDetailsRepo.save(userDetails);
+        }
     }
 
     //Takes provided word and uses it to generate a hashmap containing letter counts

@@ -130,8 +130,11 @@
     .no-attempts-cont, .successful-attempt-cont{ font-size: .6em;}
     .get-word-btn{ width: 15%;}
 }
+@media (max-height: 965px){
+    .letter-block-cont p{ font-size: 2em;}
+}
 
-@media (max-width: 750px), (max-height: 965px){
+@media (max-width: 750px){
     .letter-block-cont p{ font-size: 2em;}
     .wordle-submit-btn{
         width: 40%;
@@ -145,7 +148,7 @@
     }
 }
 
-@media (max-width: 600px), (max-height: 670px){
+@media (max-width: 600px), (max-height: 670px) and (max-width: 750px){
     .letter-block-cont p{ font-size: 1.5em;}
     .wordle-title{ margin-bottom: 20%;}
     .wordle-form input{ padding-left: 3%;}

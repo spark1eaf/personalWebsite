@@ -36,6 +36,7 @@ public final class Constants {
     public static final String UPDATE_PASSWORD_FAILURE = "An error occurred while attempting to update password";
     public static final String LOGGED_IN = "User is logged in.";
     public static final String NOT_LOGGED_IN = "User is not currently logged in.";
+    public static final String GUEST_USERNAME = "guest";
 
     //wordle
     public static final String ATTEMPT_LIMIT_REACHED = "User has already reached attempt limit for today.";
@@ -88,6 +89,8 @@ public final class Constants {
     public static final String USER_DETAILS_UPDATE_ERROR_LOG = "An error occurred while attempting to update userDetails for userId: {} Exception: {}";
     public static final String PROCESS_WORDLE_ATTEMPT_LOG = "Processing wordle attempt for user: {}";
     public static final String DAILY_WORD_REQUESTED_LOG = "Daily word requested by user: {}";
+    public static final String EVALUATING_USER_ATTEMPT_LOG = "Evaluating user attempt: {} against word: {}";
+    public static final String UPDATING_WORDLE_DETAILS_LOG = "Updating wordle details for user id: {}";
 
     //db
     public static final String DATASOURCE_DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
