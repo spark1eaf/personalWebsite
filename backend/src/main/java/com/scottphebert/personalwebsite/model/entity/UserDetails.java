@@ -29,6 +29,8 @@ public class UserDetails {
 
     private boolean wordleAttemptLimitReached;
 
+    private boolean isWordleSolved;
+
     private int wordleStreak;
 
     private int wordleMaxStreak;
@@ -67,28 +69,13 @@ public class UserDetails {
     public void setUser(User user) {
         this.user = user;
     }
-    public boolean isWordleAttemptLimitReached() {
-        return wordleAttemptLimitReached;
-    }
-
-    public void setWordleAttemptLimitReached(boolean wordleAttemptLimitReached) {
-        this.wordleAttemptLimitReached = wordleAttemptLimitReached;
-    }
-
-    public int getWordleStreak() {
-        return wordleStreak;
-    }
-
-    public void setWordleStreak(int wordleStreak) {
-        this.wordleStreak = wordleStreak;
-    }
-
-    public int getWordleMaxStreak() {
-        return wordleMaxStreak;
-    }
-
-    public void setWordleMaxStreak(int wordleMaxStreak) {
-        this.wordleMaxStreak = wordleMaxStreak;
-    }
+    public boolean isWordleAttemptLimitReached() { return wordleAttemptLimitReached; }
+    public void setWordleAttemptLimitReached(boolean wordleAttemptLimitReached) { this.wordleAttemptLimitReached = wordleAttemptLimitReached;}
+    public int getWordleStreak() { return wordleStreak;}
+    public void setWordleStreak(int wordleStreak) { this.wordleStreak = wordleStreak;}
+    public int getWordleMaxStreak() { return wordleMaxStreak;}
+    public void setWordleMaxStreak(int wordleMaxStreak) { this.wordleMaxStreak = wordleMaxStreak;}
+    public boolean isWordleSolved() { return isWordleSolved;}
+    public void setWordleSolved(boolean wordleSolved) {isWordleSolved = wordleSolved;}
 }
 

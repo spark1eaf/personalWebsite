@@ -14,22 +14,21 @@ const LandingPage = ()=>{
     const navigator = useNavigate();
 
     const displayLoginWindow = () =>{
-        setWindowToDisplay("login");
+        setWindowToDisplay(Constants.LOGIN_WINDOW);
     };
     const displayRegistrationWindow = () =>{
-        setWindowToDisplay("registration");
+        setWindowToDisplay(Constants.REGISTRATION_WINDOW);
     };
-
     const displayRecoveryWindow = () =>{
-        setWindowToDisplay("recovery");
+        setWindowToDisplay(Constants.RECOVERY_WINDOW);
     };
     const closeWindow = () =>{
-        setWindowToDisplay("");
+        setWindowToDisplay(Constants.NO_WINDOW);
     };
     //check if user is already logged in, in which case redirects to homepage
     const checkLoginStatus = async() =>{
             try {
-                const response = await userManagementService.getLoginStatus(sessionStorage.getItem(Constants.SESSION_USER) ||""); 
+                const response = await userManagementService.getLoginStatus(sessionStorage.getItem(Constants.SESSION_USERNAME) ||""); 
                 if (response.status === 200 && response.data === Constants.LOGIN_CHECK_RESPONSE)
                     navigator(Constants.DASHBOARD)
             } catch (error) {

@@ -29,13 +29,13 @@ const Dashboard = () =>{
     //send out request to retrieve user details
     const populateUserDetails = async () =>{
         try {
-            const response = await userManagementService.getUserDetails(sessionStorage.getItem(Constants.SESSION_USER) ||"");
+            const response = await userManagementService.getUserDetails(sessionStorage.getItem(Constants.SESSION_USERNAME) ||"");
             if(response.status === 200){
                 setName(response.data.firstName);
                 setZipcode(response.data.zipcode);
-                sessionStorage.setItem("streak", response.data.wordleStreak);
-                sessionStorage.setItem("maxStreak", response.data.wordleMaxStreak);
-                sessionStorage.setItem("attemptLimitReached", response.data.wordleAttemptLimitReached);
+                sessionStorage.setItem(Constants.SESSION_STREAK, response.data.wordleStreak);
+                sessionStorage.setItem(Constants.SESSION_MAX_STREAK, response.data.wordleMaxStreak);
+                sessionStorage.setItem(Constants.SESSION_ATTEMPT_LIMIT_REACHED, response.data.wordleAttemptLimitReached);
             }
         } catch (error) {
             if(axios.isAxiosError(error))
@@ -86,7 +86,7 @@ const Dashboard = () =>{
     }
 
     const handleCustomLocation = () =>{
-        setWindowToDisplay("getCurrentLocation");
+        setWindowToDisplay(Constants.CURRENT_LOC_WINDOW);
     }
     return(
         <div className="dashboard">

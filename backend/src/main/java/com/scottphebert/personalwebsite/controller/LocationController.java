@@ -23,7 +23,7 @@ public class LocationController {
     @Autowired
     SecretsService secretsService;
 
-    @GetMapping(Constants.LOCATION_DETAILS)
+    @GetMapping(Constants.LOCATION_DETAILS_URL)
     public Mono<LocationDetails> getLocationDetails(@RequestParam String longitude, @RequestParam String latitude){
         logger.info(Constants.LOCATION_REQUESTED_LOG, longitude, latitude);
         WebClient client = WebClient.create();

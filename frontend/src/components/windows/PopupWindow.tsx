@@ -4,7 +4,8 @@ import RegistrationWindow from "./usermanagement/RegistrationWindow";
 import PasswordRecoverWindow from "./usermanagement/PasswordRecoveryWindow";
 import GetCurrentLocationWindow from "./weather/GetCurrentLocationWindow";
 import WeeklyForecastWindow from "./weather/WeeklyForecastWindow";
-import WordleWindow from "./WordleWindow";
+import WordleWindow from "./wordle/WordleWindow";
+import * as Constants from "../../constants/constants"
 
 interface Props{
     windowToDisplay:string,
@@ -18,18 +19,18 @@ const PopupWindow = ({windowToDisplay, closeWindow, displayRecoveryWindow, setLo
     const [classname, setClassname] = useState("popup-window");
      
     const displayMap = new Map([
-        ["login", <LoginWindow displayRecoveryWindow={displayRecoveryWindow} closeWindow={closeWindow}/>],
-        ["registration", <RegistrationWindow closeWindow={closeWindow}/>],
-        ["recovery", <PasswordRecoverWindow closeWindow={closeWindow}/>],
-        ["getCurrentLocation", <GetCurrentLocationWindow closeWindow={closeWindow} setLocationDetails={setLocationDetails}/>],
-        ["displayWeeklyForecast", <WeeklyForecastWindow closeWindow={closeWindow} currentTimezone={currentTimezone}/>],
-        ["wordle", <WordleWindow closeWindow={closeWindow}/>]
+        [Constants.LOGIN_WINDOW, <LoginWindow displayRecoveryWindow={displayRecoveryWindow} closeWindow={closeWindow}/>],
+        [Constants.REGISTRATION_WINDOW, <RegistrationWindow closeWindow={closeWindow}/>],
+        [Constants.RECOVERY_WINDOW, <PasswordRecoverWindow closeWindow={closeWindow}/>],
+        [Constants.CURRENT_LOC_WINDOW, <GetCurrentLocationWindow closeWindow={closeWindow} setLocationDetails={setLocationDetails}/>],
+        [Constants.WEEKLY_FORECAST_WINDOW, <WeeklyForecastWindow closeWindow={closeWindow} currentTimezone={currentTimezone}/>],
+        [Constants.WORDLE_WINDOW, <WordleWindow closeWindow={closeWindow}/>]
     ]);
 
     const componentToDisplay = displayMap.get(windowToDisplay);
 
     useEffect(() =>{
-        if(windowToDisplay === "displayWeeklyForecast" || windowToDisplay === "wordle")
+        if(windowToDisplay === Constants.WEEKLY_FORECAST_WINDOW || windowToDisplay === Constants.WORDLE_WINDOW)
             setClassname("widget-popup-window");
         else
             setClassname("popup-window");

@@ -30,7 +30,7 @@ const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow?: MouseEventH
         const response = await userManagementService.login(user);
         if(response.status === 200){
             sessionStorage.setItem(Constants.SESSION_LOGIN_STATUS, "true")
-            sessionStorage.setItem(Constants.SESSION_USER, username);
+            sessionStorage.setItem(Constants.SESSION_USERNAME, username);
             navigator(Constants.DASHBOARD);
         }
         else if(response.status === 403){
@@ -40,6 +40,7 @@ const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow?: MouseEventH
             alert(response.error || Constants.UNEXPECTED_ERROR_MSG);
         setSubmitting(false);
     };
+    
     return(
         <form className="logon-form" onSubmit={sendLoginData}>
             <input type="text" onChange={handleChange} placeholder="Username" name="username" value={username} required />

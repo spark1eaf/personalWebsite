@@ -34,6 +34,10 @@ interface WordleAttemptData{
     attemptNum:number
 };
 
+interface WordleResponse{
+    response: WordleResponseObj[]
+}
+
 interface WordleResponseObj{
     letter:string,
     matchType:string

@@ -58,7 +58,7 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
                     shortForcast: period.shortForecast,
                 };
             });
-            //store data for caching
+            //cache data
             console.log("weather data cached")
             sessionStorage.setItem(Constants.SESSION_WEATHER_DATA, JSON.stringify(weatherData));
             setWeatherData(weatherData);
@@ -94,7 +94,7 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
     }
 
     const displayWeeklyForecast = () =>{
-        setWindowToDisplay("displayWeeklyForecast");
+        setWindowToDisplay(Constants.WEEKLY_FORECAST_WINDOW);
     }
 
     useEffect(() => {

@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(Constants.PREFIX + Constants.LOGIN_URL, Constants.PREFIX + Constants.REGISTRATION_URL,
-                        Constants.PREFIX +Constants.SIGN_OUT_URL, Constants.PREFIX + Constants.LOCATION_DETAILS).permitAll()
+                        Constants.PREFIX +Constants.SIGN_OUT_URL, Constants.PREFIX + Constants.LOCATION_DETAILS_URL).permitAll()
                 .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
