@@ -52,7 +52,7 @@ const LandingPage = ()=>{
             <ul className="site-features">
                 <li>{Constants.ABOUT_TEXT_LOGIN}</li>
                 <li>{Constants.ABOUT_TEXT_WEATHER}</li>
-
+                <li>{Constants.ABOUT_TEXT_WORDLE}</li>
             </ul>
             <PopupWindow windowToDisplay={windowToDisplay} displayRecoveryWindow={displayRecoveryWindow} closeWindow={closeWindow}/>
              <Footer/>
