@@ -53,7 +53,7 @@ const changePassword = async(email:string) =>{
 //Sends a request triggering an emauil with recovery link to be sent to the user
 const requestRecoveryEmail = async (email:string) =>{
     const url = `${API_URL}${Constants.RECOVERY}`;
-    //not sure type of request needed atm.
+    //not implemented at the moment.
 };
 
 //sends a request to retrieve userdetails
