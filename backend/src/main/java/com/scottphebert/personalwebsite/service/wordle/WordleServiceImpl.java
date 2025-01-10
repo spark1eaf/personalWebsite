@@ -74,6 +74,7 @@ public class WordleServiceImpl implements WordleService {
 
         String dailyWord = scheduledDataRepo.findWordleWord()
                 .orElseThrow(() -> new EntityNotFoundException(Constants.DAILY_WORD_NOT_FOUND));
+        logger.info(Constants.EVALUATING_USER_ATTEMPT_LOG, word, dailyWord);
         WordleResponse response = new WordleResponse();
         //word is invalid length
         if(word.length() != 5)
@@ -144,6 +145,7 @@ public class WordleServiceImpl implements WordleService {
 
     //updates wordle data in user details table
     private void updateWordleDetails(UserDetails userDetails) {
+        logger.info(Constants.UPDATING_WORDLE_DETAILS_LOG, userDetails.getId());
         userDetails.setWordleAttemptLimitReached(true);
         userDetails.setWordleStreak(userDetails.getWordleStreak() + 1);
         userDetails.setWordleSolved(true);

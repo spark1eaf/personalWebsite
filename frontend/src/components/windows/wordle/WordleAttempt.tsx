@@ -5,7 +5,6 @@ const WordleAttempt = ({attempt}: {attempt:WordleResponse}) =>{
         <div className="attempt-container">
         {attempt.response && attempt.response.length > 0 ?
             attempt.response.map((element, index) =>{
-                console.log(element)
                 const letterStyle:CSSProperties = element.matchType !== undefined ? {
                     backgroundColor: element.matchType === "partial" ? '#fffb07' : element.matchType === "full" ? '#28a745': 'white'
                 } :{};
