@@ -55,6 +55,7 @@ export const WEATHER_DATA_RETRIEVAL_ERROR = `Error retrieving weather data`;
 export const WEATHER_ENDPOINT_RETRIEVAL_ERROR = `Error retrieving weather endpoints`;
 export const INVALID_WORDLE_LENGTH = "Submission must be of length 5";
 export const INVALID_WORD_MSG = "The word you have entered is invalid. Please try again.";
+export const ERROR_RETRIEVING_LINKS = "Error retrieving leetcode links";
 
 //user management
 export const SIGNOUT_SUCCESSFUL = `You've been signed out successfully.`;
@@ -91,3 +92,7 @@ export const RECOVERY_WINDOW = "recovery";
 export const NO_WINDOW = "";
 export const WEEKLY_FORECAST_WINDOW = "displayWeeklyForcast";
 export const WORDLE_WINDOW = "wordle";
+
+//leetcode
+export const LEETCODE_PREFIX = "https://leetcode.com/problems/";
+export const LEETCODE_FILENAME = "leetcodelinks.txt";

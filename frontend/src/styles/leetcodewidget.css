@@ -1,0 +1,75 @@
+.leetcode-widget{
+    display: flex;
+    background-color: #1c1e1f;
+    flex-direction: column;
+    border-radius: 2%;
+    width: 100%;
+    min-height: 400px;
+    margin-bottom: 5%;
+}
+
+.leetcode-widget-title{
+    text-align: center;
+    font-size: 4em;
+    margin-bottom: 5%;
+}
+
+.leetcode-links{
+    color: pink;
+    margin-bottom: 5%;
+}
+.leetcode-links li{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 1%;
+}
+
+.leetcode-link{
+    color: white;
+    font-size: 2em;
+}
+.leetcode-link:hover, .get-new-qtns-btn:hover{
+    color: rgb(122, 118, 118);
+}
+
+.get-new-qtns-btn{
+    font-size: 2em;
+    color: white;
+    background-color: transparent;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5%;
+    margin-top: auto;
+}
+
+@media (max-width: 1550px){
+    .leetcode-link{
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 1170px){
+    .leetcode-widget-title{
+        font-size: 3em;
+        margin-bottom: 5%;
+    }
+
+    .leetcode-link{
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 600px){
+
+    .leetcode-widget-title{
+        font-size: 2em;
+    }
+
+    .leetcode-link{
+        font-size: .9em;
+    }
+
+    .get-new-qtns-btn{
+        font-size: 1.5em;
+    }
+}

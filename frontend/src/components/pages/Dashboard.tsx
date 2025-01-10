@@ -1,6 +1,7 @@
 import "../../styles/dashboard.css"
 import "../../styles/weatherwidget.css"
 import "../../styles/wordlewidget.css"
+import "../../styles/leetcodewidget.css"
 import Footer from "../Footer";
 import userManagementService from "../../services/userManagementService";
 import * as Constants from "../../constants/constants"
@@ -10,6 +11,7 @@ import { useEffect, useState } from "react";
 import PopupWindow from "../windows/PopupWindow";
 import WeatherWidget from "../widgets/weather/WeatherWidget";
 import WordleWidget from "../widgets/wordle/WordleWidget";
+import LeetcodeWidget from "../widgets/leetcode/LeetcodeWidget";
 
 
 
@@ -102,6 +104,7 @@ const Dashboard = () =>{
                             <button onClick={handleCustomLocation} className="weather-widget-btn">Click here to get the weather for another location.</button>
                         </div>
                     : null}
+                    <LeetcodeWidget/>
             </div>
             <PopupWindow windowToDisplay={windowToDisplay} closeWindow={closeWindow} setLocationDetails={setLocationDetails} currentTimezone={timezone}/>
             <Footer/>
