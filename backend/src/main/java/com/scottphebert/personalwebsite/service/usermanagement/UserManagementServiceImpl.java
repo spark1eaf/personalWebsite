@@ -91,7 +91,7 @@ public class UserManagementServiceImpl implements UserManagementService {
             return new ResponseEntity<>(Constants.REGISTRATION_SUCCESS, HttpStatus.OK);
         }
         catch (Exception ex){
-            logger.error(Constants.REGISTRATION_FAILED, request.getUsername(), ex);
+            logger.error(Constants.REGISTRATION_FAILED, request.getUsername(), ex.getMessage(), ex);
             return new ResponseEntity<>(Constants.REGISTRATION_FAILURE, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -114,7 +114,7 @@ public class UserManagementServiceImpl implements UserManagementService {
             }
         }
         catch (Exception ex){
-            logger.error(Constants.PASSWORD_UPDATE_FAIL_LOG, request.getEmail(), ex);
+            logger.error(Constants.PASSWORD_UPDATE_FAIL_LOG, request.getEmail(), ex.getMessage(), ex);
             return new ResponseEntity<>(Constants.UPDATE_PASSWORD_FAILURE, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -133,7 +133,7 @@ public class UserManagementServiceImpl implements UserManagementService {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception ex){
-            logger.error(Constants.LOGIN_FAILED_LOG, request.getUsername(), ex);
+            logger.error(Constants.LOGIN_FAILED_LOG, request.getUsername(), ex.getMessage(), ex);
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
@@ -168,7 +168,7 @@ public class UserManagementServiceImpl implements UserManagementService {
             }
         }
         catch (Exception ex){
-            logger.warn(Constants.LOGIN_STATUS_UNAVAILABLE_LOG, username, ex);
+            logger.warn(Constants.LOGIN_STATUS_UNAVAILABLE_LOG, username, ex.getMessage(), ex);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -190,8 +190,8 @@ public class UserManagementServiceImpl implements UserManagementService {
                 return new ResponseEntity<>(userDetails, HttpStatus.OK);
             }
         }
-        catch (Exception ex){
-            logger.error(Constants.USER_DETAILS_FAIL_LOG, username, ex);
+        catch (EntityNotFoundException ex){
+            logger.error(Constants.USER_DETAILS_FAIL_LOG, username, ex.getMessage(), ex);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

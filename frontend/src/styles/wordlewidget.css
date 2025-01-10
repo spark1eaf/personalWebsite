@@ -51,25 +51,24 @@
     margin-bottom: 5%;
 }
 
-.letter-container{
+.attempt-container{
+    width: 86%;
+    margin-left: 7%;
+    margin-right: 7%;
     display: flex;
-    justify-content: space-between;
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-left: 5%;
-    margin-right: 5%;
-    height: 30%;
+    height: 10%;
 }
 
 .letter-block-cont{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 15%;
-    height: 50%;
+    width: 20%;
+    height: 100%;
     border-style: solid;
     border-color: black;
 }
+
 .letter-block-cont p{
     color: black;
     font-size: 3em;
@@ -79,6 +78,7 @@
     position: relative;
     height: 30%;
     margin-bottom: 3%;
+    margin-top: 8%;
 }
 
 .wordle-form p{ text-align: center;}
@@ -106,6 +106,7 @@
 .wordle-submit-btn:hover, .get-word-btn:hover{ color: gray;}
 
 .no-attempts-cont, .successful-attempt-cont{
+    margin-top: 5%;
     height: 30%;
     text-align: center;
     font-size: .8em;
@@ -130,7 +131,7 @@
     .get-word-btn{ width: 15%;}
 }
 
-@media (max-width: 700px){
+@media (max-width: 750px), (max-height: 965px){
     .letter-block-cont p{ font-size: 2em;}
     .wordle-submit-btn{
         width: 40%;
@@ -144,7 +145,8 @@
     }
 }
 
-@media (max-width: 600px){
+@media (max-width: 600px), (max-height: 670px){
+    .letter-block-cont p{ font-size: 1.5em;}
     .wordle-title{ margin-bottom: 20%;}
     .wordle-form input{ padding-left: 3%;}
     .get-word-btn{ width: 25%;}

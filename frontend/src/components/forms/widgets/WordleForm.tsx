@@ -1,8 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import wordleservice from "../../../services/wordleService"
 import FormValidation from "../../../utils/FormValidation";
+import * as Constants from "../../../constants/constants"
 
-const WordleForm = ({setWordData}: {setWordData: React.Dispatch<React.SetStateAction<WordleResponseObj[]>>}) =>{
+interface Props{
+    attemptData: WordleResponse[]
+    setAttemptData: React.Dispatch<React.SetStateAction<WordleResponse[]>>
+}
+
+const WordleForm = ({attemptData: attemptData, setAttemptData: setAttemptData}: Props) =>{
     const [word, setWord] = useState("");
     const [attempt, setAttempt] = useState(0);
     const [todaysWord, setTodaysWord] = useState("");
@@ -12,8 +18,12 @@ const WordleForm = ({setWordData}: {setWordData: React.Dispatch<React.SetStateAc
         setWord(event.target.value)
     };
     
-    const displayTodaysWord = () =>{
-        setTodaysWord("testword");
+    const displayTodaysWord = async() =>{
+        const response = await wordleservice.retrieveTodaysWord(Constants.SESSION_USERNAME);
+        if(response.status === 200)
+            setTodaysWord(response.data);
+        else
+            alert(Constants.UNEXPECTED_ERROR_MSG);
     }
 
     //check if user entered a correct guess
@@ -24,11 +34,11 @@ const WordleForm = ({setWordData}: {setWordData: React.Dispatch<React.SetStateAc
                 guessAttempt = false;  
         }
         if(guessAttempt){
-            sessionStorage.setItem("attemptLimitReached", "true");
-            const streak = parseInt(sessionStorage.getItem("streak")||"") + 1;
-            const maxStreak = Math.max(streak, parseInt(sessionStorage.getItem("maxStreak")||""));
-            sessionStorage.setItem("streak", streak.toString());
-            sessionStorage.setItem("maxStreak", maxStreak.toString());
+            sessionStorage.setItem(Constants.SESSION_ATTEMPT_LIMIT_REACHED, "true");
+            const streak = parseInt(sessionStorage.getItem(Constants.SESSION_STREAK)||"") + 1;
+            const maxStreak = Math.max(streak, parseInt(sessionStorage.getItem(Constants.SESSION_MAX_STREAK)||""));
+            sessionStorage.setItem(Constants.SESSION_STREAK, streak.toString());
+            sessionStorage.setItem(Constants.SESSION_MAX_STREAK, maxStreak.toString());
             setIsGuessed(guessAttempt)
         }
     }
@@ -36,22 +46,26 @@ const WordleForm = ({setWordData}: {setWordData: React.Dispatch<React.SetStateAc
     const handleSubmissionAttempt = async(event:FormEvent) =>{
         event.preventDefault();
         if(word.length !== 5)
-            alert("Submission must be of length 5");
+            alert(Constants.INVALID_WORDLE_LENGTH);
         else if(FormValidation.isWord(word))
-            alert("The word you have entered is invalid. Please try again.");
+            alert(Constants.INVALID_WORD_MSG);
         else{
-            const response = await wordleservice.sendWordleAttempt(sessionStorage.getItem("username") || "", word, attempt);
+            const response = await wordleservice.sendWordleAttempt(sessionStorage.getItem(Constants.SESSION_USERNAME) || "", word, attempt + 1);
 
             if(response.status === 200){
-                console.log(response.data)
-                const attemptResults = response.data.attemptResults;
+                if(attempt + 1 === 5)
+                    sessionStorage.setItem(Constants.SESSION_ATTEMPT_LIMIT_REACHED, "true");
                 setAttempt(attempt + 1);
-                setWordData(attemptResults);
+                
+                const attemptResults:WordleResponse = {response:response.data.attemptResults};
+                const updatedAttemptData: WordleResponse[] = [...attemptData, attemptResults];
+                setAttemptData(updatedAttemptData);
                 checkAttempt(response.data.attemptResults);
             }
             else
-                alert("Error encountered during submission attempt. Please try again.");
+                alert(Constants.ERROR_TRY_AGAIN_MSG);
         }
+        setWord("")
     }
     //user makes a correct guess
     if(isGuessed){
@@ -73,12 +87,14 @@ const WordleForm = ({setWordData}: {setWordData: React.Dispatch<React.SetStateAc
         )
     }
     //no attempts
-    //todo add click event to get todays word. Also should set attempts to maxed out in the session data at this point.
     else{
         return(
             <div className="no-attempts-cont">
                 {todaysWord ? 
-                    <><p className="todays-word-txt">Todays Word: </p><h1 className="daily-word-txt">{todaysWord.toUpperCase()}</h1></>:
+                    <>
+                        <p className="todays-word-txt">Todays Word: </p>
+                        <h1 className="daily-word-txt">{todaysWord.toUpperCase()}</h1>
+                    </>:
                     <>
                         <p className="no-attempts-msg">Out of attempts. Would you like to see what the day's word is?</p>
                         <button className="get-word-btn" onClick={displayTodaysWord}>Show Word</button>

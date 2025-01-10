@@ -15,7 +15,7 @@ export const DASHBOARD = `/dashboard`;
 
 //footer
 export const FOOTER_P1 = `All Rights Reserved`;
-export const FOOTER_P2 = `@Scott Hebert 2024`;
+export const FOOTER_P2 = `@Scott Hebert 2025`;
 
 //endpoints
 export const LOGIN = `/login`;
@@ -27,6 +27,7 @@ export const GET_USER_DETAILS = `/getuserdetails`;
 export const GET_LOGIN_STATUS = `/getloginstatus`;
 export const GET_LOCATION_DETAILS = `/locationdetails`;
 export const WORDLE_ATTEMPT = `/wordleattempt`;
+export const GET_DAILY_WORD = `/getdailyword`;
 
 //external apis
 export const COORDINATES_URL = `https://api.zippopotam.us/US/`;
@@ -39,6 +40,8 @@ export const EMAIL_PARAM = `?email=`;
 export const LONGITUDE_PARAM = `?longitude=`;
 export const LATITUDE_PARAM = `&latitude=`;
 export const SPACE =  `%20`;
+export const WORD_PARAM = `&word=`;
+export const ATTEMPT_NUM_PARAM = `&attemptNum=`;
 
 //errors and exceptions
 export const UNEXPECTED_ERROR = `Unexpected Error`;
@@ -50,6 +53,8 @@ export const INVALID_STATE_ERROR = `Invalid entry. Please provide a valid US sta
 export const UNABLE_TO_FIND_LOC_INFO = `Unable to find location info for the city you entered.`;
 export const WEATHER_DATA_RETRIEVAL_ERROR = `Error retrieving weather data`;
 export const WEATHER_ENDPOINT_RETRIEVAL_ERROR = `Error retrieving weather endpoints`;
+export const INVALID_WORDLE_LENGTH = "Submission must be of length 5";
+export const INVALID_WORD_MSG = "The word you have entered is invalid. Please try again.";
 
 //user management
 export const SIGNOUT_SUCCESSFUL = `You've been signed out successfully.`;
@@ -58,8 +63,6 @@ export const PASSWORD_UPDATED = `Password has been successfully updated`;
 export const INCORRECT_CREDENTIALS = `Incorrect username or password, please try again.`;
 export const RECOVERY_EMAIL_SENT = `Recovery email sent.`;
 export const LOGIN_CHECK_RESPONSE = `User is logged in.`;
-export const SESSION_LOGIN_STATUS = `loggedIn`;
-export const SESSION_USER = `username`;
 
 //Weather service
 export const STATE_CODES = new Map([["Alabama", "AL"], ["Alaska", "AK"], ["Arizona", "AZ"], ["Arkansas", "AR"], ["California", "CA"], ["Colorado", "CO"], ["Connecticut", "CT"], ["Delaware", "DE"], ["Florida", "FL"], ["Georgia", "GA"], ["Hawaii", "HI"],
@@ -67,8 +70,24 @@ export const STATE_CODES = new Map([["Alabama", "AL"], ["Alaska", "AK"], ["Arizo
     ["Mississippi", "MS"], ["Missouri", "MO"], ["Montana", "MT"], ["Nebraska", "NE"], ["Nevada", "NV"], ["New Hampshire", "NH"], ["New Jersey", "NJ"], ["New Mexico", "NM"], ["New York", "NY"], ["North Carolina", "NC"], ["North Dakota", "ND"],
     ["Ohio", "OH"], ["Oklahoma", "OK"], ["Oregon", "OR"], ["Pennsylvania", "PA"], ["Rhode Island", "RI"], ["South Carolina", "SC"], ["South Dakota", "SD"], ["Tennessee", "TN"], ["Texas", "TX"], ["Utah", "UT"], ["Vermont", "VT"], ["Virginia", "VA"],
     ["Washington", "WA"], ["Washington D.C.", "DC"], ["West Virginia", "WV"], ["Wisconsin", "WI"], ["Wyoming", "WY"]]);
+    
+//session storage
+export const SESSION_USERNAME = "username;"
+export const SESSION_LOGIN_STATUS = `loggedIn`;
 export const SESSION_STATE_LOCATION = "state";
 export const SESSION_CITY_LOCATION = "city";
 export const SESSION_LONGITUDE = "longitude";
 export const SESSION_LATITUDE = "latitude";
 export const SESSION_WEATHER_DATA = "weatherData";
+export const SESSION_STREAK = "streak";
+export const SESSION_MAX_STREAK = "maxStreak";
+export const SESSION_ATTEMPT_LIMIT_REACHED = "attemptLimitReached";
+
+//display windows
+export const CURRENT_LOC_WINDOW = "getCurrentLocation";
+export const LOGIN_WINDOW = "login";
+export const REGISTRATION_WINDOW = "registration";
+export const RECOVERY_WINDOW = "recovery";
+export const NO_WINDOW = "";
+export const WEEKLY_FORECAST_WINDOW = "displayWeeklyForcast";
+export const WORDLE_WINDOW = "wordle";
