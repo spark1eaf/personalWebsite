@@ -41,7 +41,7 @@ const LeetcodeWidget = () =>{
             name = name.charAt(0).toUpperCase() + name.slice(1);
             console.log(link);
             console.log(name);
-            leetcodeInfo.push({problemLink: link, problemName:name})
+            leetcodeInfo.push({problemLink: link, problemName: name})
         })
         return leetcodeInfo;
     }

@@ -58,7 +58,6 @@ export const INVALID_WORD_MSG = "The word you have entered is invalid. Please tr
 export const ERROR_RETRIEVING_LINKS = "Error retrieving leetcode links";
 
 //user management
-export const SIGNOUT_SUCCESSFUL = `You've been signed out successfully.`;
 export const REGISTRATION_SUCCESSFUL = `Registration successful`;
 export const PASSWORD_UPDATED = `Password has been successfully updated`;
 export const INCORRECT_CREDENTIALS = `Incorrect username or password, please try again.`;

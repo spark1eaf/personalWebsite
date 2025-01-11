@@ -27,6 +27,7 @@ const Dashboard = () =>{
     const [latitude, setLatitude] = useState("");
     const [timezone, setTimezone] = useState<number | undefined>(undefined);
     const [windowToDisplay, setWindowToDisplay] = useState("");
+    document.title = `Dashboard`;
     
     //send out request to retrieve user details
     const populateUserDetails = async () =>{
@@ -57,7 +58,6 @@ const Dashboard = () =>{
             const response = await userManagementService.signout();
             if(response.status === 200 || response.status === 503){
                 navigator("/");
-                alert(Constants.SIGNOUT_SUCCESSFUL);
                 sessionStorage.clear();
             }
 
