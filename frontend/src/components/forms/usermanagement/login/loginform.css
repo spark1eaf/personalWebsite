@@ -1,0 +1,39 @@
+
+.forgot-pass-btn{
+    display: block;
+    background-color: transparent;
+    color: white;
+    text-align: left;
+    font-size: .6em;
+    margin-top: .7em;
+    margin-left: 16%;
+    cursor: pointer;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.login-form input{
+    display: block;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 4%;
+    width: 70%;
+    min-height: 3em;
+    padding-left: 1%;
+}
+
+.login-form input{
+    margin-top: 1.5%;
+    margin-bottom: 0;
+}
+
+.forgot-pass-btn:hover{ color: black;}
+
+@media (max-width: 550px){  
+    .login-form input{ padding-left: 3%;}
+    .forgot-pass-btn{ font-size: .5em;}
+}

@@ -1,7 +1,8 @@
 import {MouseEventHandler, useState } from "react";
-import WindowCloseBtn from "../../buttons/WindowCloseBtn";
-import WordleForm from "../../forms/widgets/WordleForm";
+import WindowCloseBtn from "../../buttons/windowclose/WindowCloseBtn";
+import WordleForm from "../../forms/widgets/wordle/WordleForm";
 import AttemptContainerCreator from "./AttemptContainerCreator";
+import "./wordlewindow.css"
 
 const WordleWindow = ({closeWindow}: {closeWindow:MouseEventHandler<HTMLButtonElement>}) =>{
     const [attemptData, setAttemptData] = useState<WordleResponse[]>([]);

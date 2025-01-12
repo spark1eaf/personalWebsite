@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import * as Constants from "../../../constants/constants"
-import userManagementService from "../../../services/userManagementService";
+import * as Constants from "../../../../constants/constants"
+import userManagementService from "../../../../services/userManagementService";
+import "./recoveryform.css"
 
 const RecoveryForm = () =>{
     const [email, setEmail] = useState("");

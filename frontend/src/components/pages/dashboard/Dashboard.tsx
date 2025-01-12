@@ -1,19 +1,14 @@
-import "../../styles/dashboard.css"
-import "../../styles/weatherwidget.css"
-import "../../styles/wordlewidget.css"
-import "../../styles/leetcodewidget.css"
-import Footer from "../Footer";
-import userManagementService from "../../services/userManagementService";
-import * as Constants from "../../constants/constants"
+import "./dashboard.css"
+import userManagementService from "../../../services/userManagementService";
+import * as Constants from "../../../constants/constants"
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useEffect, useState } from "react";
-import PopupWindow from "../windows/PopupWindow";
-import WeatherWidget from "../widgets/weather/WeatherWidget";
-import WordleWidget from "../widgets/wordle/WordleWidget";
-import LeetcodeWidget from "../widgets/leetcode/LeetcodeWidget";
-
-
+import PopupWindow from "../../windows/PopupWindow";
+import WeatherWidget from "../../widgets/weather/WeatherWidget";
+import WordleWidget from "../../widgets/wordle/WordleWidget";
+import LeetcodeWidget from "../../widgets/leetcode/LeetcodeWidget";
+import Footer from "../../footer/Footer";
 
 const Dashboard = () =>{
     const navigator = useNavigate();
@@ -87,22 +82,14 @@ const Dashboard = () =>{
         //clear weatherdata cache
     }
 
-    const handleCustomLocation = () =>{
-        setWindowToDisplay(Constants.CURRENT_LOC_WINDOW);
-    }
     return(
         <div className="dashboard">
             <button disabled={submitting} onClick={handleSignOut} className="logout-btn"> Sign out</button>
             <h1 className="title dashboard-title">{`Welcome ${name}!`}</h1>
             <div className="widgets">
-                    <div className="widget-cont">
-                        <WordleWidget setWindowToDisplay={setWindowToDisplay}/> 
-                    </div>
+                    <WordleWidget setWindowToDisplay={setWindowToDisplay}/> 
                     {zipcode ?             
-                        <div className="widget-cont">
-                            <WeatherWidget key={timezone} zipcode={zipcode} getByZip={getByZip} currentCity={city} currentState={state} currentLongitude={longitude} currentLatitude={latitude} currentTimezone={timezone} setWindowToDisplay={setWindowToDisplay}/> 
-                            <button onClick={handleCustomLocation} className="weather-widget-btn">Click here to get the weather for another location.</button>
-                        </div>
+                        <WeatherWidget key={timezone} zipcode={zipcode} getByZip={getByZip} currentCity={city} currentState={state} currentLongitude={longitude} currentLatitude={latitude} currentTimezone={timezone} setWindowToDisplay={setWindowToDisplay}/> 
                     : null}
                     <LeetcodeWidget/>
             </div>

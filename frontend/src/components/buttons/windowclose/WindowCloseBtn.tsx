@@ -1,4 +1,5 @@
 import { MouseEventHandler } from "react";
+import "./windowclosebtn.css"
 
 const WindowCloseBtn = ({closeWindow}:{closeWindow:MouseEventHandler<HTMLButtonElement>}) =>{
     return(

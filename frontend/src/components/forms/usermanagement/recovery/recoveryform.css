@@ -1,0 +1,20 @@
+.recovery-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.recovery-form input{
+    display: block;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 4%;
+    width: 70%;
+    min-height: 3em;
+    padding-left: 1%;
+    margin-top: 1.5%;
+}
+
+@media (max-width: 550px){
+    .recovery-form input{ padding-left: 3%;}
+}

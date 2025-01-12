@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import LoginBtns from "../buttons/LoginBtns";
-import Footer from "../Footer";
-import PopupWindow from "../windows/PopupWindow";
-import "../../styles/landingpage.css"
-import userManagementService from "../../services/userManagementService";
+import LoginBtns from "../../buttons/login/LoginBtns";
+import Footer from "../../footer/Footer";
+import PopupWindow from "../../windows/PopupWindow";
+import "./landingpage.css"
+import userManagementService from "../../../services/userManagementService";
 import { useNavigate } from "react-router-dom";
-import * as Constants from "../../constants/constants"
+import * as Constants from "../../../constants/constants"
 import axios from "axios";
 
 const LandingPage = ()=>{

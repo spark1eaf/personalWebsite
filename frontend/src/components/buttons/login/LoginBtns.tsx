@@ -1,14 +1,15 @@
 import { MouseEventHandler, useState } from "react";
-import userManagementService from "../../services/userManagementService";
-import * as Constants from "../../constants/constants";
+import userManagementService from "../../../services/userManagementService";
+import * as Constants from "../../../constants/constants";
 import { useNavigate } from "react-router-dom";
+import "./loginbtns.css"
 
-interface ClickEvents{
+interface Props{
     displayLoginWindow:MouseEventHandler<HTMLButtonElement>
     displayRegistrationWindow:MouseEventHandler<HTMLButtonElement>
 };
 
-const LoginBtns = ({displayLoginWindow, displayRegistrationWindow}:ClickEvents) =>{
+const LoginBtns = ({displayLoginWindow, displayRegistrationWindow}:Props) =>{
     const [submitting, setSubmitting] = useState(false);
     const navigator = useNavigate();
 

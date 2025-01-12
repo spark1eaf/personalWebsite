@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react"
-import * as Constants from "../../../constants/constants"
-import locationService from "../../../services/locationService";
+import * as Constants from "../../../../constants/constants"
+import locationService from "../../../../services/locationService";
+import "./locationform.css"
 import { DateTime } from 'luxon';
-
 
 interface Props{
     setLocationDetails?: (userCity:string, userState:string, userLongitude:string, userLatitude:string, userTimezone:number) => void,

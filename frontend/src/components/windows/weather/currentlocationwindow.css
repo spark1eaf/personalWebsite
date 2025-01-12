@@ -1,0 +1,5 @@
+.get-location-title{ text-align: center;}
+
+@media (max-width: 600px){
+    .get-location-title{ font-size: 1em;}
+}

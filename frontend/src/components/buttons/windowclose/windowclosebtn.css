@@ -1,0 +1,16 @@
+.close-btn-cont{
+    display: grid;
+    justify-items: end;
+}
+
+.win-close-btn{
+    margin-right: 4%;
+    height: 5%;
+    margin-top: 2%;
+    color: white;
+    background-color: transparent;
+    font-size: 100%;
+    cursor: pointer;
+}
+
+.win-close-btn:hover{ color: black;}

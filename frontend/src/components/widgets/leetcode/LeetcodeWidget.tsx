@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import leetcodeService from "../../../services/leetcodeService";
 import * as Constants from "../../../constants/constants"
+import "./leetcodewidget.css"
 
 interface LeetcodeInfo{
     problemLink: string,
@@ -17,12 +18,11 @@ const LeetcodeWidget = () =>{
             const linkArr =  response.data.split('\n');
             getLeetcodeInfo(linkArr);
         }
-
     }
 
     const getLeetcodeInfo = (linkArr:Array<string>) =>{
         const indexesToGrab:Array<number> = [];
-        //determine which problem links we'll grab
+        //determine which problem links to grab.
         for(let i = 0; i < 3;){
             const linkIndex = Math.floor(Math.random() * (linkArr.length - 1 + 1)) + 1;
             if(!indexesToGrab.includes(linkIndex)){
@@ -49,7 +49,6 @@ const LeetcodeWidget = () =>{
     useEffect(() =>{
         getQuestions();
     },[])
-
 
     return(
         <div className="leetcode-widget">

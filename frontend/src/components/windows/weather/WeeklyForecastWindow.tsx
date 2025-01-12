@@ -1,8 +1,9 @@
 import { CSSProperties, MouseEventHandler, useEffect, useState } from "react";
 import { throttle } from "lodash";
-import WindowCloseBtn from "../../buttons/WindowCloseBtn";
+import WindowCloseBtn from "../../buttons/windowclose/WindowCloseBtn";
 import { WeatherPeriod } from "../../widgets/weather/WeatherInterfaces";
 import * as Constants from "../../../constants/constants"
+import "./weeklyforcastwindow.css"
 
 interface Props{
     closeWindow:MouseEventHandler<HTMLButtonElement>,
@@ -29,6 +30,7 @@ const WeeklyForecastWindow = ({closeWindow, currentTimezone}: Props) =>{
     const [hoverLeft, setHoverLeft] = useState(false)
     const [hoverRight, setHoverRight] = useState(false)
 
+    //generate weekly weather data object from cached weather data.
     const getWeeksData = () =>{
         const data:WeatherPeriod[] = JSON.parse(sessionStorage.getItem(Constants.SESSION_WEATHER_DATA) || "[]");
         const weeklyData: WeeklyData[] = [];

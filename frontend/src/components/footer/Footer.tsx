@@ -1,4 +1,5 @@
-import * as Constants from "../constants/constants";
+import * as Constants from "../../constants/constants";
+import "./footer.css"
 
 const Footer = () =>{
     return(

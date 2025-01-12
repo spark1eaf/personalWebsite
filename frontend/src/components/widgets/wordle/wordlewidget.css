@@ -1,0 +1,31 @@
+.wordle-widget-title{
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 5%;
+}
+
+.wordle-streak{
+    margin-left: 9%;
+    font-size: 1.3em;
+}
+
+.wordle-attempted-msg{
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 10%;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+.attempt-wordle-btn {
+    background-color: transparent;
+    color: white;
+    font-size: 1.2em;
+    margin-top: auto;
+    margin-bottom: 10%;
+}
+
+.attempt-wordle-btn:hover{
+    color: rgb(122, 118, 118);
+    cursor: pointer;
+}

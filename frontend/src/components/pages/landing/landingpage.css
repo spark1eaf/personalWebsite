@@ -1,0 +1,56 @@
+.landing-title{ font-size: 5em;}
+
+input:hover{ background-color: rgb(235, 229, 229);}
+
+.login-btns{
+    display: flex;
+    margin-top: 2em;
+    margin-right: 2em;
+    justify-content: right;
+}
+
+.login-btns button:hover, .logout-btn:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
+.feature-prefix{
+    margin-top: 10%;
+    margin-left: 15%;
+    font-size: 3.2em;
+}
+
+.site-features{
+    text-align: center;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 20%;
+    font-size: 1.6em;
+}
+
+.site-features li{
+    margin-top: 1%;
+    text-align: left;
+}
+
+.submit-btn{
+    display: inline-block;
+    position: absolute;
+    right: 5%;
+    bottom: 3%;
+    width: 13%;
+    height: 3em;
+    font-size: .6em;
+    background-color: white;
+    cursor: pointer;
+}
+
+.submit-btn:hover{ color: gray;}
+
+@media (max-width: 1120px){
+    .submit-btn{ width: 30%;}
+}
+
+@media (max-width: 550px){
+    .submit-btn{ width: 40%;}
+}

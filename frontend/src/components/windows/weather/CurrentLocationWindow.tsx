@@ -1,6 +1,7 @@
 import { MouseEventHandler } from "react";
-import WindowCloseBtn from "../../buttons/WindowCloseBtn";
-import LocationForm from "../../forms/widgets/LocationForm";
+import WindowCloseBtn from "../../buttons/windowclose/WindowCloseBtn";
+import LocationForm from "../../forms/widgets/location/LocationForm";
+import "./currentlocationwindow.css"
 
 interface Props{
     closeWindow:MouseEventHandler<HTMLButtonElement>|(()=>void)

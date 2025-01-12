@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import wordleservice from "../../../services/wordleService"
-import FormValidation from "../../../utils/FormValidation";
-import * as Constants from "../../../constants/constants"
+import wordleservice from "../../../../services/wordleService"
+import FormValidation from "../../../../utils/FormValidation";
+import * as Constants from "../../../../constants/constants";
+import "./wordleform.css"
 
 interface Props{
     attemptData: WordleResponse[]

@@ -1,0 +1,66 @@
+.wordle-form{
+    position: relative;
+    height: 30%;
+    margin-bottom: 3%;
+    margin-top: 8%;
+}
+
+.wordle-form p{ text-align: center;}
+
+.wordle-form input{
+    display: block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 15%;
+    padding-left: 1%;
+}
+
+.wordle-submit-btn{
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    width: 13%;
+    height: 15%;
+    font-size: .6em;
+    background-color: white;
+    cursor: pointer;
+}
+
+.get-word-btn{
+    width: 12%;
+    height: 45%;
+    background-color: white;
+    cursor: pointer;
+    font-size: 1.5em;
+    margin-top: 2%;
+}
+
+.wordle-submit-btn:hover, .get-word-btn:hover{ color: gray;}
+
+.todays-word-txt{ font-size: 1.7em;}
+
+.daily-word-txt{ font-size: 3em;;}
+
+@media (max-width: 1250px){
+    .no-attempts-cont, .successful-attempt-cont{ font-size: .6em;}
+    .get-word-btn{ width: 15%;}
+}
+
+@media (max-width: 750px){
+    .wordle-submit-btn{
+        width: 40%;
+        margin-left: 55%;
+        height: 20%;
+    }
+
+    .wordle-form input{
+        width: 80%;
+        margin-bottom: 20%;
+    }
+}
+
+@media (max-width: 600px), (max-height: 670px) and (max-width: 750px){
+    .wordle-form input{ padding-left: 3%;}
+    .get-word-btn{ width: 25%;}
+}

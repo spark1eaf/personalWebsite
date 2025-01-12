@@ -1,0 +1,18 @@
+html,body {height:100%;}
+
+a {text-decoration: none;}
+
+#root{ height: 100%;}
+
+:focus::placeholder {color: transparent;}
+
+button{ border-style: none;}
+
+.title{text-align: center;}
+
+body { 
+    margin-left: 0;
+    background-color: #1f2b12;
+    color: ivory;
+    font-family: "Roboto Mono";
+}

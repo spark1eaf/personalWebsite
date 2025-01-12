@@ -3,6 +3,7 @@ import * as Constants from "../../../constants/constants";
 import locationService from "../../../services/locationService";
 import weatherService from "../../../services/weatherService";
 import { WeatherPeriod, ResponsePeriod } from "./WeatherInterfaces";
+import "./weatherwidget.css"
 
 interface Props{
     zipcode:string,
@@ -83,7 +84,7 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
             const startTime = ISOTime.substring(11,16);
             ISOTime = element.endTime;
             let endTime = ISOTime.substring(11,16);
-            //handle issue with time rollover for finding the weather period
+            //handle issue with time rollover for finding the weather period.
             if(endTime === "00:00")
                 endTime = "24:01";
             // Compare current date and time with the weather period's start and end times.
@@ -96,6 +97,10 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
 
     const displayWeeklyForecast = () =>{
         setWindowToDisplay(Constants.WEEKLY_FORECAST_WINDOW);
+    }
+
+    const handleCustomLocation = () =>{
+        setWindowToDisplay(Constants.CURRENT_LOC_WINDOW);
     }
 
     useEffect(() => {
@@ -117,19 +122,25 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
     } :{};
 
     return (
-        <div className="weather-widget">
-            {currentWeather ? <>
-                     <h1 className="Weather-widget-title">{city}, {state}</h1>
-                     <div className="weather-widget-specs">
-                         <p>Time: {currentTimeAndDate}</p>
-                         <p style={tempStyle}>Current Temperature: {currentWeather.temperature}°F</p>
-                         <p>Humidity: {currentWeather.humidity}%</p>
-                         <p>Precipitation Chance: {currentWeather.precipChance}%</p>
-                         <p>Wind Speed: {currentWeather.windspeed}</p>
-                         <p>Prediction: {currentWeather.shortForcast}</p>
-                     </div>
-                     <button onClick={displayWeeklyForecast} className="view-forcast-btn">Click to view this week's forcast</button>
-            </> : null}
+        <div className="widget-cont">
+            <div className="weather-widget">
+                {currentWeather ? 
+                    <>
+                    <h1 className="Weather-widget-title">{city}, {state}</h1>
+                    <div className="weather-widget-specs">
+                        <p>Time: {currentTimeAndDate}</p>
+                        <p style={tempStyle}>Current Temperature: {currentWeather.temperature}°F</p>
+                        <p>Humidity: {currentWeather.humidity}%</p>
+                        <p>Precipitation Chance: {currentWeather.precipChance}%</p>
+                        <p>Wind Speed: {currentWeather.windspeed}</p>
+                        <p>Prediction: {currentWeather.shortForcast}</p>
+                    </div>
+                    <button onClick={displayWeeklyForecast} className="view-forcast-btn">Click to view this week's forcast</button>
+                    </> : 
+                    null
+                }
+            </div>
+            <button onClick={handleCustomLocation} className="weather-widget-btn">Click here to get the weather for another location.</button>
         </div>
     );
 };

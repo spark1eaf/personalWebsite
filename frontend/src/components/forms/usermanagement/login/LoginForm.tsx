@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent, MouseEventHandler, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import userManagementService from "../../../services/userManagementService";
-import * as Constants from "../../../constants/constants"
+import userManagementService from "../../../../services/userManagementService";
+import * as Constants from "../../../../constants/constants"
+import "./loginform.css"
 
 const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow?: MouseEventHandler<HTMLButtonElement>}) =>{
     const [username, setUsername] = useState("");
@@ -42,7 +43,7 @@ const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow?: MouseEventH
     };
     
     return(
-        <form className="logon-form" onSubmit={sendLoginData}>
+        <form className="login-form" onSubmit={sendLoginData}>
             <input type="text" onChange={handleChange} placeholder="Username" name="username" value={username} required />
             <button className="forgot-pass-btn" type="button" onClick={displayRecoveryWindow}>Forgot Password?</button>
             <input type="password" onChange={handleChange} placeholder="Password" name="password" value={password} required />

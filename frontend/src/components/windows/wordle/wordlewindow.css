@@ -1,0 +1,60 @@
+.widget-popup-window{
+    position: fixed;
+    z-index: 2;
+    top: 5%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: #31393cf6;
+    width: 95%;
+    height: 90%;
+    font-size: 2em;
+    border-radius: 1.5%;
+    overflow: auto;
+}
+
+.wordle-title{
+    font-size: 2.5em;
+    text-align: center;
+    height: 10%;
+    margin-bottom: 5%;
+}
+
+.attempt-container{
+    width: 86%;
+    margin-left: 7%;
+    margin-right: 7%;
+    display: flex;
+    height: 10%;
+}
+
+.letter-block-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    border-style: solid;
+    border-color: black;
+}
+
+.letter-block-cont p{
+    color: black;
+    font-size: 3em;
+}
+
+@media (max-width: 1250px){
+    .wordle-title{margin-bottom: 10%;}
+}
+
+@media (max-height: 965px){
+    .letter-block-cont p{ font-size: 2em;}
+}
+
+@media (max-width: 750px){
+    .letter-block-cont p{ font-size: 2em;}
+}
+
+@media (max-width: 600px), (max-height: 670px) and (max-width: 750px){
+    .letter-block-cont p{ font-size: 1.5em;}
+    .wordle-title{ margin-bottom: 20%;}
+}
