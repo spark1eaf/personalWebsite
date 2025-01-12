@@ -58,7 +58,7 @@
     flex-wrap: wrap;
 }
 
-.weatherset h1, .weatherset-date{ text-align: center;}
+.weatherset h1, .weatherset-mobile h1, .weatherset-date{ text-align: center;}
 
 .weatherset{
     flex: 0 0 20%;
@@ -81,7 +81,7 @@
         display: flex;
         width: 90%;
         margin-left: 5%;
-        height: 80%;
+        min-height: 80%;
     }
 
     .weatherset-mobile{
