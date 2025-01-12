@@ -42,6 +42,7 @@ const LocationForm = ({setLocationDetails, closeWindow}:Props) =>{
             if(coordinatesAPIResponse.status === 200 ){
                 const longitude = coordinatesAPIResponse.data.places[0].longitude;
                 const latitude = coordinatesAPIResponse.data.places[0].latitude;
+                const userCity = coordinatesAPIResponse.data.places[0]["place name"];
 
                 //get timezone
                 const timezoneAPIResponse = await locationService.getTimezone(latitude, longitude);
@@ -51,7 +52,7 @@ const LocationForm = ({setLocationDetails, closeWindow}:Props) =>{
                         timezone = timezoneAPIResponse.data.dstOffSet;
                     else
                         timezone = timezoneAPIResponse.data.gmtOffset;
-                    setLocationDetails?.(city, state, longitude, latitude, timezone);
+                    setLocationDetails?.(userCity, state, longitude, latitude, timezone);
                     closeWindow();
                 }
                 else

@@ -60,6 +60,7 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
             });
             //cache data
             console.log("weather data cached")
+
             sessionStorage.setItem(Constants.SESSION_WEATHER_DATA, JSON.stringify(weatherData));
             setWeatherData(weatherData);
         }
@@ -103,10 +104,9 @@ const WeatherWidget = ({zipcode, getByZip, currentCity, currentState, currentLon
     }, []);
 
     useEffect(() => {
-        if (latitude && longitude && weatherData.length === 0) 
+        if (latitude && longitude && weatherData.length === 0)
             getWeatherData();
     }, [latitude,longitude]);
-
 
     const currentWeather = fetchCurrentWeatherData();
     const temperature: number|undefined = currentWeather?.temperature;
