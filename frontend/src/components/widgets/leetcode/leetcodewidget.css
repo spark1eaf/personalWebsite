@@ -8,25 +8,22 @@
     margin-bottom: 5%;
 }
 
-.leetcode-widget-title{
+.leetcode-widget-title{ 
     text-align: center;
-    font-size: 4em;
     margin-bottom: 5%;
+    font-size: 300%;
+    padding: 0 5%;
 }
 
 .leetcode-links{
     color: pink;
     margin-bottom: 5%;
 }
-.leetcode-links li{
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 1%;
-}
+.leetcode-links li{ margin: .5% 5%;}
 
 .leetcode-link{
     color: white;
-    font-size: 2em;
+    font-size: 200%;
     padding-right: 5%;
 }
 .leetcode-link:hover, .get-new-qtns-btn:hover{
@@ -34,7 +31,7 @@
 }
 
 .get-new-qtns-btn{
-    font-size: 2em;
+    font-size: 250%;
     color: white;
     background-color: transparent;
     margin-left: 50%;
@@ -43,34 +40,17 @@
     margin-top: auto;
 }
 
-@media (max-width: 1550px){
-    .leetcode-link{
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 1170px){
-    .leetcode-widget-title{
-        font-size: 3em;
-        margin-bottom: 5%;
-    }
-
-    .leetcode-link{
-        font-size: 1.2em;
-    }
-}
-
 @media (max-width: 600px){
 
     .leetcode-widget-title{
-        font-size: 2em;
+        font-size: 250%;
     }
 
     .leetcode-link{
-        font-size: .9em;
+        font-size: 90%
     }
 
     .get-new-qtns-btn{
-        font-size: 1.5em;
+        font-size: 130%;
     }
 }

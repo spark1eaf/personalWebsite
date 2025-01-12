@@ -2,12 +2,11 @@
     display: grid;
     justify-items: end;
     height: 5%;
+    margin-top: 2%;
 }
 
 .win-close-btn{
     margin-right: 4%;
-    height: 5%;
-    margin-top: 2%;
     color: white;
     background-color: transparent;
     font-size: 100%;

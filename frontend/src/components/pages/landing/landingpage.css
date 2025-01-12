@@ -2,18 +2,6 @@
 
 input:hover{ background-color: rgb(235, 229, 229);}
 
-.login-btns{
-    display: flex;
-    margin-top: 2em;
-    margin-right: 2em;
-    justify-content: right;
-}
-
-.login-btns button:hover, .logout-btn:hover {
-    background-color: #ffffff;
-    color: black;
-}
-
 .feature-prefix{
     margin-top: 10%;
     margin-left: 15%;
@@ -34,25 +22,8 @@ input:hover{ background-color: rgb(235, 229, 229);}
 }
 
 .submit-btn{
-    margin-top: auto;
-    margin-left: 75%;
-    width: 15%;
-    height: 3em;
-    font-size: .6em;
     background-color: white;
     cursor: pointer;
 }
 
-@media (max-width: 1120px){
-    .submit-btn{
-        width: 30%;
-        margin-left: 60%;
-    }
-}
-
-@media (max-width: 550px){
-    .submit-btn{ 
-        width: 40%;
-        margin-left: 50%;
-    }
-}
+.submit-btn:hover{ color: gray;}

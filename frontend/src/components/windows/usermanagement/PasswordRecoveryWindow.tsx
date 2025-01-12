@@ -6,7 +6,7 @@ const PasswordRecoverWindow = ({closeWindow}: {closeWindow:MouseEventHandler<HTM
     return(
             <>
                 <WindowCloseBtn closeWindow={closeWindow} />
-                <h1 className="title">Reset Password</h1>
+                <h1 className="title pass-rec-title">Reset Password</h1>
                 <RecoveryForm />
             </>
     );

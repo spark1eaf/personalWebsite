@@ -1,8 +1,20 @@
 .login-btns button{
-    font-size: 1.5em;
+    font-size: 1.7em;
     width: 5em;
-    height: 2.5em;
+    height: 3.5em;
     color: #ffffff;
     background-color: black;
     cursor: pointer;
+}
+
+.login-btns{
+    display: flex;
+    margin-top: 3%;
+    margin-right: 5%;
+    justify-content: right;
+}
+
+.login-btns button:hover{
+    background-color: #ffffff;
+    color: black;
 }

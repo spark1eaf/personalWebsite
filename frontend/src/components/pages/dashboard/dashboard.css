@@ -1,11 +1,11 @@
 .logout-btn-cont{
     display: flex;
     justify-content: end;
+    margin-top: 3%;
     margin-right: 5%;
 }
 
 .logout-btn{
-    margin-top: 3%;
     align-self: left;
     font-size: 2.5em;
     padding: 2%;
@@ -14,9 +14,14 @@
     cursor: pointer;
 }
 
+.logout-btn:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
 .dashboard{ height: 100%;}
 
-.title{ font-size: 5em;}
+.dashboard-title{ font-size: 5em;}
 
 .widgets{
     display: flex;
@@ -36,15 +41,12 @@
     width: 45%;
     min-height: 525px;
     margin-bottom: 5%;
+    margin-top: 5%;
 }
 
 @media (max-width: 1120px) {
     
-    .title{margin-bottom: 23%;}
-    
-    .logout-btn-cont{
-        margin-top: 7%;
-    }
+    .logout-btn-cont{ margin-top: 7%;}
 
     .widget-cont{
         width: 80%;
@@ -56,7 +58,7 @@
 
     .logout-btn{ padding: 5%;}
 
-    .title{ 
+    .dashboard-title{ 
         font-size: 4em;
         margin-bottom: 35%;
     }

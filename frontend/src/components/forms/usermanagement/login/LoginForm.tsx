@@ -47,7 +47,7 @@ const LoginForm = ({displayRecoveryWindow}: {displayRecoveryWindow?: MouseEventH
             <input type="text" onChange={handleChange} placeholder="Username" name="username" value={username} required />
             <button className="forgot-pass-btn" type="button" onClick={displayRecoveryWindow}>Forgot Password?</button>
             <input type="password" onChange={handleChange} placeholder="Password" name="password" value={password} required />
-                <button type="submit" disabled={submitting} className="submit-btn">Log in</button>
+                <button type="submit" disabled={submitting} className="submit-btn login-submit-btn">Log in</button>
         </form>
     );
 };

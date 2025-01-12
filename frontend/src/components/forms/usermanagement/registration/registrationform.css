@@ -48,6 +48,10 @@
         bottom: -18%;
         font-size: 50%;
     }
+
+    .registration-btn{
+        width: 20%;
+    }   
 }
 
 @media (max-width: 550px){

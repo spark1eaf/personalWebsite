@@ -67,7 +67,7 @@ const LocationForm = ({setLocationDetails, closeWindow}:Props) =>{
         <form className="location-form" onSubmit={populateLocationDetails}>
             <input type="text" onChange={handleChange} placeholder="Enter City" name="city" value={city} required/>
             <input type="text" onChange={handleChange} placeholder="Enter state" name="state" value={state} required/>
-        <button type="submit" className="submit-btn">Submit</button>
+        <button type="submit" className="submit-btn loc-submit-btn">Submit</button>
     </form> 
     )
 }

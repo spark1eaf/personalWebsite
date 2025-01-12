@@ -13,8 +13,6 @@
 .login-form{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    height: 70%;
 }
 
 .login-form input{
@@ -23,7 +21,7 @@
     margin-right: 15%;
     margin-bottom: 4%;
     width: 70%;
-    min-height: 3em;
+    height: 3.5em;
     padding-left: 1%;
 }
 
@@ -32,16 +30,28 @@
     margin-bottom: 0;
 }
 
+.login-submit-btn{
+    position: absolute;
+    width: 20%;
+    height: 10%;
+    font-size: .8em;
+    bottom: 10%;
+    right: 10%
+}
+
 .forgot-pass-btn:hover{ color: black;}
 
 .login-btn:hover{ color: gray;}
 
+@media (max-height: 975px){
+    .login-submit-btn{ width: 25%;}
+}
+
 @media (max-width: 550px){  
     .login-form input{ padding-left: 3%;}
     .forgot-pass-btn{ font-size: .5em;}
-}
-
-
-@media (max-height: 975px){
-    .login-form{ height: 60%;}
+    .login-submit-btn{
+        width: 30%;
+        right: 15%;
+    }
 }

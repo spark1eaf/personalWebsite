@@ -4,10 +4,28 @@
     margin-right: 15%;
     margin-bottom: 4%;
     width: 70%;
-    height: 3em;
+    height: 4em;
     padding-left: 1%;
+}
+
+.loc-submit-btn{
+    position: absolute;
+    width: 15%;
+    height: 10%;
+    font-size: 1em;
+    bottom: 10%;
+    right: 10%
+}
+
+@media (max-width: 850px){   
+    .location-form input{ padding-left: 3%;}
+    .loc-submit-btn{ width: 25%;}    
 }
 
 @media (max-width: 600px){   
     .location-form input{ padding-left: 3%;}    
+    .loc-submit-btn{ 
+        font-size: .7em;
+        width: 35%;
+    }    
 }

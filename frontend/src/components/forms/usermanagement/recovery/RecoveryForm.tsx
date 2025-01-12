@@ -23,7 +23,7 @@ const RecoveryForm = () =>{
         <form className="recovery-form" onSubmit={requestRecovery}>
             <p className="recovery-text">{Constants.RECOVERY_TEXT}</p>
             <input type="email" onChange={handleEmailChange} placeholder="Email" name="email" value={email} required/>
-            <button type="submit" disabled={submitting} className="submit-btn">Submit</button>
+            <button type="submit" disabled={submitting} className="submit-btn recovery-submit-btn">Submit</button>
         </form>
     );
 };

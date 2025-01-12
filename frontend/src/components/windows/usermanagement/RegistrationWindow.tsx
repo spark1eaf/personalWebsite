@@ -6,7 +6,7 @@ const RegistrationWindow = ({closeWindow}: {closeWindow:MouseEventHandler<HTMLBu
     return(
             <>
                 <WindowCloseBtn closeWindow={closeWindow}/>
-                <h1 className="title">Register</h1>
+                <h1 className="title reg-win-title">Register</h1>
                 <RegistrationForm/>
             </>
     );
