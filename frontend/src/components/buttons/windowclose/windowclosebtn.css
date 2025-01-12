@@ -1,6 +1,7 @@
 .close-btn-cont{
     display: grid;
     justify-items: end;
+    height: 5%;
 }
 
 .win-close-btn{

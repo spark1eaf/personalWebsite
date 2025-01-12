@@ -1,7 +1,20 @@
+.title{
+    height: 10%;
+    font-size: 1.8em;
+}
+
 .recovery-form {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    height: 75%;
+}
+
+.recovery-text{
+    text-align: left;
+    margin: 0 15%;
+    margin-bottom: 5%;
+    font-size: 1em;
 }
 
 .recovery-form input{
@@ -15,6 +28,33 @@
     margin-top: 1.5%;
 }
 
-@media (max-width: 550px){
+@media (max-width: 700px){
+    .title{ font-size: 1.4em;}
+    .recovery-text{
+        font-size: .7em;
+        margin-bottom: 15%;
+    }
     .recovery-form input{ padding-left: 3%;}
 }
+
+@media (max-width: 550px){
+    .recovery-form input{ padding-left: 3%;}
+    .title{margin-bottom: 20%;}
+    .recovery-form{height: 65%}
+}
+
+.submit-btn{
+    margin-bottom: 5%;
+}
+
+/* @media (max-width: 1650px){            
+    .recovery-text{
+        margin-bottom: 15%;
+    } 
+}
+@media (max-width: 550px){            
+    .recovery-text{
+        font-size: .7em;
+        margin-bottom: 10%;
+    } 
+} */

@@ -33,6 +33,8 @@ const PopupWindow = ({windowToDisplay, closeWindow, displayRecoveryWindow, setLo
     useEffect(() =>{
         if(windowToDisplay === Constants.WEEKLY_FORECAST_WINDOW || windowToDisplay === Constants.WORDLE_WINDOW)
             setClassname("widget-popup-window");
+        else if(windowToDisplay === Constants.CURRENT_LOC_WINDOW)
+            setClassname("location-popup-window")
         else
             setClassname("popup-window");
     },[windowToDisplay])

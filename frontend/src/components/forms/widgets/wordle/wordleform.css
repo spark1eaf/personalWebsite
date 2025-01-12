@@ -40,12 +40,21 @@
 
 .todays-word-txt{ font-size: 1.7em;}
 
-.daily-word-txt{ font-size: 3em;;}
+.daily-word-txt{ font-size: 3em;}
 
+.no-attempts-cont, .successful-attempt-cont{
+    margin-top: 5%;
+    height: 30%;
+    text-align: center;
+    font-size: .8em;
+    padding-left: 5%;
+    padding-right: 5%;
+}
 @media (max-width: 1250px){
     .no-attempts-cont, .successful-attempt-cont{ font-size: .6em;}
-    .get-word-btn{ width: 15%;}
+    .get-word-btn{ width: 18%;}
 }
+
 
 @media (max-width: 750px){
     .wordle-submit-btn{
@@ -61,6 +70,21 @@
 }
 
 @media (max-width: 600px), (max-height: 670px) and (max-width: 750px){
+    .wordle-form input{ padding-left: 3%;}
+    .get-word-btn{ width: 28%;}
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px), (max-height: 670px) and (max-width: 750px){
+    .letter-block-cont p{ font-size: 1.5em;}
+    .wordle-title{ margin-bottom: 20%;}
     .wordle-form input{ padding-left: 3%;}
     .get-word-btn{ width: 25%;}
 }

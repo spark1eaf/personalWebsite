@@ -1,5 +1,21 @@
+.location-popup-window{
+    position: fixed;
+    z-index: 2;
+    top: 5%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: #31393cf6;
+    width: 50%;
+    height: 70%;
+    font-size: 2em;
+    border-radius: 1.5%;
+     overflow: auto;
+}
+
 .get-location-title{ text-align: center;}
 
 @media (max-width: 600px){
     .get-location-title{ font-size: 1em;}
+
+    .location-popup-window{font-size: 1em;}
 }

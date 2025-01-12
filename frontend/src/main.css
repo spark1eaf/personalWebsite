@@ -8,7 +8,11 @@ a {text-decoration: none;}
 
 button{ border-style: none;}
 
-.title{text-align: center;}
+.title{
+    text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
+}
 
 body { 
     margin-left: 0;

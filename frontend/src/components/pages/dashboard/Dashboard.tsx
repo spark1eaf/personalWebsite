@@ -1,4 +1,5 @@
 import "./dashboard.css"
+// import "../../../styles/dashboard.css"
 import userManagementService from "../../../services/userManagementService";
 import * as Constants from "../../../constants/constants"
 import { useNavigate } from 'react-router-dom';
@@ -84,8 +85,10 @@ const Dashboard = () =>{
 
     return(
         <div className="dashboard">
-            <button disabled={submitting} onClick={handleSignOut} className="logout-btn"> Sign out</button>
-            <h1 className="title dashboard-title">{`Welcome ${name}!`}</h1>
+            <div className="logout-btn-cont">
+                <button disabled={submitting} onClick={handleSignOut} className="logout-btn"> Sign out</button>
+            </div>
+            <h1 className="title">{`Welcome ${name}!`}</h1>
             <div className="widgets">
                     <WordleWidget setWindowToDisplay={setWindowToDisplay}/> 
                     {zipcode ?             

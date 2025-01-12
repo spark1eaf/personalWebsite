@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    height: 70%;
 }
 
 .login-form input{
@@ -33,7 +34,14 @@
 
 .forgot-pass-btn:hover{ color: black;}
 
+.login-btn:hover{ color: gray;}
+
 @media (max-width: 550px){  
     .login-form input{ padding-left: 3%;}
     .forgot-pass-btn{ font-size: .5em;}
+}
+
+
+@media (max-height: 975px){
+    .login-form{ height: 60%;}
 }

@@ -27,6 +27,7 @@
 .leetcode-link{
     color: white;
     font-size: 2em;
+    padding-right: 5%;
 }
 .leetcode-link:hover, .get-new-qtns-btn:hover{
     color: rgb(122, 118, 118);
