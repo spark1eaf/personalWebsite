@@ -9,14 +9,13 @@
     text-align: left;
     margin: 0 5%;
     margin-bottom: 6%;
-    font-size: 1.5em;
+    font-size: 130%;
 }
 
 .recovery-form input{
     display: block;
     margin-left: 15%;
     margin-right: 15%;
-    margin-bottom: 4%;
     width: 70%;
     height: 3.3em;
     padding-left: 1%;
@@ -24,44 +23,27 @@
 
 .recovery-submit-btn{
     position: absolute;
-    width: 13%;
-    height: 10%;
-    font-size: 1em;
+    padding: 2% 5%;
+    font-size: 120%;
     bottom: 10%;
     right: 10%;
 }
 
 @media (max-width: 1700px){
-    .recovery-text{ font-size: 1.2em;}
+    .recovery-text{ font-size: 100%;}
 }
 
 @media (max-width: 1180px), (max-height: 1150px){
-    .recovery-text{
-        font-size: .8em;
-        margin-bottom: 10%;
-    }
     .recovery-form input{ padding-left: 3%;}
-
-    .recovery-submit-btn{
-        width: 20%;
-        font-size: .8em;
-        margin-left: 65%;
-    }
-
-    .recovery-form { height: 60%;}
 }
 
 @media (max-width: 700px){
     .recovery-form input{ padding-left: 3%;}
-    .recovery-form{height: 65%}
-    .pass-rec-title{font-size: 1.6em;}
-    .recovery-text{ font-size: .7em;}
-    .recovery-submit-btn{
-        width: 35%;
-        bottom: 5%;
-    }
+    .recovery-text{ font-size: 70%;}
+    .recovery-submit-btn{font-size: 90%;}
 }
 
-@media (max-height: 850px){
-    .recovery-text{ font-size: .5em;}
+@media (max-width: 500px){
+    .recovery-text{ font-size: 50%;}
+    .recovery-form input{ height: 2.5em;;}
 }

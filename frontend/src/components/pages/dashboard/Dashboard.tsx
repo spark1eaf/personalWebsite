@@ -1,11 +1,10 @@
 import "./dashboard.css"
-// import "../../../styles/dashboard.css"
 import userManagementService from "../../../services/userManagementService";
 import * as Constants from "../../../constants/constants"
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useEffect, useState } from "react";
-import PopupWindow from "../../windows/PopupWindow";
+import PopupWindow from "../../windows/popup/PopupWindow";
 import WeatherWidget from "../../widgets/weather/WeatherWidget";
 import WordleWidget from "../../widgets/wordle/WordleWidget";
 import LeetcodeWidget from "../../widgets/leetcode/LeetcodeWidget";

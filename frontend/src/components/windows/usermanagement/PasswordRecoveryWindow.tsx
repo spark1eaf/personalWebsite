@@ -1,6 +1,7 @@
 import { MouseEventHandler } from "react";
 import WindowCloseBtn from "../../buttons/windowclose/WindowCloseBtn";
 import RecoveryForm from "../../forms/usermanagement/recovery/RecoveryForm";
+import "./passwordrecoverywindow.css"
 
 const PasswordRecoverWindow = ({closeWindow}: {closeWindow:MouseEventHandler<HTMLButtonElement>}) =>{
     return(

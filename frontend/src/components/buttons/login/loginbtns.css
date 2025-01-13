@@ -18,3 +18,10 @@
     background-color: #ffffff;
     color: black;
 }
+
+@media(max-width: 600px){
+    .login-btns{ 
+        justify-content: center;
+        margin-right: 0;
+    }
+}

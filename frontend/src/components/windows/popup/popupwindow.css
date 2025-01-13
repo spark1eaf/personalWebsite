@@ -6,7 +6,8 @@
     transform: translateX(-50%);
     background-color: #31393cf6;
     width: 50%;
-    height: 70%;
+    height: 80%;
+    min-height: 600px;
     font-size: 2em;
     border-radius: 1.5%;
     overflow: auto;

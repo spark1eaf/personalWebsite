@@ -1,11 +1,11 @@
 import { MouseEventHandler, useEffect, useState } from "react";
-import LoginWindow from "./usermanagement/LoginWindow";
-import RegistrationWindow from "./usermanagement/RegistrationWindow";
-import PasswordRecoverWindow from "./usermanagement/PasswordRecoveryWindow";
-import GetCurrentLocationWindow from "./weather/CurrentLocationWindow";
-import WeeklyForecastWindow from "./weather/WeeklyForecastWindow";
-import WordleWindow from "./wordle/WordleWindow";
-import * as Constants from "../../constants/constants";
+import LoginWindow from "../usermanagement/LoginWindow";
+import RegistrationWindow from "../usermanagement/RegistrationWindow";
+import PasswordRecoverWindow from "../usermanagement/PasswordRecoveryWindow";
+import GetCurrentLocationWindow from "../weather/CurrentLocationWindow";
+import WeeklyForecastWindow from "../weather/WeeklyForecastWindow";
+import WordleWindow from "../wordle/WordleWindow";
+import * as Constants from "../../../constants/constants";
 import "./popupwindow.css"
 
 interface Props{

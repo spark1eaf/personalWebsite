@@ -1,7 +1,6 @@
 import { MouseEventHandler } from "react";
 import WindowCloseBtn from "../../buttons/windowclose/WindowCloseBtn";
 import LoginForm from "../../forms/usermanagement/login/LoginForm";
-import "./loginwindow.css"
 
 interface Props{
     displayRecoveryWindow?:MouseEventHandler<HTMLButtonElement>,

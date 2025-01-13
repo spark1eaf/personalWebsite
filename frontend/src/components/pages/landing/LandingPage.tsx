@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LoginBtns from "../../buttons/login/LoginBtns";
 import Footer from "../../footer/Footer";
-import PopupWindow from "../../windows/PopupWindow";
+import PopupWindow from "../../windows/popup/PopupWindow";
 import "./landingpage.css"
 import userManagementService from "../../../services/userManagementService";
 import { useNavigate } from "react-router-dom";
