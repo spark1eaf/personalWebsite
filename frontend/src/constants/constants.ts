@@ -7,7 +7,7 @@ export const ABOUT_TEXT_PREFIX = `Current Site Features:`;
 export const ABOUT_TEXT_LOGIN = `Full registration and login functionality along with the ability to log in with guest account. Password change and account recovery are planned features but are yet to be implemented.`;
 export const ABOUT_TEXT_WEATHER = `Get the current weather along with the weekly forecast in cities across the US (provides your home location's forecast by default). Does not work for Hawaii unfortunately.`;
 export const ABOUT_TEXT_WORDLE = `Attempt to solve site's daily wordle challenges. Complete with tracking user's current and highest streaks.`
-export const ABOUT_TEXT_LEETCODE = `Retrieve random leetcode problems to solve from Leetcode problem's list containing all easy and medium problems.`
+export const ABOUT_TEXT_LEETCODE = `Retrieve random leetcode problems to solve from Leetcode's problem list containing all easy and medium problems.`
 export const RECOVERY_TEXT = `Please provide the email address linked to your account below and you will recieve a recovery email shortly.`;
 //pages
 export const BASENAME = import.meta.env.MODE === 'production' ? '' : '/site';
