@@ -1,19 +1,19 @@
-.landing-title{ font-size: 5em;}
+.landing-title{ font-size: 500%;}
 
 input:hover{ background-color: rgb(235, 229, 229);}
 
 .feature-prefix{
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: 15%;
-    font-size: 3.2em;
+    font-size: 320%;
 }
 
 .site-features{
     text-align: center;
     margin-left: 15%;
     margin-right: 15%;
-    margin-bottom: 20%;
-    font-size: 1.6em;
+    margin-bottom: 10%;
+    font-size: 160%;
 }
 
 .site-features li{
@@ -27,3 +27,16 @@ input:hover{ background-color: rgb(235, 229, 229);}
 }
 
 .submit-btn:hover{ color: gray;}
+
+@media (max-width: 850px){
+    .feature-prefix{ font-size: 250%; }
+    .site-features{ font-size: 120%;}
+}
+
+@media (max-width: 650px){
+    .feature-prefix{ font-size: 200%; }
+    .site-features{ 
+        font-size: 100%;
+        margin: 8% 15%;
+    }
+}

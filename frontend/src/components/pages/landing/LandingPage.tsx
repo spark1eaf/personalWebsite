@@ -53,6 +53,7 @@ const LandingPage = ()=>{
                 <li>{Constants.ABOUT_TEXT_LOGIN}</li>
                 <li>{Constants.ABOUT_TEXT_WEATHER}</li>
                 <li>{Constants.ABOUT_TEXT_WORDLE}</li>
+                <li>{Constants.ABOUT_TEXT_LEETCODE}</li>
             </ul>
             <PopupWindow windowToDisplay={windowToDisplay} displayRecoveryWindow={displayRecoveryWindow} closeWindow={closeWindow}/>
              <Footer/>
